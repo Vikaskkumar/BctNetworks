@@ -77,10 +77,22 @@ export default function Hero() {
         `}
       </style>
 
+      {/* Background Image with Parallax & Theme Overlay Mask */}
+      <div 
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-100 ease-out" 
+        style={{ 
+          backgroundImage: "url('/hero-bg.png')",
+          transform: `translateY(${scrollY * 0.15}px)`
+        }}
+      >
+        {/* Left-to-right fade mask: left is slightly shaded for contrast, right is completely clear */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#030005]/65 via-[#030005]/35 to-transparent html-light-hero-overlay transition-colors duration-500"></div>
+      </div>
+
       {/* Background Lighting / Glow replicating the reference image */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         {/* Massive purple radial glow behind the screens */}
-        <div className="absolute top-[10%] right-[-10%] w-[70%] h-[80%] bg-[#7c28d9] opacity-20 blur-[180px] rounded-full mix-blend-screen"></div>
+        <div className="absolute top-[10%] right-[-10%] w-[70%] h-[80%] bg-[#7c28d9] opacity-15 blur-[180px] rounded-full mix-blend-screen"></div>
         {/* Subtle ambient glow on the left */}
         <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#4c1d95] opacity-10 blur-[150px] rounded-full"></div>
       </div>
@@ -104,7 +116,7 @@ export default function Hero() {
             className={`text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.15] mb-5 transition-all duration-1000 delay-100 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           >
             One Platform.<br />
-            <span className="text-[#a855f7] drop-shadow-[0_0_30px_rgba(168,85,247,0.3)]">
+            <span className="text-[#a855f7] drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
               Limitless Guest<br />Experiences.
             </span>
           </h1>
@@ -130,22 +142,6 @@ export default function Hero() {
             </button>
           </div>
 
-          {/* Brand Logos Row (Bottom Left) */}
-          <div
-            className={`mt-12 pt-6 w-full flex flex-wrap justify-center lg:justify-start items-center gap-5 lg:gap-7 opacity-60 grayscale hover:grayscale-0 transition-all duration-500 delay-500 ${isVisible ? 'opacity-60 translate-y-0' : 'opacity-0 translate-y-8'}`}
-          >
-            {/* Simulated Logos with Text for clean rendering */}
-            <span className="text-white font-bold tracking-tighter text-base flex items-center gap-1">
-              <svg className="w-4 h-4 text-[#a855f7]" viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993.0004.5511-.4482.9997-.9993.9997zm-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997zm11.4045-6.02l1.9973-3.4592a.4158.4158 0 00-.1521-.5676.4162.4162 0 00-.5676.1521l-2.0221 3.503C15.5492 8.2197 13.8228 7.85 12 7.85c-1.8224 0-3.5488.3697-5.1366 1.0998L4.8413 5.4468a.4168.4168 0 00-.5676-.1521.4155.4155 0 00-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3436-4.1021-2.6892-7.5743-6.1185-9.4396z" /></svg>
-              android
-            </span>
-            <span className="text-white font-black tracking-widest text-base">SAMSUNG</span>
-            <span className="text-white font-bold text-lg">LG</span>
-            <span className="text-white font-semibold tracking-tight text-base">android<span className="font-light">tv</span></span>
-            <span className="text-white font-bold text-lg text-[#a855f7]">Roku</span>
-            <span className="text-white font-bold italic tracking-tighter text-base">fire<span className="text-orange-400">tv</span></span>
-          </div>
-
         </div>
 
         {/* RIGHT COLUMN: Advanced Spatial Devices (Smaller Device Images) */}
@@ -158,7 +154,7 @@ export default function Hero() {
               className={`absolute inset-0 transition-all duration-[1500ms] delay-[200ms] spring-enter ${isVisible ? 'opacity-100 scale-100 translate-x-0' : 'opacity-0 scale-90 translate-x-20'}`}
               style={{ transform: `translateY(${scrollY * -0.05}px)` }}
             >
-              <div className="absolute top-[8%] right-[2%] w-[80%] sm:w-[78%] lg:w-[84%] aspect-video animate-device-1 preserve-3d rounded-md bg-[#0a0a0a] border-[3px] border-[#1a1a1a] shadow-[-20px_20px_50px_rgba(0,0,0,0.8)]">
+              <div className="absolute top-[8%] right-[2%] w-[68%] sm:w-[65%] lg:w-[70%] aspect-video animate-device-1 preserve-3d rounded-md bg-[#0a0a0a] border-[3px] border-[#1a1a1a] shadow-[-20px_20px_50px_rgba(0,0,0,0.8)]">
                 <img src={tvImage} alt="Smart TV Interface" className="w-full h-full object-cover rounded-sm opacity-90" />
                 {/* TV Screen Glare */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none"></div>
@@ -170,7 +166,7 @@ export default function Hero() {
               className={`absolute inset-0 transition-all duration-[1500ms] delay-[400ms] spring-enter ${isVisible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-75 translate-y-32'}`}
               style={{ transform: `translateY(${scrollY * -0.15}px)` }}
             >
-              <div className="absolute bottom-[10%] left-[2%] lg:left-[-5%] w-[54%] sm:w-[50%] lg:w-[55%] aspect-[16/10] animate-device-2 preserve-3d rounded-[1rem] bg-black border-[5px] border-[#151515] shadow-[-25px_25px_50px_rgba(0,0,0,0.95)]">
+              <div className="absolute bottom-[10%] left-[2%] lg:left-[-5%] w-[44%] sm:w-[42%] lg:w-[46%] aspect-[16/10] animate-device-2 preserve-3d rounded-[1rem] bg-black border-[5px] border-[#151515] shadow-[-25px_25px_50px_rgba(0,0,0,0.95)]">
                 <img src={tabletImage} alt="Tablet Dashboard" className="w-full h-full object-cover rounded-md opacity-95" />
                 <div className="absolute inset-0 bg-gradient-to-bl from-white/10 via-transparent to-transparent pointer-events-none rounded-md"></div>
               </div>
@@ -181,7 +177,7 @@ export default function Hero() {
               className={`absolute inset-0 transition-all duration-[1500ms] delay-[600ms] spring-enter ${isVisible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-75 translate-y-48'}`}
               style={{ transform: `translateY(${scrollY * -0.25}px)` }}
             >
-              <div className="absolute bottom-[2%] right-[8%] w-[22%] sm:w-[20%] lg:w-[23%] aspect-[9/19.5] animate-device-3 preserve-3d rounded-[1.6rem] bg-black border-[3px] border-[#222] shadow-[-30px_30px_60px_rgba(0,0,0,0.99)]">
+              <div className="absolute bottom-[2%] right-[8%] w-[18%] sm:w-[16%] lg:w-[19%] aspect-[9/19.5] animate-device-3 preserve-3d rounded-[1.6rem] bg-black border-[3px] border-[#222] shadow-[-30px_30px_60px_rgba(0,0,0,0.99)]">
                 {/* Phone Notch/Island */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[45%] h-4 bg-[#0a0a0a] rounded-b-lg z-10 shadow-sm border-b border-[#222]"></div>
                 <img src={phoneImage} alt="Mobile Remote" className="w-full h-full object-cover rounded-[1.4rem]" />

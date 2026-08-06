@@ -393,3 +393,8 @@ html.light section.login-section button.text-slate-400 {
 html.light section.login-section button.text-slate-400:hover {
   color: #0f172a !important;
 }
+
+/* Hero Background Light Mode Mask */
+html.light .html-light-hero-overlay {
+  background: linear-gradient(to right, rgba(248, 250, 252, 0.85), rgba(248, 250, 252, 0.65), rgba(248, 250, 252, 0.4)) !important;
+}
