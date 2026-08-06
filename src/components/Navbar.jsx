@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export default function Navbar() {
+export default function Navbar({ user, onSignOut }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeHash, setActiveHash] = useState(window.location.hash || '#');
@@ -132,12 +132,26 @@ export default function Navbar() {
               )}
             </button>
 
-            <a
-              href="#"
-              className="text-[13px] font-semibold text-slate-400 hover:text-white transition-colors html-light-text-muted"
-            >
-              Sign In
-            </a>
+            {user ? (
+              <div className="flex items-center gap-3">
+                <span className="text-[12px] font-semibold text-slate-300 html-light-text-dark select-none">
+                  {user}
+                </span>
+                <button
+                  onClick={onSignOut}
+                  className="text-[12px] font-bold text-red-400 hover:text-red-300 transition-colors cursor-pointer"
+                >
+                  Sign Out
+                </button>
+              </div>
+            ) : (
+              <a
+                href="#login"
+                className="text-[13px] font-semibold text-slate-400 hover:text-white transition-colors html-light-text-muted"
+              >
+                Sign In
+              </a>
+            )}
 
             {/* Premium Solid Black & White CTA Button */}
             <button className="px-4 py-2 text-xs font-bold text-black bg-white hover:bg-slate-100 rounded-full transition-colors cursor-pointer navbar-cta-btn">
@@ -220,6 +234,32 @@ export default function Navbar() {
                 </>
               )}
             </button>
+            
+            {user ? (
+              <div className="flex flex-col gap-2.5">
+                <span className="text-xs font-semibold text-center text-slate-400">
+                  Logged in as {user}
+                </span>
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onSignOut();
+                  }}
+                  className="w-full py-3 px-5 text-xs font-bold border border-red-500/20 text-red-400 bg-red-500/5 rounded-full cursor-pointer"
+                >
+                  Sign Out
+                </button>
+              </div>
+            ) : (
+              <a
+                href="#login"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full py-3 px-5 text-xs font-bold border border-white/10 text-center text-white rounded-full bg-white/5 cursor-pointer"
+              >
+                Sign In
+              </a>
+            )}
+
             <button className="w-full py-3 px-5 text-xs font-bold text-black bg-white rounded-full cursor-pointer">
               Book a Demo
             </button>

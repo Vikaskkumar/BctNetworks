@@ -9,9 +9,13 @@ import Footer from './components/Footer';
 import Expertise from './components/Expertise';
 import CustomerReviews from './components/CustomerReviews';
 import Contact from './components/Contact';
+import Login from './components/Login';
 
 export default function App() {
   const [currentHash, setCurrentHash] = useState(window.location.hash);
+  const [user, setUser] = useState(() => {
+    return localStorage.getItem('userEmail') || null;
+  });
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -24,13 +28,26 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
+  const handleLoginSuccess = (email) => {
+    setUser(email);
+    localStorage.setItem('userEmail', email);
+    window.location.hash = ''; // Redirect to home on login success
+  };
+
+  const handleSignOut = () => {
+    setUser(null);
+    localStorage.removeItem('userEmail');
+    window.location.hash = ''; // Redirect to home on sign out
+  };
+
   const isPricingPage = currentHash === '#pricing';
   const isEcosystemPage = currentHash === '#ecosystem';
   const isContactPage = currentHash === '#contact';
+  const isLoginPage = currentHash === '#login';
 
   return (
     <div className="min-h-screen bg-[#06060c] font-sans selection:bg-purple-500/30 selection:text-white text-slate-300">
-      <Navbar />
+      <Navbar user={user} onSignOut={handleSignOut} />
 
       {isPricingPage ? (
         // Render ONLY the pricing page when hash is #pricing
@@ -47,8 +64,13 @@ export default function App() {
         <div className="pt-20">
           <Contact />
         </div>
+      ) : isLoginPage ? (
+        // Render ONLY the login page when hash is #login
+        <div className="pt-20">
+          <Login onLoginSuccess={handleLoginSuccess} />
+        </div>
       ) : (
-        // Render home page modules (without Ecosystem, Pricing and Contact)
+        // Render home page modules (without Ecosystem, Pricing, Contact and Login)
         <>
           <Hero />
           <Stats />

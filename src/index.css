@@ -339,3 +339,57 @@ html.light section.contact-section .contact-submit-btn {
 html.light section.contact-section .contact-submit-btn:hover {
   background-color: #1e293b !important;
 }
+
+/* Login Light Mode Overrides */
+html.light section.login-section {
+  background-color: #f8fafc !important;
+}
+
+html.light section.login-section .login-card {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light section.login-section .login-title {
+  color: #0f172a !important;
+}
+
+html.light section.login-section .login-subtitle {
+  color: #64748b !important;
+}
+
+html.light section.login-section .login-label {
+  color: #475569 !important;
+}
+
+html.light section.login-section .login-input {
+  background-color: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html.light section.login-section .login-input:focus {
+  border-color: #7c3aed !important;
+}
+
+html.light section.login-section .login-submit-btn {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+}
+
+html.light section.login-section .login-submit-btn:hover {
+  background-color: #1e293b !important;
+}
+
+html.light section.login-section .border-t {
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+html.light section.login-section button.text-slate-400 {
+  color: #64748b !important;
+}
+
+html.light section.login-section button.text-slate-400:hover {
+  color: #0f172a !important;
+}
