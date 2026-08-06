@@ -9,7 +9,6 @@ const AnimatedCounter = ({ end, suffix, duration = 2000 }) => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Trigger animation only when the element comes into the viewport
         if (entry.isIntersecting) {
           setIsVisible(true);
           observer.disconnect();
@@ -32,8 +31,6 @@ const AnimatedCounter = ({ end, suffix, duration = 2000 }) => {
     const step = (timestamp) => {
       if (!startTimestamp) startTimestamp = timestamp;
       const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-
-      // easeOutQuart formula for a natural slow-down at the end of the count
       const easeProgress = 1 - Math.pow(1 - progress, 4);
       setCount(Math.floor(easeProgress * end));
 
@@ -48,12 +45,33 @@ const AnimatedCounter = ({ end, suffix, duration = 2000 }) => {
   return (
     <span ref={countRef}>
       {count}
-      <span className="text-purple-400 drop-shadow-[0_0_12px_rgba(168,85,247,0.6)]">{suffix}</span>
+      <span className="text-purple-400 drop-shadow-[0_0_8px_rgba(168,85,247,0.5)]">{suffix}</span>
     </span>
   );
 };
 
 export default function Stats() {
+  const [sectionVisible, setSectionVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setSectionVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   const statsData = [
     { end: 30, suffix: "+", label: "Countries connected" },
     { end: 62, suffix: "+", label: "Hospitality brands" },
@@ -63,43 +81,41 @@ export default function Stats() {
   ];
 
   return (
-    <section className="relative bg-[#06060c] py-24 border-y border-purple-500/10 overflow-hidden">
-      {/* Decorative ambient background glows */}
+    <section 
+      ref={sectionRef}
+      className="relative bg-[#05050a] py-12 md:py-16 border-y border-purple-500/10 overflow-hidden"
+    >
+      {/* Top glowing boundary line */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-purple-500/20 to-transparent"></div>
-      <div className="absolute inset-0 bg-purple-600/5 blur-[120px] rounded-full pointer-events-none z-0"></div>
+      
+      {/* Background ambient radial glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(124,58,237,0.03),transparent_60%)] pointer-events-none z-0"></div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
         
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-3 mb-4">
-            <div className="h-[1px] w-6 bg-purple-500/30"></div>
-            <p className="text-[11px] tracking-widest text-purple-400 uppercase font-bold">
-              The numbers that define our success
-            </p>
-            <div className="h-[1px] w-6 bg-purple-500/30"></div>
-          </div>
-          <h2 className="text-3xl md:text-4xl font-display font-extrabold text-white tracking-tight">
-            Proven Performance & Global Scale
-          </h2>
-        </div>
-
-        {/* Centered Stats Grid with Visuo-style cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+        {/* Compact stats grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
           {statsData.map((item, i) => (
             <div
               key={i}
-              className="flex flex-col items-center justify-center bg-[#0c0a1a]/60 backdrop-blur-md border border-purple-500/10 rounded-3xl p-8 text-center group hover:border-purple-500/20 hover:-translate-y-1 transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.4)] cursor-default"
+              className={`flex flex-col items-center justify-center bg-white/[0.02] backdrop-blur-sm border border-white/5 rounded-2xl py-6 px-4 text-center group hover:bg-white/[0.04] hover:border-purple-500/30 hover:-translate-y-0.5 transition-all duration-500 shadow-[0_4px_20px_rgba(0,0,0,0.2)] hover:shadow-[0_4px_25px_rgba(124,58,237,0.1)] cursor-default ${
+                sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
+              style={{ transitionDelay: `${i * 100}ms` }}
             >
-              <h4 className="text-4xl md:text-5xl font-display font-extrabold mb-3 text-white tracking-tight">
+              {/* Stat Number */}
+              <h4 className="text-3xl md:text-4xl font-sans font-extrabold mb-1.5 text-white tracking-tight">
                 <AnimatedCounter end={item.end} suffix={item.suffix} />
               </h4>
-              <span className="text-[11px] text-slate-400 uppercase tracking-widest font-semibold group-hover:text-purple-300 transition-colors duration-300">
+              
+              {/* Stat Label */}
+              <span className="text-[10px] md:text-[11px] text-slate-400 uppercase tracking-wider font-semibold group-hover:text-purple-300 transition-colors duration-300">
                 {item.label}
               </span>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );

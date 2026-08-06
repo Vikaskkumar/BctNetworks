@@ -1,98 +1,110 @@
 import React from 'react';
 
 export default function Footer() {
-  const footerLinks = [
-    {
-      title: "Platform",
-      links: ["IPTV Core", "OTT Delivery", "Mobile App", "Casting", "Digital Signage"]
-    },
-    {
-      title: "Industries",
-      links: ["Hospitality", "Healthcare", "Maritime", "Enterprise", "Stadiums"]
-    },
-    {
-      title: "Company",
-      links: ["About Us", "Customers", "News & Blog", "Careers", "Partners"]
-    },
-    {
-      title: "Connect",
-      links: ["Contact Sales", "Book a Demo", "Support Portal", "System Status", "Developer API"]
-    }
-  ];
-
   return (
-    <footer className="relative bg-[#06060c] pt-24 pb-10 px-4 md:px-8 border-t border-purple-500/10 overflow-hidden font-sans">
+    <footer className="bg-[#050505] pt-16 pb-8 border-t border-white/10 font-sans">
+      <div className="max-w-7xl mx-auto px-4 md:px-8">
 
-      {/* Ambient Background Glow */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-purple-600/10 blur-[150px] rounded-full pointer-events-none z-0"></div>
+        {/* Top Section: 4-Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
 
-      <div className="relative z-10 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 lg:gap-8 mb-20">
-
-          {/* Brand Column (Spans 2 columns on large screens) */}
-          <div className="lg:col-span-2">
-            <div className="font-display font-bold text-3xl tracking-tight text-white mb-6 flex items-center gap-3">
-              {/* Glowing Logo Mark */}
-              <div className="w-6 h-6 rounded-md bg-gradient-to-br from-purple-600 to-indigo-500 shadow-[0_0_15px_rgba(168,85,247,0.5)]"></div>
-              Vardhman Tv
-            </div>
-
-            <p className="text-sm text-slate-400 mb-10 max-w-sm leading-relaxed">
-              Next-generation technology for hospitality. The intelligent OTT platform behind every screen, every app, and every guest experience.
-            </p>
-
-            {/* Glassmorphic Location Pills */}
-            <div className="flex flex-wrap gap-2 text-[10px] font-bold tracking-widest uppercase text-slate-400">
-              {['London', 'New York', 'Dubai', 'Mumbai', 'Singapore'].map((city) => (
-                <span
-                  key={city}
-                  className="px-4 py-2 border border-purple-500/10 rounded-full bg-purple-500/5 backdrop-blur-md hover:bg-purple-500/15 hover:text-white transition-colors cursor-default"
+          {/* Column 1: Brand & Tagline */}
+          <div className="col-span-1">
+            <div className="flex items-center gap-3 mb-4">
+              {/* Play Button Logo mimicking the reference image */}
+              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow-lg">
+                <svg
+                  className="w-4 h-4 text-black translate-x-[1px]"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
                 >
-                  {city}
-                </span>
-              ))}
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+              <span className="text-xl font-bold text-white tracking-tight">
+                Vardhman Tv
+              </span>
             </div>
+            <p className="text-sm text-slate-400 leading-relaxed max-w-xs">
+              All-in-one digital platform for IPTV, OTT, and hospitality solutions.
+            </p>
           </div>
 
-          {/* Dynamic Link Columns */}
-          {footerLinks.map((column, idx) => (
-            <div key={idx} className="lg:col-span-1">
-              <h4 className="font-semibold text-white mb-6 text-xs tracking-widest uppercase opacity-85">
-                {column.title}
-              </h4>
-              <ul className="space-y-4 text-sm text-slate-400">
-                {column.links.map((link, linkIdx) => (
-                  <li key={linkIdx}>
-                    <a
-                      href="#"
-                      className="flex items-center group transition-all duration-300"
-                    >
-                      {/* Sliding arrow animation on hover */}
-                      <span className="w-0 overflow-hidden group-hover:w-4 transition-all duration-300 text-purple-500 opacity-0 group-hover:opacity-100">
-                        ›
-                      </span>
-                      <span className="group-hover:text-purple-300 group-hover:translate-x-1 transition-transform duration-300">
-                        {link}
-                      </span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* Column 2: Product */}
+          <div>
+            <h3 className="text-white font-semibold mb-5 text-sm">Product</h3>
+            <ul className="space-y-4">
+              <li>
+                <a href="#" className="text-sm text-slate-400 hover:text-white transition-colors duration-200">
+                  Features
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm text-slate-400 hover:text-white transition-colors duration-200">
+                  Solutions
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm text-slate-400 hover:text-white transition-colors duration-200">
+                  Pricing
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 3: Company */}
+          <div>
+            <h3 className="text-white font-semibold mb-5 text-sm">Company</h3>
+            <ul className="space-y-4">
+              <li>
+                <a href="#" className="text-sm text-slate-400 hover:text-white transition-colors duration-200">
+                  About
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm text-slate-400 hover:text-white transition-colors duration-200">
+                  Careers
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm text-slate-400 hover:text-white transition-colors duration-200">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 4: Support */}
+          <div>
+            <h3 className="text-white font-semibold mb-5 text-sm">Support</h3>
+            <ul className="space-y-4">
+              <li>
+                <a href="#" className="text-sm text-slate-400 hover:text-white transition-colors duration-200">
+                  Help Center
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm text-slate-400 hover:text-white transition-colors duration-200">
+                  24/7 Assistance
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm text-slate-400 hover:text-white transition-colors duration-200">
+                  Status
+                </a>
+              </li>
+            </ul>
+          </div>
 
         </div>
 
-        {/* Bottom Copyright Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-purple-500/10 text-xs text-slate-500">
-          <p>© 2026 Vardhman Tv Inc. All rights reserved.</p>
-
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-white transition-colors">Cookie Settings</a>
-          </div>
+        {/* Bottom Section: Copyright */}
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between">
+          <p className="text-sm text-slate-500">
+            © 2026 Vardhman Tv. All rights reserved.
+          </p>
         </div>
+
       </div>
     </footer>
   );
