@@ -394,7 +394,42 @@ html.light section.login-section button.text-slate-400:hover {
   color: #0f172a !important;
 }
 
+html.light section.login-section .login-google-btn {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html.light section.login-section .login-google-btn:hover {
+  background-color: #f1f5f9 !important;
+}
+
+/* Expertise / Smart TV Light Mode Overrides */
+html.light section.expertise-section {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+html.light section.expertise-section h2 {
+  color: #0f172a !important;
+}
+
+html.light section.expertise-section p.text-slate-400 {
+  color: #64748b !important;
+}
+
 /* Hero Background Light Mode Mask */
 html.light .html-light-hero-overlay {
   background: linear-gradient(to right, rgba(248, 250, 252, 0.85), rgba(248, 250, 252, 0.65), rgba(248, 250, 252, 0.4)) !important;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }

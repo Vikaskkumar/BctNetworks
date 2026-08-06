@@ -1,277 +1,399 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+// Correct asset imports matching actual file names in src/assets
+import hotelBgImage from '../assets/hotelimgae.jpg';
+import ottImage from '../assets/ott.jpeg';
+import spaImage from '../assets/spa.jpeg';
+import exploreImage from '../assets/explore.png';
+import tvImage from '../assets/tv.avif';
+import hotelVideosImage from '../assets/Hotel-videos.png';
+import diningImage from '../assets/dining.jpeg';
+
 export default function Expertise() {
-    const [activeItem, setActiveItem] = useState(0);
-    const [isVisible, setIsVisible] = useState(false);
-    const [relativeScroll, setRelativeScroll] = useState(0);
-    const [indicatorStyle, setIndicatorStyle] = useState({ top: 0, height: 0 });
-    const sectionRef = useRef(null);
-    const itemRefs = useRef([]);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const containerRef = useRef(null);
 
-    // Calculate glowing indicator line position whenever activeItem changes or window resizes
-    useEffect(() => {
-        const updateIndicator = () => {
-            if (itemRefs.current[activeItem]) {
-                const el = itemRefs.current[activeItem];
-                setIndicatorStyle({
-                    top: el.offsetTop,
-                    height: el.offsetHeight
-                });
-            }
-        };
+  const navItems = [
+    {
+      id: 'home',
+      label: 'HOME',
+      title: 'A wide world of entertainment',
+      description: 'Experience world-class culinary creations and seamless digital entertainment right from the comfort of your room.',
+      bg: hotelBgImage,
+      icon: (
+        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+      ),
+    },
+    {
+      id: 'ott',
+      label: 'OTT',
+      title: 'Stream your favorites seamlessly',
+      description: 'Access Netflix, Prime Video, Hotstar, and more directly on your TV without entering your credentials.',
+      bg: ottImage,
+      icon: (
+        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
+    },
+    {
+      id: 'dining',
+      label: 'DINING',
+      title: 'In-Room Dining & Culinary',
+      description: 'Order from our curated menu and have it delivered discreetly to your suite 24 hours a day.',
+      bg: diningImage,
+      icon: (
+        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+        </svg>
+      ),
+    },
+    {
+      id: 'spa',
+      label: 'SPA',
+      title: 'Wellness & Relaxation',
+      description: 'Book therapeutic treatments and discover ancient Ayurvedic rituals designed to restore your balance.',
+      bg: spaImage,
+      icon: (
+        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
+    },
+    {
+      id: 'explore',
+      label: 'EXPLORE',
+      title: 'Discover the Pink City',
+      description: 'Uncover vibrant colors, historic palaces, and bustling bazaars with our curated local guides.',
+      bg: exploreImage,
+      icon: (
+        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      ),
+    },
+    {
+      id: 'videos',
+      label: 'VIDEOS',
+      title: 'Hotel Tours & Gallery',
+      description: 'Take a virtual tour of our resort, event spaces, and watch guided wellness tutorials.',
+      bg: hotelVideosImage,
+      icon: (
+        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+        </svg>
+      ),
+    },
+    {
+      id: 'settings',
+      label: 'SETTINGS',
+      title: 'Peace of mind, built in',
+      description: 'Customize room environment, pair bluetooth devices, and manage your privacy preferences securely.',
+      bg: hotelBgImage,
+      icon: (
+        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      ),
+    },
+  ];
 
-        updateIndicator();
-        window.addEventListener('resize', updateIndicator);
-        return () => window.removeEventListener('resize', updateIndicator);
-    }, [activeItem]);
+  const quickAccessCards = [
+    { id: 'livetv', title: 'Live TV', subtitle: '200+ CHANNELS', image: tvImage },
+    { id: 'ott', title: 'OTT', subtitle: 'LATEST RELEASES', image: ottImage },
+    { id: 'activities', title: 'Activities', subtitle: 'AT YOUR FINGERTIPS', image: exploreImage },
+    { id: 'dining', title: 'Dining', subtitle: 'DELICIOUS & FRESH', image: spaImage },
+  ];
 
-    // Intersection Observer for Entrance Animation & Scroll-linked Active Item Switching
-    useEffect(() => {
-        let rafId;
+  // --- Faster Scroll Snapping Logic ---
+  useEffect(() => {
+    let ticking = false;
 
-        const handleScroll = () => {
-            rafId = requestAnimationFrame(() => {
-                if (sectionRef.current) {
-                    const rect = sectionRef.current.getBoundingClientRect();
-                    // Parallax shift calculation for subtle image movement
-                    setRelativeScroll(rect.top * -0.05);
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (!containerRef.current) return;
+          const rect = containerRef.current.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
+          const scrolled = -rect.top;
+          const scrollableDistance = rect.height - windowHeight;
 
-                    // Automatic Scroll-Driven Active Item Switcher
-                    if (itemRefs.current.length > 0) {
-                        const viewportFocalPoint = window.innerHeight * 0.42;
-                        let minDistance = Infinity;
-                        let closestIndex = 0;
+          if (scrollableDistance > 0) {
+            let progress = scrolled / scrollableDistance;
+            progress = Math.max(0, Math.min(1, progress));
+            
+            // Snap to the closest whole index faster
+            const newIndex = Math.round(progress * (navItems.length - 1));
+            setActiveIndex(newIndex);
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
 
-                        itemRefs.current.forEach((el, index) => {
-                            if (el) {
-                                const itemRect = el.getBoundingClientRect();
-                                const itemCenter = itemRect.top + itemRect.height / 2;
-                                const distance = Math.abs(itemCenter - viewportFocalPoint);
-                                if (distance < minDistance) {
-                                    minDistance = distance;
-                                    closestIndex = index;
-                                }
-                            }
-                        });
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
 
-                        setActiveItem(closestIndex);
-                    }
-                }
-            });
-        };
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [navItems.length]);
 
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setIsVisible(true);
-                }
-            },
-            { threshold: 0.1 }
-        );
+  // Click-to-Scroll Function
+  const scrollToSection = (index) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const scrollableDistance = rect.height - window.innerHeight;
+    const absoluteTop = window.scrollY + rect.top;
+    const targetScrollY = absoluteTop + (index / (navItems.length - 1)) * scrollableDistance;
 
-        if (sectionRef.current) {
-            observer.observe(sectionRef.current);
-        }
+    window.scrollTo({ top: targetScrollY, behavior: 'smooth' });
+  };
 
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll();
+  return (
+    <div
+      ref={containerRef}
+      // Reduced height multiplier from 85vh to 45vh per item to make scrolling much faster and more responsive
+      style={{ height: `${navItems.length * 45}vh` }}
+      className="relative w-full bg-[#0b0f19] font-sans text-white"
+    >
+      <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
+        
+        {/* Main Grid Layout: Left Compact Sidebar + Right 3D Screen */}
+        <div className="w-full max-w-[1550px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 px-6 md:px-10 items-center">
 
-        return () => {
-            observer.disconnect();
-            window.removeEventListener('scroll', handleScroll);
-            cancelAnimationFrame(rafId);
-        };
-    }, []);
+          {/* --- LEFT COLUMN: COMPACT SIDEBAR ACCORDION --- */}
+          <div className="lg:col-span-4 flex flex-col gap-2 z-20">
+            {navItems.map((item, index) => {
+              const isActive = activeIndex === index;
+              return (
+                <div
+                  key={item.id}
+                  onClick={() => scrollToSection(index)}
+                  className={`relative cursor-pointer rounded-xl overflow-hidden transition-all duration-300 border ${
+                    isActive 
+                      ? 'bg-[#161b28] border-white/15 shadow-[0_8px_25px_rgba(0,0,0,0.4)]' 
+                      : 'bg-[#10141f] border-white/5 hover:bg-[#141924]'
+                  }`}
+                >
+                  <div className="px-4 py-3 flex items-center justify-between">
+                    <div className="flex items-center gap-2.5">
+                      <span className={`transition-colors duration-300 ${isActive ? 'text-[#e2b86d]' : 'text-slate-400'}`}>
+                        {item.icon}
+                      </span>
+                      <h3 className={`text-xs md:text-sm font-bold tracking-wide transition-colors duration-300 ${isActive ? 'text-white' : 'text-slate-300'}`}>
+                        {item.title}
+                      </h3>
+                    </div>
+                  </div>
+                  
+                  {/* Smooth Expandable Description Area */}
+                  <div 
+                    className={`grid transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${isActive ? 'grid-rows-[1fr] opacity-150 px-4 pb-3 pt-0' : 'grid-rows-[0fr] opacity-0 px-4 pb-0 pt-0'}`}
+                  >
+                    <div className="overflow-hidden">
+                      <p className="text-[11px] md:text-xs text-slate-400 leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
 
-    const expertiseItems = [
-        {
-            num: '01',
-            title: 'IPTV & OTT Entertainment',
-            shortDesc: 'Cinematic in-room entertainment and live TV streaming platforms.',
-            image: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=2070&auto=format&fit=crop',
-            features: ['4K Ultra HD Streaming', 'Native Chromecast & AirPlay', 'Customizable User Interface']
-        },
-        {
-            num: '02',
-            title: 'Hotels & Resorts',
-            shortDesc: 'End-to-end digital solutions for modern hotel management and guest experience.',
-            image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop",
-            features: ['Seamless PMS Integration (OPERA)', 'Smart Room Automation', 'Digital Concierge Services']
-        },
-        {
-            num: '03',
-            title: 'Gym & Fitness Centers',
-            shortDesc: 'Engaging workout entertainment and digital signage for modern fitness clubs.',
-            image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop',
-            features: ['Cardio Screen Integration', 'Class Schedule Digital Signage', 'Bluetooth Audio Sync']
-        },
-        {
-            num: '04',
-            title: 'Spa & Wellness',
-            shortDesc: 'Serene ambient entertainment and interactive service booking platforms.',
-            image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=2070&auto=format&fit=crop',
-            features: ['Ambient Audio & Video Channels', 'Interactive Treatment Menus', 'In-Room Booking Capabilities']
-        },
-        {
-            num: '05',
-            title: 'Travel & Maritime',
-            shortDesc: 'Reliable offline and satellite-synced entertainment for cruises and transit.',
-            image: 'https://images.unsplash.com/photo-1599640842225-85d111c60e6b?q=80&w=1974&auto=format&fit=crop',
-            features: ['Low-Bandwidth VOD Streaming', 'Safety Video Overrides', 'Multi-Language Support']
-        },
-        {
-            num: '06',
-            title: 'Enterprise Analytics',
-            shortDesc: 'Centralized network management and engagement data across all properties.',
-            image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop',
-            features: ['Network Health Dashboard', 'Content Usage Tracking', 'Custom Data Reporting']
-        }
-    ];
+                  {/* Active Indicator Line */}
+                  <div 
+                    className={`absolute bottom-0 left-0 h-[2px] bg-[#e2b86d] transition-all duration-400 ${isActive ? 'w-full opacity-100' : 'w-0 opacity-0'}`}
+                  ></div>
+                </div>
+              );
+            })}
+          </div>
 
-    return (
-        <section
-            ref={sectionRef}
-            className="bg-[#030005] py-28 lg:py-36 px-6 md:px-12 font-sans overflow-x-clip border-b border-white/5 relative"
-        >
-            {/* Background Ambient Glow */}
-            <div className="absolute top-[20%] left-[-10%] w-[50%] h-[50%] bg-[#7c28d9] opacity-10 blur-[150px] rounded-full pointer-events-none -z-10"></div>
+          {/* --- RIGHT COLUMN: 3D TV SCREEN --- */}
+          <div className="lg:col-span-8 flex justify-center lg:justify-end items-center w-full h-[50vh] lg:h-[68vh]">
+            
+            {/* The 3D Rotated Frame */}
+            <div 
+              className="relative w-full aspect-[16/10] max-h-[660px] rounded-[1.2rem] md:rounded-[1.8rem] bg-[#05070a] border-[6px] md:border-[10px] border-[#0a0f18] overflow-hidden will-change-transform"
+              style={{
+                transform: 'perspective(1400px) rotateY(-12deg) rotateX(2deg) scale(0.96)',
+                transformStyle: 'preserve-3d',
+                boxShadow: '-25px 35px 70px rgba(0,0,0,0.6), inset 0 0 35px rgba(255,255,255,0.04)'
+              }}
+            >
+              
+              {/* Bezel Border Highlight */}
+              <div className="absolute inset-0 border border-white/10 rounded-[1rem] md:rounded-[1.4rem] z-50 pointer-events-none shadow-[inset_0_0_15px_rgba(0,0,0,0.8)]"></div>
 
-            <div className="max-w-[90rem] mx-auto flex flex-col lg:flex-row gap-12 lg:gap-16 items-start relative">
+              {/* Status Bar */}
+              <div className="absolute top-5 right-6 z-40 flex items-center gap-3 opacity-80">
+                <div className="bg-black/60 backdrop-blur-md rounded-full px-3.5 py-1 flex items-center gap-2 text-white text-[10px]">
+                  <span className="text-amber-400">☀️ 31°C</span>
+                  <span className="text-white/30">|</span>
+                  <span className="font-bold tracking-wide">04:13 PM</span>
+                </div>
+              </div>
 
-                {/* LEFT COLUMN: List & Titles */}
-                <div className="w-full lg:w-5/12 flex flex-col relative z-10 pb-32 lg:pb-[40vh]">
-
-                    {/* Section Header */}
-                    <div className={`transition-all duration-1000 ease-out mb-10 lg:mb-12 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-                        <p className="text-[#a78bfa] text-xs font-bold tracking-[0.2em] uppercase mb-3 drop-shadow-md">
-                            Platform Ecosystem
-                        </p>
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.15]">
-                            We Offer <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] to-[#7c3aed]">Complete Expertise.</span>
-                        </h2>
+              {/* The Sliding Horizontal Track inside the 3D Screen */}
+              <div 
+                className="absolute inset-0 z-10 w-full h-full flex flex-row flex-nowrap transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform"
+                style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+              >
+                
+                {/* SCREEN 0: HOME */}
+                <div className="w-full h-full flex-shrink-0 relative">
+                  <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${hotelBgImage})` }} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                  
+                  <div className="relative z-20 h-full flex flex-col justify-between p-6 md:p-10">
+                    <div>
+                      <h2 className="text-[#e2b86d] text-sm md:text-base font-serif italic mb-0.5">Good Afternoon,</h2>
+                      <h1 className="text-white text-2xl md:text-4xl font-serif font-bold tracking-wide mb-2">Anantara Jewel Bagh</h1>
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#e2b86d]/20 border border-[#e2b86d]/30 text-[#e2b86d] text-[9px] font-black tracking-widest uppercase">
+                        ROOM 101
+                      </span>
                     </div>
 
-                    {/* Interactive Hover / Scroll List */}
-                    <div className="flex flex-col relative">
-                        {/* Animated Glowing Left Border Indicator */}
-                        <div
-                            className="absolute left-0 w-[2px] bg-[#a855f7] transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] shadow-[0_0_15px_rgba(168,85,247,0.8)] z-10"
-                            style={{
-                                top: `${indicatorStyle.top}px`,
-                                height: `${indicatorStyle.height}px`
-                            }}
-                        ></div>
-
-                        {expertiseItems.map((item, index) => {
-                            const isActive = activeItem === index;
-
-                            return (
-                                <div
-                                    key={index}
-                                    ref={(el) => (itemRefs.current[index] = el)}
-                                    onMouseEnter={() => setActiveItem(index)}
-                                    onClick={() => setActiveItem(index)}
-                                    className={`group relative flex items-start py-7 md:py-9 cursor-pointer border-l-[2px] transition-all duration-500 pl-5 md:pl-7 ${isActive ? 'border-transparent bg-white/[0.03]' : 'border-white/5 hover:bg-white/[0.01]'
-                                        } ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}
-                                    style={{ transitionDelay: `${index * 50}ms` }}
-                                >
-                                    {/* Number */}
-                                    <span className={`font-mono text-xs md:text-sm font-bold mr-5 mt-1 transition-colors duration-300 ${isActive ? 'text-[#a855f7]' : 'text-gray-600'}`}>
-                                        {item.num}
-                                    </span>
-
-                                    {/* Title & Mobile Description */}
-                                    <div className="flex-1">
-                                        <h3 className={`text-lg md:text-xl font-semibold mb-1.5 transition-colors duration-300 ${isActive ? 'text-white' : 'text-gray-400 group-hover:text-gray-200'}`}>
-                                            {item.title}
-                                        </h3>
-
-                                        <div className={`grid transition-all duration-500 ease-in-out ${isActive ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0 lg:grid-rows-[1fr] lg:opacity-40'}`}>
-                                            <p className="overflow-hidden text-xs md:text-sm text-gray-400 leading-relaxed pr-4">
-                                                {item.shortDesc}
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    {/* Arrow Indicator */}
-                                    <div className={`flex-shrink-0 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${isActive ? 'text-white translate-x-1' : 'text-transparent -translate-x-4'}`}>
-                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
-                                    </div>
-                                </div>
-                            );
-                        })}
+                    <div>
+                      <p className="text-[#e2b86d] text-[9px] font-extrabold tracking-[0.2em] uppercase mb-2.5 drop-shadow">QUICK ACCESS</p>
+                      <div className="grid grid-cols-4 gap-2.5">
+                        {quickAccessCards.map((card) => (
+                          <div key={card.id} className="relative rounded-xl overflow-hidden border border-white/10 aspect-video bg-black/40">
+                            <div className="absolute inset-0 bg-cover bg-center opacity-50" style={{ backgroundImage: `url(${card.image})` }} />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent"></div>
+                            <div className="absolute bottom-2 left-2.5">
+                              <h4 className="text-white text-[11px] font-bold">{card.title}</h4>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
+                  </div>
                 </div>
 
-                {/* RIGHT COLUMN: Fixed Sticky Layout */}
-                <div className="w-full lg:w-7/12 hidden lg:block sticky top-28 xl:top-32 h-[480px] xl:h-[520px] z-20">
+                {/* SCREEN 1: OTT */}
+                <div className="w-full h-full flex-shrink-0 relative">
+                  <div className="absolute inset-0 bg-cover bg-center opacity-60" style={{ backgroundImage: `url(${ottImage})` }} />
+                  <div className="absolute inset-0 bg-[#05070a]/80 backdrop-blur-sm"></div>
 
-                    {/* Animated Container */}
-                    <div className={`w-full h-full rounded-[2rem] border border-white/10 bg-[#0a0a0c] shadow-[0_30px_60px_rgba(0,0,0,0.8)] overflow-hidden relative transition-all duration-1000 delay-300 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-24'}`}>
-
-                        {expertiseItems.map((item, index) => {
-                            const isActive = activeItem === index;
-
-                            return (
-                                <div
-                                    key={index}
-                                    className={`absolute inset-0 w-full h-full pointer-events-none transition-all duration-700 ease-in-out ${isActive ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-95 z-0'
-                                        }`}
-                                >
-                                    {/* Image Container (Vertically Longer) */}
-                                    <div className="absolute top-0 left-0 w-full h-[60%] overflow-hidden bg-black">
-
-                                        {/* Scroll Parallax Wrapper */}
-                                        <div
-                                            className="absolute inset-0 w-full h-full"
-                                            style={{ transform: `translateY(${relativeScroll}px)` }}
-                                        >
-                                            <img
-                                                src={item.image}
-                                                alt={item.title}
-                                                className={`absolute top-[-15%] left-[-5%] w-[110%] h-[130%] object-cover transition-transform duration-[1500ms] ease-[cubic-bezier(0.25,1,0.5,1)] ${isActive ? 'scale-100' : 'scale-[1.15]'}`}
-                                            />
-                                        </div>
-
-                                        {/* Gradient overlay */}
-                                        <div className="absolute inset-0 bg-[#0a0a0c]/20 bg-gradient-to-t from-[#0a0a0c] via-[#0a0a0c]/40 to-transparent"></div>
-                                    </div>
-
-                                    {/* Text Details Panel */}
-                                    <div className="absolute bottom-0 left-0 w-full h-[44%] p-6 xl:p-8 flex flex-col justify-end bg-gradient-to-t from-[#0a0a0c] via-[#0a0a0c] to-transparent">
-
-                                        <div className={`transition-all duration-700 ease-out ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                                            <h4 className="text-xl xl:text-2xl font-bold text-white mb-3 tracking-tight">
-                                                {item.title} Overview
-                                            </h4>
-
-                                            {/* Features List */}
-                                            <ul className="space-y-2 xl:space-y-2.5">
-                                                {item.features.map((feature, fIndex) => (
-                                                    <li key={fIndex} className="flex items-center gap-2.5 xl:gap-3 text-xs xl:text-[14px] font-medium text-gray-300">
-                                                        <div className="w-4.5 h-4.5 xl:w-5 xl:h-5 rounded-full bg-[#7c3aed]/10 border border-[#7c3aed]/40 flex items-center justify-center shadow-[0_0_10px_rgba(124,58,237,0.2)] flex-shrink-0">
-                                                            <svg className="w-2.5 h-2.5 xl:w-3 xl:h-3 text-[#a855f7]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
-                                                        </div>
-                                                        {feature}
-                                                    </li>
-                                                ))}
-                                            </ul>
-
-                                            <button className="mt-4 xl:mt-5 text-xs xl:text-sm font-bold text-[#a855f7] hover:text-white transition-colors flex items-center gap-2 group pointer-events-auto w-fit">
-                                                Explore specific modules
-                                                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            );
-                        })}
-
+                  <div className="relative z-20 h-full flex flex-col justify-center items-center p-6 text-center">
+                    <h1 className="text-white text-2xl md:text-4xl font-serif font-bold mb-6">Streaming Apps</h1>
+                    
+                    <div className="grid grid-cols-3 gap-3.5 w-full max-w-xl">
+                      {[
+                        { name: 'NETFLIX', bg: 'bg-black', text: 'text-red-600', border: 'border-white/10' },
+                        { name: 'prime video', bg: 'bg-[#00a8e1]', text: 'text-white', border: 'border-white/10' },
+                        { name: 'Hotstar', bg: 'bg-gradient-to-r from-blue-700 to-indigo-900', text: 'text-white', border: 'border-white/10' },
+                        { name: 'YouTube', icon: true, bg: 'bg-[#141414]', text: 'text-red-600', border: 'border-white/10' },
+                        { name: 'SonyLIV', bg: 'bg-[#0a1128]', text: 'text-amber-400', border: 'border-white/10' },
+                        { name: 'Z5', bg: 'bg-white', text: 'text-purple-600', border: 'border-white/10' },
+                      ].map((app, idx) => (
+                        <div key={idx} className={`w-full aspect-video rounded-xl ${app.bg} border ${app.border} flex items-center justify-center shadow-lg`}>
+                          {app.icon ? (
+                            <svg className={`w-8 h-8 ${app.text}`} viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M23.498 6.163a3.003 3.003 0 00-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.516 0-9.387.507a3.003 3.003 0 00-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 002.11 2.11c1.871.507 9.387.507 9.387.507s7.517 0 9.388-.507a3.003 3.003 0 002.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                            </svg>
+                          ) : (
+                            <span className={`font-black text-base md:text-lg tracking-tighter ${app.text}`}>{app.name}</span>
+                          )}
+                        </div>
+                      ))}
                     </div>
+                  </div>
                 </div>
 
+                {/* SCREEN 2: DINING */}
+                <div className="w-full h-full flex-shrink-0 relative flex items-center justify-center">
+                  <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${diningImage})` }} />
+                  <div className="absolute inset-0 bg-black/60"></div>
+                  
+                  <div className="relative z-20 text-center px-8">
+                    <div className="w-12 h-12 mx-auto mb-4 bg-white/10 rounded-xl border border-white/20 backdrop-blur-md flex items-center justify-center">
+                      <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                      </svg>
+                    </div>
+                    <h2 className="text-white text-2xl md:text-3xl font-sans font-medium mb-2">In-Room Dining</h2>
+                    <p className="text-white/60 max-w-xs mx-auto text-xs">Experience world-class culinary creations delivered discreetly to your suite.</p>
+                  </div>
+                </div>
+
+                {/* SCREEN 3: SPA */}
+                <div className="w-full h-full flex-shrink-0 relative flex items-center justify-center">
+                  <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${spaImage})` }} />
+                  <div className="absolute inset-0 bg-black/60"></div>
+                  
+                  <div className="relative z-20 text-center px-8">
+                    <div className="w-12 h-12 mx-auto mb-4 bg-white/10 rounded-xl border border-white/20 backdrop-blur-md flex items-center justify-center">
+                       <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h2 className="text-white text-2xl md:text-3xl font-sans font-medium mb-2">Wellness & Spa</h2>
+                    <p className="text-white/60 max-w-xs mx-auto text-xs">Rejuvenate your senses with ancient rituals and modern therapies.</p>
+                  </div>
+                </div>
+
+                {/* SCREEN 4: EXPLORE */}
+                <div className="w-full h-full flex-shrink-0 relative flex items-center justify-center">
+                  <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${exploreImage})` }} />
+                  <div className="absolute inset-0 bg-black/60"></div>
+                  
+                  <div className="relative z-20 text-center px-8">
+                    <div className="w-12 h-12 mx-auto mb-4 bg-white/10 rounded-xl border border-white/20 backdrop-blur-md flex items-center justify-center">
+                        <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </div>
+                    <h2 className="text-white text-2xl md:text-3xl font-sans font-medium mb-2">City Guides</h2>
+                    <p className="text-white/60 max-w-xs mx-auto text-xs">Uncover vibrant colors and historic palaces with our curated excursions.</p>
+                  </div>
+                </div>
+
+                {/* SCREEN 5: VIDEOS */}
+                <div className="w-full h-full flex-shrink-0 relative flex flex-col justify-center p-6 md:p-10">
+                  <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${hotelVideosImage})` }} />
+                  <div className="absolute inset-0 bg-black/80"></div>
+
+                  <div className="relative z-20 w-full max-w-2xl mx-auto aspect-video rounded-xl overflow-hidden border border-white/20 bg-black flex items-center justify-center shadow-xl">
+                    <div className="absolute inset-0 bg-cover bg-center opacity-60" style={{ backgroundImage: `url(${hotelBgImage})` }}></div>
+                    <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                      <svg className="w-6 h-6 text-white fill-current ml-1" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                    </div>
+                  </div>
+                </div>
+
+                {/* SCREEN 6: SETTINGS */}
+                <div className="w-full h-full flex-shrink-0 relative p-6 md:p-10 flex flex-col justify-center">
+                  <div className="absolute inset-0 bg-[#0a0f18]"></div>
+                  
+                  <div className="relative z-20">
+                    <h2 className="text-white text-2xl font-bold mb-6">System Preferences</h2>
+                    <div className="grid grid-cols-2 gap-3 max-w-xl">
+                      {[
+                        { title: 'Language', val: 'English' },
+                        { title: 'Bluetooth Pairing', val: 'Disconnected' },
+                        { title: 'Wake-Up Alarm', val: 'Not Set' },
+                        { title: 'Sleep Timer', val: '60 Mins' }
+                      ].map((setting, idx) => (
+                        <div key={idx} className="p-3.5 bg-white/5 border border-white/10 rounded-lg flex justify-between items-center">
+                          <h4 className="text-white text-xs">{setting.title}</h4>
+                          <span className="text-slate-400 text-[11px]">{setting.val} ›</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+              </div>
             </div>
-        </section>
-    );
+          </div>
+
+        </div>
+      </div>
+    </div>
+  );
 }

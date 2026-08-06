@@ -10,6 +10,7 @@ import Expertise from './components/Expertise';
 import CustomerReviews from './components/CustomerReviews';
 import Contact from './components/Contact';
 import Login from './components/Login';
+import { supabase, isSupabaseConfigured } from './supabaseClient';
 
 export default function App() {
   const [currentHash, setCurrentHash] = useState(window.location.hash);
@@ -28,13 +29,42 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
+  // Listen to Supabase Auth State Changes (Email / Google OAuth)
+  useEffect(() => {
+    if (!isSupabaseConfigured) return;
+
+    // Check active session on initial render
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session?.user) {
+        setUser(session.user.email);
+        localStorage.setItem('userEmail', session.user.email);
+      }
+    });
+
+    // Subscribe to auth state changes (login, signup, OAuth redirect)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user) {
+        setUser(session.user.email);
+        localStorage.setItem('userEmail', session.user.email);
+      } else {
+        setUser(null);
+        localStorage.removeItem('userEmail');
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
   const handleLoginSuccess = (email) => {
     setUser(email);
     localStorage.setItem('userEmail', email);
     window.location.hash = ''; // Redirect to home on login success
   };
 
-  const handleSignOut = () => {
+  const handleSignOut = async () => {
+    if (isSupabaseConfigured) {
+      await supabase.auth.signOut();
+    }
     setUser(null);
     localStorage.removeItem('userEmail');
     window.location.hash = ''; // Redirect to home on sign out
