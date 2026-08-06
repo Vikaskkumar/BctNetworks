@@ -159,13 +159,13 @@ export default function Expertise() {
       ref={containerRef}
       // Reduced height multiplier from 85vh to 45vh per item to make scrolling much faster and more responsive
       style={{ height: `${navItems.length * 45}vh` }}
-      className="relative w-full bg-[#0b0f19] font-sans text-white"
+      className="relative w-full bg-[#0b0f19] font-sans text-white expertise-container"
     >
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
         {/* Main Grid Layout: Left Compact Sidebar + Right 3D Screen */}
         <div className="w-full max-w-[1550px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 px-6 md:px-10 items-center">
-
+ 
           {/* --- LEFT COLUMN: COMPACT SIDEBAR ACCORDION --- */}
           <div className="lg:col-span-4 flex flex-col gap-2 z-20">
             {navItems.map((item, index) => {
@@ -174,7 +174,7 @@ export default function Expertise() {
                 <div
                   key={item.id}
                   onClick={() => scrollToSection(index)}
-                  className={`relative cursor-pointer rounded-xl overflow-hidden transition-all duration-300 border ${
+                  className={`relative cursor-pointer rounded-xl overflow-hidden transition-all duration-300 border expertise-card ${
                     isActive 
                       ? 'bg-[#161b28] border-white/15 shadow-[0_8px_25px_rgba(0,0,0,0.4)]' 
                       : 'bg-[#10141f] border-white/5 hover:bg-[#141924]'

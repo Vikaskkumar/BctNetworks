@@ -48,13 +48,13 @@ export default function Navbar({ user, onSignOut }) {
 
   return (
     <>
-      {/* Floating Island Container */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex justify-center mt-4 px-4 transition-all duration-300">
+      {/* Full-width Sapphire Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
         <nav
-          className={`flex items-center justify-between transition-all duration-300 rounded-full border border-white/10 ${
+          className={`w-full flex items-center justify-between transition-all duration-300 border-b navbar-nav-container ${
             isScrolled
-              ? 'w-full max-w-5xl bg-black/60 backdrop-blur-xl py-2.5 px-6 shadow-lg shadow-black/25'
-              : 'w-full max-w-7xl bg-transparent py-4 px-4 md:px-6'
+              ? 'bg-[#020512]/90 backdrop-blur-xl py-3 px-6 md:px-12 border-blue-500/15 shadow-[0_4px_30px_rgba(0,0,0,0.5)]'
+              : 'bg-[#020512]/60 backdrop-blur-md py-4 px-6 md:px-12 border-blue-500/10'
           }`}
         >
           {/* Brand / Logo */}
@@ -66,9 +66,9 @@ export default function Navbar({ user, onSignOut }) {
             }}
             className="flex items-center gap-2.5 cursor-pointer group select-none"
           >
-            {/* Minimalist Geometric Icon */}
-            <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center transition-transform duration-300 group-hover:scale-[1.03] navbar-brand-icon">
-              <svg className="w-4 h-4 text-black" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* Minimalist Geometric Icon in Blue Gradient */}
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center transition-transform duration-300 group-hover:scale-[1.03] navbar-brand-icon">
+              <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M4 5L12 19L20 5"
                   stroke="currentColor"
@@ -85,7 +85,7 @@ export default function Navbar({ user, onSignOut }) {
             </span>
           </a>
 
-          {/* Desktop Navigation Links (Simple, Understated) */}
+          {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center space-x-7">
             {navLinks.map((link, index) => {
               const isActive = (activeHash === '' && link.href === '#') || activeHash === link.href;
@@ -97,13 +97,13 @@ export default function Navbar({ user, onSignOut }) {
                   onClick={() => setActiveHash(link.href)}
                   className={`text-[13px] font-medium transition-colors duration-200 relative py-1 ${
                     isActive
-                      ? 'text-white'
+                      ? 'text-blue-400'
                       : 'text-slate-400 hover:text-slate-200 html-light-text-muted'
                   }`}
                 >
                   {link.name}
                   {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-white rounded-full navbar-active-bar"></span>
+                    <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-blue-500 rounded-full navbar-active-bar"></span>
                   )}
                 </a>
               );
@@ -120,12 +120,10 @@ export default function Navbar({ user, onSignOut }) {
               className="text-slate-400 hover:text-white transition-colors cursor-pointer"
             >
               {theme === 'dark' ? (
-                /* Sun Icon for Light Mode */
                 <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
               ) : (
-                /* Moon Icon for Dark Mode */
                 <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                 </svg>

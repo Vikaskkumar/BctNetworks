@@ -21,16 +21,68 @@ html.light section {
   border-color: #e2e8f0 !important;
 }
 
-html.light section.bg-\[\#030005\],
-html.light section.bg-\[\#06060c\],
-html.light section.bg-\[\#05050a\] {
-  background-color: #f8fafc !important;
+/* Hero Light Mode Enhancements */
+html.light .hero-container {
+  background: linear-gradient(to bottom, #f1f5f9, #eff6ff, #f8fafc) !important;
+  color: #0f172a !important;
 }
 
+html.light .html-light-dot-matrix {
+  background-image: radial-gradient(rgba(37, 99, 235, 0.15) 1.2px, transparent 1.2px) !important;
+  opacity: 0.3 !important;
+}
+
+html.light .hero-ambient-glow {
+  mix-blend-mode: multiply !important;
+  opacity: 0.09 !important;
+  background-color: #3b82f6 !important;
+}
+
+html.light .bg-gradient-to-r.from-blue-400 {
+  background-image: linear-gradient(to right, #1d4ed8, #4f46e5, #3b82f6) !important;
+}
+
+/* Navbar Light Mode Enhancements */
+html.light .navbar-nav-container {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(37, 99, 235, 0.1) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+}
+
+html.light .navbar-nav-container a {
+  color: #475569 !important;
+}
+
+html.light .navbar-nav-container a:hover {
+  color: #0f172a !important;
+}
+
+html.light .navbar-nav-container a.text-blue-400 {
+  color: #1d4ed8 !important;
+  font-weight: 700 !important;
+}
+
+html.light .navbar-active-bar {
+  background-color: #1d4ed8 !important;
+}
+
+html.light .navbar-cta-btn {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+}
+
+html.light .navbar-cta-btn:hover {
+  background-color: #1e293b !important;
+}
+
+/* Typography contrast corrections in Light Mode */
 html.light .text-white {
   color: #0f172a !important;
 }
 
+html.light .text-slate-200,
 html.light .text-slate-300,
 html.light .text-gray-400,
 html.light .text-slate-400,
@@ -48,55 +100,16 @@ html.light .bg-white\/\[0\.02\],
 html.light .bg-white\/\[0\.03\],
 html.light .bg-white\/5,
 html.light .bg-white\/10,
-html.light .bg-[#0a0a0c],
-html.light .bg-[#0c0a1a]\/60 {
+html.light .bg-\[\#0a0a0c\],
+html.light .bg-\[\#0c0a1a\]\/60 {
   background-color: #ffffff !important;
   border-color: #e2e8f0 !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
-}
-
-html.light header nav {
-  background-color: rgba(255, 255, 255, 0.75) !important;
-  border-color: rgba(15, 23, 42, 0.08) !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
-}
-
-html.light .html-light-text-dark {
-  color: #0f172a !important;
-}
-
-html.light .html-light-text-muted {
-  color: #64748b !important;
-}
-
-html.light .html-light-text-muted:hover {
-  color: #0f172a !important;
-}
-
-html.light .navbar-brand-icon {
-  background-color: #0f172a !important;
-}
-
-html.light .navbar-brand-icon svg {
-  color: #ffffff !important;
-}
-
-html.light .navbar-active-bar {
-  background-color: #0f172a !important;
-}
-
-html.light .navbar-cta-btn {
-  background-color: #0f172a !important;
-  color: #ffffff !important;
-}
-
-html.light .navbar-cta-btn:hover {
-  background-color: #1e293b !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
 }
 
 /* Global Theme Transition */
 body, section, nav, div, h1, h2, h3, h4, p, span, button {
-  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 /* Features Light Mode Overrides */
@@ -433,3 +446,119 @@ html.light .html-light-hero-overlay {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+/* Light Mode Global Amber/Gold Accessibility Contrast Corrections */
+html.light .text-\[\#e2b86d\] {
+  color: #b45309 !important;
+}
+html.light .border-\[\#e2b86d\] {
+  border-color: #d97706 !important;
+}
+html.light .bg-\[\#e2b86d\]\/20 {
+  background-color: rgba(217, 119, 6, 0.08) !important;
+}
+html.light .bg-\[\#e2b86d\]\/10 {
+  background-color: rgba(217, 119, 6, 0.05) !important;
+}
+html.light .text-amber-400 {
+  color: #b45309 !important;
+}
+html.light .bg-black\/60 {
+  background-color: rgba(217, 119, 6, 0.08) !important;
+}
+html.light .border-white\/20 {
+  border-color: #cbd5e1 !important;
+}
+html.light .bg-white\/5 {
+  background-color: rgba(0, 0, 0, 0.03) !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+}
+html.light .border-slate-800 {
+  border-color: #e2e8f0 !important;
+  color: #475569 !important;
+}
+html.light .bg-\[\#0a111c\]\/80 {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Light Mode Overrides for Expertise */
+html.light .expertise-container {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+html.light .expertise-card {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02) !important;
+}
+
+html.light .expertise-card:hover {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+}
+
+html.light .expertise-card.bg-\[\#161b28\] {
+  background-color: #eff6ff !important;
+  border-color: rgba(37, 99, 235, 0.2) !important;
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.08) !important;
+}
+
+html.light .expertise-card.bg-\[\#161b28\] h3 {
+  color: #1d4ed8 !important;
+}
+
+html.light .expertise-card h3 {
+  color: #334155 !important;
+}
+
+html.light .expertise-card p.text-slate-400 {
+  color: #475569 !important;
+}
+
+html.light .expertise-card span.text-slate-400,
+html.light .expertise-card:hover span.text-slate-400 {
+  color: #475569 !important;
+}
+
+html.light .expertise-card span.text-\[\#e2b86d\] {
+  color: #1d4ed8 !important;
+}
+
+html.light .expertise-container .border-\[\#0a0f18\] {
+  border-color: #0f172a !important;
+}
+
+/* Light Mode Overrides for Footer */
+html.light footer {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+}
+
+html.light footer .text-white {
+  color: #0f172a !important;
+}
+
+html.light footer .bg-white {
+  background-color: #0f172a !important;
+}
+
+html.light footer .bg-white svg {
+  color: #ffffff !important;
+}
+
+html.light footer p.text-slate-400,
+html.light footer a.text-slate-400 {
+  color: #475569 !important;
+}
+
+html.light footer a.text-slate-400:hover {
+  color: #1d4ed8 !important;
+}
+
+html.light footer .border-t {
+  border-color: #e2e8f0 !important;
+}
+

@@ -47,7 +47,7 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-screen bg-[#030005] flex items-center justify-center overflow-hidden pt-32 pb-20 font-sans"
+      className="relative min-h-screen bg-gradient-to-b from-[#020512] via-[#050b24] to-[#01030a] flex items-center justify-center overflow-hidden pt-32 pb-20 font-sans hero-container"
     >
       {/* Advanced Keyframes & Smooth Easing */}
       <style>
@@ -64,10 +64,20 @@ export default function Hero() {
             0%, 100% { transform: translateY(0px) rotateX(5deg) rotateY(-15deg) rotateZ(5deg); }
             50% { transform: translateY(-20px) rotateX(5deg) rotateY(-15deg) rotateZ(5deg); }
           }
+          @keyframes status-pulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+          }
+          @keyframes ambient-glow {
+            0%, 100% { opacity: 0.15; transform: scale(1) translate(0px, 0px); }
+            50% { opacity: 0.22; transform: scale(1.1) translate(-20px, 15px); }
+          }
           
           .animate-device-1 { animation: float-1 8s ease-in-out infinite; }
           .animate-device-2 { animation: float-2 6s ease-in-out infinite 1s; }
           .animate-device-3 { animation: float-3 7s ease-in-out infinite 2s; }
+          .animate-status-pulse { animation: status-pulse 2s ease-in-out infinite; }
+          .animate-ambient-glow { animation: ambient-glow 10s ease-in-out infinite; }
           
           .perspective-container { perspective: 1200px; }
           .preserve-3d { transform-style: preserve-3d; }
@@ -77,24 +87,22 @@ export default function Hero() {
         `}
       </style>
 
-      {/* Background Image with Parallax & Theme Overlay Mask */}
+      {/* Futuristic Glowing Dot Matrix Pattern Overlay */}
       <div 
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-100 ease-out" 
-        style={{ 
-          backgroundImage: "url('/hero-bg.png')",
-          transform: `translateY(${scrollY * 0.15}px)`
+        className="absolute inset-0 z-0 opacity-[0.12] bg-[radial-gradient(#3b82f6_1.2px,transparent_1.2px)] bg-[size:32px_32px] pointer-events-none html-light-dot-matrix"
+        style={{
+          maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 80%)',
+          WebkitMaskImage: 'radial-gradient(ellipse at center, black 40%, transparent 80%)',
+          transform: `translateY(${scrollY * 0.05}px)`
         }}
-      >
-        {/* Left-to-right fade mask: left is slightly shaded for contrast, right is completely clear */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#030005]/65 via-[#030005]/35 to-transparent html-light-hero-overlay transition-colors duration-500"></div>
-      </div>
+      ></div>
 
-      {/* Background Lighting / Glow replicating the reference image */}
+      {/* Background Lighting / Glow replicating the sapphire reference image */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        {/* Massive purple radial glow behind the screens */}
-        <div className="absolute top-[10%] right-[-10%] w-[70%] h-[80%] bg-[#7c28d9] opacity-15 blur-[180px] rounded-full mix-blend-screen"></div>
-        {/* Subtle ambient glow on the left */}
-        <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#4c1d95] opacity-10 blur-[150px] rounded-full"></div>
+        {/* Massive sapphire radial glow behind the screens */}
+        <div className="absolute top-[10%] right-[-10%] w-[70%] h-[80%] bg-[#2563eb] opacity-15 blur-[180px] rounded-full mix-blend-screen animate-ambient-glow hero-ambient-glow"></div>
+        {/* Subtle ambient indigo glow on the left */}
+        <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#312e81] opacity-15 blur-[150px] rounded-full hero-ambient-glow"></div>
       </div>
 
       <div className="relative z-10 max-w-[90rem] mx-auto px-6 md:px-12 w-full flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
@@ -106,39 +114,35 @@ export default function Hero() {
           <div
             className={`transition-all duration-1000 ease-out mb-6 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           >
-            <span className="inline-block px-3.5 py-1.5 rounded-full border border-[#8b5cf6] text-[#a78bfa] text-[10px] sm:text-xs font-bold tracking-[0.15em] uppercase shadow-[0_0_15px_rgba(139,92,246,0.15)]">
-              IPTV • OTT • Hospitality Platform
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#2563eb]/30 bg-[#2563eb]/10 text-[#60a5fa] text-[10px] sm:text-xs font-bold tracking-[0.15em] uppercase shadow-[0_0_15px_rgba(37,99,235,0.15)]">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-status-pulse"></span>
+              NEXT-GEN HOSPITALITY PLATFORM
             </span>
           </div>
 
-          {/* Main Heading (Smaller) */}
+          {/* Main Heading */}
           <h1
-            className={`text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.15] mb-5 transition-all duration-1000 delay-100 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            className={`text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold text-white tracking-tight leading-[1.15] mb-5 transition-all duration-1000 delay-100 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           >
-            One Platform.<br />
-            <span className="text-[#a855f7] drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
-              Limitless Guest<br />Experiences.
+            Elevate Guest Tech.<br />
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-300 to-blue-200">
+              Redefine<br />Entertainment.
             </span>
           </h1>
 
           {/* Subheading */}
           <p
-            className={`text-base sm:text-lg text-gray-400 mb-8 max-w-md leading-relaxed transition-all duration-1000 delay-200 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            className={`text-base sm:text-lg text-slate-400 mb-8 max-w-md leading-relaxed transition-all duration-1000 delay-200 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           >
-            An all-in-one hospitality technology platform to streamline operations, engage guests and grow your business.
+            Seamlessly integrate IPTV, connectivity, and mobile controls into one beautiful, cloud-managed system built for hotels.
           </p>
 
           {/* Buttons */}
           <div
             className={`flex flex-col sm:flex-row gap-4 w-full sm:w-auto transition-all duration-1000 delay-300 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           >
-            <button className="px-7 py-3.5 bg-[#7c3aed] hover:bg-[#6d28d9] hover:scale-105 transition-all duration-300 rounded-full font-semibold text-white text-sm tracking-wide flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(124,58,237,0.4)]">
-              Book a Demo
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-            </button>
-            <button className="px-7 py-3.5 bg-transparent border border-gray-600 hover:border-gray-400 hover:bg-white/5 text-white rounded-full font-semibold text-sm tracking-wide transition-all duration-300 flex items-center justify-center gap-2 group">
-              Explore Platform
-              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+            <button className="px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full font-bold text-white text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(37,99,235,0.45)] hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer">
+              BOOK A DEMO
             </button>
           </div>
 
