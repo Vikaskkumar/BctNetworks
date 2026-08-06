@@ -113,7 +113,7 @@ export default function Login({ onLoginSuccess }) {
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-purple-900/10 blur-[100px] rounded-full pointer-events-none"></div>
 
       <div className="w-full max-w-[420px] relative z-10">
-        <div className="bg-[#0c0a1a]/40 backdrop-blur-md border border-purple-500/10 p-8 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] login-card">
+        <div className="bg-[#0c0a1a]/40 backdrop-blur-md border border-purple-500/10 p-6 sm:p-8 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] login-card">
           
           {/* Config notification if Supabase keys aren't set in .env */}
           {!isSupabaseConfigured && (
@@ -179,7 +179,7 @@ export default function Login({ onLoginSuccess }) {
           {/* Divider */}
           <div className="relative flex items-center justify-center mb-5">
             <div className="border-t border-white/10 w-full"></div>
-            <span className="bg-[#0c0a1a] px-3 text-[10px] text-slate-500 uppercase tracking-widest absolute">or</span>
+            <span className="bg-[#0c0a1a] px-3 text-[10px] text-slate-500 uppercase tracking-widest absolute divider-text">or</span>
           </div>
 
           {error && (

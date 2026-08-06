@@ -216,12 +216,7 @@ export default function Expertise() {
             
             {/* The 3D Rotated Frame */}
             <div 
-              className="relative w-full aspect-[16/10] max-h-[660px] rounded-[1.2rem] md:rounded-[1.8rem] bg-[#05070a] border-[6px] md:border-[10px] border-[#0a0f18] overflow-hidden will-change-transform"
-              style={{
-                transform: 'perspective(1400px) rotateY(-12deg) rotateX(2deg) scale(0.96)',
-                transformStyle: 'preserve-3d',
-                boxShadow: '-25px 35px 70px rgba(0,0,0,0.6), inset 0 0 35px rgba(255,255,255,0.04)'
-              }}
+              className="relative w-full aspect-[16/10] max-h-[660px] rounded-[1.2rem] md:rounded-[1.8rem] bg-[#05070a] border-[6px] md:border-[10px] border-[#0a0f18] overflow-hidden will-change-transform expertise-tv-frame"
             >
               
               {/* Bezel Border Highlight */}

@@ -129,7 +129,7 @@ export default function Ecosystem() {
           </div>
 
           {/* Right Column: Compact Animated Orbital Diagram */}
-          <div className={`relative h-[400px] md:h-[580px] lg:h-[650px] flex items-center justify-center scale-90 sm:scale-100 lg:scale-105 transition-all duration-[1500ms] ease-[cubic-bezier(0.2,0.9,0.3,1.1)] delay-300 ${isVisible ? 'opacity-100 scale-100 lg:scale-105 translate-x-0' : 'opacity-0 scale-75 translate-x-20'}`}>
+          <div className={`relative h-[320px] sm:h-[580px] lg:h-[650px] flex items-center justify-center scale-[0.68] sm:scale-100 lg:scale-105 transition-all duration-[1500ms] ease-[cubic-bezier(0.2,0.9,0.3,1.1)] delay-300 ${isVisible ? 'opacity-100 scale-100 lg:scale-105 translate-x-0' : 'opacity-0 scale-75 translate-x-20'}`}>
 
             {/* Central Core */}
             <div className="absolute z-30 w-32 h-32 md:w-42 md:h-42 bg-slate-950 rounded-full flex flex-col items-center justify-center border border-slate-700 shadow-[0_0_50px_rgba(168,85,247,0.35)] hover:scale-105 transition-transform duration-500 cursor-default">
