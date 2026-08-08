@@ -141,14 +141,14 @@ const Footer = ({ onNavigate = () => {} }) => {
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="w-3.5 h-3.5 text-[#E51D25] flex-shrink-0" />
-                <a href="tel:+919876543210" className="hover:text-white font-semibold transition-colors">
-                  +91 98765 43210
+                <a href="tel:+9116141401" className="hover:text-white font-semibold transition-colors">
+                  +9116141401
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="w-3.5 h-3.5 text-[#E51D25] flex-shrink-0" />
-                <a href="mailto:hello@bctnetworks.co.in" className="hover:text-white font-semibold transition-colors">
-                  hello@bctnetworks.co.in
+                <a href="mailto:Sales@bctnetworks.in" className="hover:text-white font-semibold transition-colors">
+                  Salse@bctnetworks.in
                 </a>
               </li>
             </ul>

@@ -110,7 +110,7 @@ const solutionsList = [
 const SolutionsPage = () => {
   const [activeId, setActiveId] = useState(solutionsList[0].id);
 
-  // Monitor scrolling to dynamically update active capability and stick matching images
+  // Update the fixed media card as the category list moves through the viewport.
   useEffect(() => {
     const handleScroll = () => {
       const viewportMiddle = window.innerHeight / 2.5;
@@ -130,16 +130,14 @@ const SolutionsPage = () => {
         }
       });
 
-      if (closestId && closestId !== activeId) {
-        setActiveId(closestId);
-      }
+      setActiveId((currentId) => (closestId !== currentId ? closestId : currentId));
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     // Initial check on mount
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [activeId]);
+  }, []);
 
   // Click handler to smoothly scroll to section
   const scrollToSection = (id) => {
@@ -267,41 +265,43 @@ const SolutionsPage = () => {
           </div>
 
           {/* Right Column: Sticky Media container showing matching images */}
-          <div className="hidden lg:block lg:col-span-5 sticky top-32 h-[550px]">
-            <div className="relative w-full h-full rounded-3xl overflow-hidden border border-gray-200 dark:border-slate-800/80 shadow-2xl bg-slate-900">
+          <div className="hidden lg:block lg:col-span-5 self-start sticky top-24 h-[550px]">
+            <div className="h-full">
+              <div className="relative w-full h-full rounded-3xl overflow-hidden border border-gray-200 dark:border-slate-800/80 shadow-2xl bg-slate-900">
               
-              {/* Overlay shadow for nice depth */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 z-10 pointer-events-none" />
+                {/* Overlay shadow for nice depth */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 z-10 pointer-events-none" />
 
-              {/* Crossfading images stack */}
-              {solutionsList.map((sol) => (
-                <div
-                  key={sol.id}
-                  className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-                    activeId === sol.id ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
-                  }`}
-                  style={{ transitionProperty: 'opacity, transform' }}
-                >
-                  <img
-                    src={sol.img}
-                    alt={sol.name}
-                    className="w-full h-full object-cover"
-                  />
-                  
-                  {/* Floating badge for active feature category details inside scrollytelling container */}
-                  <div className="absolute bottom-6 left-6 right-6 z-20 bg-black/40 backdrop-blur-md border border-white/10 p-5 rounded-2xl text-white">
-                    <span className="text-[9px] font-black text-red-400 tracking-wider uppercase">
-                      ACTIVE SOLUTION
-                    </span>
-                    <h3 className="font-black text-lg mt-0.5 tracking-tight leading-none">
-                      {sol.name}
-                    </h3>
+                {/* Crossfading images stack */}
+                {solutionsList.map((sol) => (
+                  <div
+                    key={sol.id}
+                    className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                      activeId === sol.id ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+                    }`}
+                    style={{ transitionProperty: 'opacity, transform' }}
+                  >
+                    <img
+                      src={sol.img}
+                      alt={sol.name}
+                      className="w-full h-full object-cover"
+                    />
+
+                    {/* Floating badge for active feature category details inside scrollytelling container */}
+                    <div className="absolute bottom-6 left-6 right-6 z-20 bg-black/40 backdrop-blur-md border border-white/10 p-5 rounded-2xl text-white">
+                      <span className="text-[9px] font-black text-red-400 tracking-wider uppercase">
+                        ACTIVE SOLUTION
+                      </span>
+                      <h3 className="font-black text-lg mt-0.5 tracking-tight leading-none">
+                        {sol.name}
+                      </h3>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
 
-              {/* Background ambient red glow inside container */}
-              <div className="absolute top-4 right-4 w-32 h-32 bg-[#E51D25]/20 rounded-full blur-2xl z-0 pointer-events-none" />
+                {/* Background ambient red glow inside container */}
+                <div className="absolute top-4 right-4 w-32 h-32 bg-[#E51D25]/20 rounded-full blur-2xl z-0 pointer-events-none" />
+              </div>
             </div>
           </div>
 
