@@ -112,8 +112,8 @@ function App() {
           <main>
             <Hero />
             <TrustedPartners />
-            <AboutSection />
-            <SolutionsGrid />
+            <AboutSection onNavigate={handleNavigate} />
+            <SolutionsGrid onNavigate={handleNavigate} />
             <TechPartners />
             <IndustriesServed />
             <FeaturedProject />

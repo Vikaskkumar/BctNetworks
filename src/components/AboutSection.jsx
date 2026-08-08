@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import { ArrowRight, CheckCircle2, Shield, Activity } from 'lucide-react';
+import { ArrowRight, Shield, Activity } from 'lucide-react';
 
-const AboutSection = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
+const AboutSection = ({ onNavigate }) => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
@@ -101,34 +100,6 @@ const AboutSection = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Expandable Detailed Content */}
-              <div
-                className={`transition-all duration-700 ease-in-out overflow-hidden ${
-                  isExpanded ? 'max-h-[1000px] opacity-100 mt-6' : 'max-h-0 opacity-0 mt-0'
-                }`}
-              >
-                <div className="space-y-4">
-                  <p className="font-extrabold text-gray-900 dark:text-white text-base uppercase tracking-tight">Engineering Excellence & Automation</p>
-                  <p>
-                    We bridge the gap between complex technological advancements and seamless business operations. Our expertise extends beyond physical infrastructure to designing customized digital solutions, including secure administrative data systems and cloud-based automation tools that digitize physical workflows, ensuring your operational data remains protected and seamlessly managed without unauthorized access.
-                  </p>
-                  <ul className="space-y-3 mt-5 bg-gray-50 dark:bg-slate-900 p-5 rounded-lg border border-gray-100 dark:border-slate-800">
-                    {[
-                      'Custom fiber network and structured cabling solutions',
-                      'Cloud-based workflow automation and digitized documentation',
-                      'Secure administrative data systems with role-based access',
-                      'End-to-end IT & physical security deployment',
-                      'Automated building management and life safety systems'
-                    ].map((item, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <CheckCircle2 className="w-4 h-4 text-[#E51D25] flex-shrink-0 mt-0.5" />
-                        <span className="text-gray-700 dark:text-slate-300 font-medium text-xs leading-relaxed">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
             </div>
 
             {/* Animated Button */}
@@ -138,17 +109,13 @@ const AboutSection = () => {
               }`}
             >
               <button
-                onClick={() => setIsExpanded(!isExpanded)}
+                onClick={() => onNavigate && onNavigate('about')}
                 className="group relative inline-flex items-center gap-3 bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 border-2 border-gray-900 dark:border-slate-700 font-extrabold text-xs px-7 py-4 rounded hover:bg-gray-900 dark:hover:bg-slate-800 hover:text-white transition-all duration-300 shadow-[4px_4px_0px_0px_rgba(229,29,37,1)] hover:shadow-[0px_0px_0px_0px_rgba(229,29,37,1)] hover:translate-x-[4px] hover:translate-y-[4px] focus:outline-none"
               >
                 <span className="tracking-widest uppercase">
-                  {isExpanded ? 'SHOW LESS' : 'KNOW MORE ABOUT US'}
+                  KNOW MORE ABOUT US
                 </span>
-                <ArrowRight
-                  className={`w-4 h-4 transition-transform duration-300 ${
-                    isExpanded ? '-rotate-90' : 'group-hover:translate-x-1'
-                  } ${isExpanded ? 'text-[#E51D25] group-hover:text-red-400' : 'text-[#E51D25]'}`}
-                />
+                <ArrowRight className="w-4 h-4 text-[#E51D25] group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
           </div>
