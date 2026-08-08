@@ -2,7 +2,6 @@ import {
   MapPin, 
   Phone, 
   Mail, 
-  Globe, 
   ArrowRight 
 } from 'lucide-react';
 import BctLogo from './BctLogo';
@@ -27,12 +26,6 @@ const InstagramIcon = ({ className = "w-3.5 h-3.5" }) => (
   </svg>
 );
 
-const YoutubeIcon = ({ className = "w-3.5 h-3.5" }) => (
-  <svg className={className} fill="currentColor" viewBox="0 0 24 24">
-    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-  </svg>
-);
-
 const Footer = ({ onNavigate = () => {} }) => {
   const handleNavClick = (e, pageId) => {
     e.preventDefault();
@@ -50,56 +43,62 @@ const Footer = ({ onNavigate = () => {} }) => {
   ];
 
   return (
-    <footer className="bg-[#111111] pt-16 pb-8 border-t border-gray-900" id="contact">
-      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16">
+    <footer className="bg-[#090d16] pt-12 pb-6 border-t border-slate-900 text-slate-400 text-xs transition-colors duration-300" id="footer">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Top Section: Grid Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 mb-16">
+        {/* Main Grid Content */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-10 pb-10 border-b border-slate-900">
           
-          {/* Column 1: Brand & Social */}
-          <div className="lg:col-span-1">
-            <a href="#home" onClick={(e) => handleNavClick(e, 'home')} className="inline-block mb-6 cursor-pointer">
-              <BctLogo isDark={true} />
+          {/* Column 1: Brand Logo, Tagline & Social Links (4 cols) */}
+          <div className="md:col-span-4 flex flex-col gap-4">
+            <a href="#home" onClick={(e) => handleNavClick(e, 'home')} className="inline-block cursor-pointer">
+              <BctLogo />
             </a>
-            
-            {/* Social Icons */}
-            <div className="flex items-center gap-3">
-              <a href="#" aria-label="LinkedIn" className="w-8 h-8 rounded-full border border-[#333] flex items-center justify-center text-[#888] hover:text-white hover:border-[#E51D25] hover:bg-[#E51D25] transition-all">
-                <LinkedinIcon className="w-3.5 h-3.5" />
-              </a>
-              <a href="#" aria-label="Facebook" className="w-8 h-8 rounded-full border border-[#333] flex items-center justify-center text-[#888] hover:text-white hover:border-[#E51D25] hover:bg-[#E51D25] transition-all">
-                <FacebookIcon className="w-3.5 h-3.5" />
-              </a>
-              <a href="#" aria-label="Instagram" className="w-8 h-8 rounded-full border border-[#333] flex items-center justify-center text-[#888] hover:text-white hover:border-[#E51D25] hover:bg-[#E51D25] transition-all">
-                <InstagramIcon className="w-3.5 h-3.5" />
-              </a>
-              <a href="#" aria-label="YouTube" className="w-8 h-8 rounded-full border border-[#333] flex items-center justify-center text-[#888] hover:text-white hover:border-[#E51D25] hover:bg-[#E51D25] transition-all">
-                <YoutubeIcon className="w-3.5 h-3.5" />
-              </a>
+            <p className="text-[11px] leading-relaxed max-w-sm text-slate-500 font-medium">
+              Jaipur-based technology integrator deploying future-proof networks, unified collaboration suites, life safety fire control, and data systems.
+            </p>
+            {/* Minimal Social Links */}
+            <div className="flex items-center gap-2 mt-2">
+              {[
+                { label: 'LinkedIn', icon: LinkedinIcon },
+                { label: 'Facebook', icon: FacebookIcon },
+                { label: 'Instagram', icon: InstagramIcon }
+              ].map((social) => {
+                const SocialIcon = social.icon;
+                return (
+                  <a
+                    key={social.label}
+                    href="#"
+                    aria-label={social.label}
+                    className="w-7 h-7 rounded-lg border border-slate-900 bg-slate-950/50 flex items-center justify-center text-slate-500 hover:text-white hover:border-[#E51D25] hover:bg-[#E51D25] transition-all duration-300"
+                  >
+                    <SocialIcon className="w-3.5 h-3.5" />
+                  </a>
+                );
+              })}
             </div>
           </div>
 
-          {/* Column 2: Solutions */}
-          <div className="lg:col-span-1">
-            <h4 className="text-white text-[10px] font-extrabold tracking-[0.2em] uppercase mb-5">
+          {/* Column 2: Solutions Navigation Links (3 cols) */}
+          <div className="md:col-span-3">
+            <h4 className="text-white text-[10px] font-black tracking-[0.2em] uppercase mb-4">
               SOLUTIONS
             </h4>
-            <ul className="space-y-2.5">
+            <ul className="grid grid-cols-1 gap-2 text-[11px]">
               {[
+                'Structured Cabling',
                 'Enterprise Networking',
+                'Firewall & Cyber Security',
+                'Audio Visual Systems',
                 'Security & Surveillance',
-                'Unified Communication',
-                'Audio Visual',
-                'Server & Storage',
-                'Building Automation',
-                'Fire & Safety',
-                'UPS & Power Backup'
+                'Building Automation & BMS',
+                'UPS & Backups'
               ].map((item, idx) => (
                 <li key={idx}>
                   <a 
                     href="#solutions" 
                     onClick={(e) => handleNavClick(e, 'solutions')}
-                    className="text-[#888888] hover:text-white text-xs font-medium transition-colors cursor-pointer"
+                    className="hover:text-white hover:underline transition-colors font-semibold"
                   >
                     {item}
                   </a>
@@ -108,18 +107,18 @@ const Footer = ({ onNavigate = () => {} }) => {
             </ul>
           </div>
 
-          {/* Column 3: Quick Links */}
-          <div className="lg:col-span-1">
-            <h4 className="text-white text-[10px] font-extrabold tracking-[0.2em] uppercase mb-5">
+          {/* Column 3: Quick Navigation Links (2 cols) */}
+          <div className="md:col-span-2">
+            <h4 className="text-white text-[10px] font-black tracking-[0.2em] uppercase mb-4">
               QUICK LINKS
             </h4>
-            <ul className="space-y-2.5">
-              {quickLinks.map((item) => (
+            <ul className="space-y-2 text-[11px]">
+              {quickLinks.slice(0, 6).map((item) => (
                 <li key={item.id}>
                   <a 
                     href={`#${item.id}`} 
                     onClick={(e) => handleNavClick(e, item.id)}
-                    className="text-[#888888] hover:text-white text-xs font-medium transition-colors cursor-pointer"
+                    className="hover:text-white hover:underline transition-colors font-semibold"
                   >
                     {item.name}
                   </a>
@@ -128,75 +127,58 @@ const Footer = ({ onNavigate = () => {} }) => {
             </ul>
           </div>
 
-          {/* Column 4: Contact Us */}
-          <div className="lg:col-span-1">
-            <h4 className="text-white text-[10px] font-extrabold tracking-[0.2em] uppercase mb-5">
-              CONTACT US
+          {/* Column 4: Simplified Direct Contact Details (3 cols) */}
+          <div className="md:col-span-3 flex flex-col gap-4">
+            <h4 className="text-white text-[10px] font-black tracking-[0.2em] uppercase">
+              CONTACT INFO
             </h4>
-            <ul className="space-y-3.5">
-              <li className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-[#E51D25] flex-shrink-0 mt-0.5" />
-                <span className="text-[#888888] text-xs leading-relaxed font-medium">
-                  67/30, Sector 6, Pratap Nagar,<br />
-                  Sanganer, Jaipur - 302033
+            <ul className="space-y-3 text-[11px]">
+              <li className="flex items-start gap-2.5">
+                <MapPin className="w-3.5 h-3.5 text-[#E51D25] flex-shrink-0 mt-0.5" />
+                <span className="leading-relaxed font-semibold">
+                  67/30, Sector 6, Pratap Nagar, Jaipur - 302033
                 </span>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-[#E51D25] flex-shrink-0" />
-                <a href="tel:+919876543210" className="text-[#888888] hover:text-white text-xs font-medium transition-colors">
+              <li className="flex items-center gap-2.5">
+                <Phone className="w-3.5 h-3.5 text-[#E51D25] flex-shrink-0" />
+                <a href="tel:+919876543210" className="hover:text-white font-semibold transition-colors">
                   +91 98765 43210
                 </a>
               </li>
-              <li className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-[#E51D25] flex-shrink-0" />
-                <a href="mailto:hello@bctnetworks.co.in" className="text-[#888888] hover:text-white text-xs font-medium transition-colors">
+              <li className="flex items-center gap-2.5">
+                <Mail className="w-3.5 h-3.5 text-[#E51D25] flex-shrink-0" />
+                <a href="mailto:hello@bctnetworks.co.in" className="hover:text-white font-semibold transition-colors">
                   hello@bctnetworks.co.in
                 </a>
               </li>
-              <li className="flex items-center gap-3">
-                <Globe className="w-4 h-4 text-[#E51D25] flex-shrink-0" />
-                <a href="https://www.bctnetworks.co.in" target="_blank" rel="noopener noreferrer" className="text-[#888888] hover:text-white text-xs font-medium transition-colors">
-                  www.bctnetworks.co.in
-                </a>
-              </li>
             </ul>
-          </div>
 
-          {/* Column 5: Newsletter */}
-          <div className="lg:col-span-1">
-            <h4 className="text-white text-[10px] font-extrabold tracking-[0.2em] uppercase mb-5">
-              STAY UPDATED
-            </h4>
-            <p className="text-[#888888] text-xs font-medium leading-relaxed mb-4">
-              Subscribe to our newsletter for insights on enterprise networking and infrastructure.
-            </p>
-            <form className="flex" onSubmit={(e) => e.preventDefault()}>
+            {/* Compact Newsletter box */}
+            <form className="flex mt-1" onSubmit={(e) => e.preventDefault()}>
               <input 
                 type="email" 
-                placeholder="Your email" 
-                className="w-full bg-[#1a1a1a] border border-[#333] text-white text-xs px-3 py-2.5 rounded-l focus:outline-none focus:border-gray-500 transition-colors placeholder-[#666]"
+                placeholder="Subscribe to insights" 
+                className="w-full bg-slate-950 border border-slate-900 text-white text-[10px] px-3 py-2 rounded-l focus:outline-none focus:border-red-500 transition-colors placeholder-slate-700"
                 required
               />
               <button 
                 type="submit" 
-                className="bg-[#E51D25] hover:bg-[#c9151c] text-white px-3.5 py-2.5 rounded-r transition-colors flex items-center justify-center"
+                className="bg-[#E51D25] hover:bg-[#c9151c] text-white px-3 py-2 rounded-r transition-colors flex items-center justify-center flex-shrink-0"
                 aria-label="Subscribe"
               >
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-3 h-3" />
               </button>
             </form>
           </div>
 
         </div>
 
-        {/* Bottom Section: Copyright */}
-        <div className="pt-8 border-t border-[#222222] flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-[#666666] text-[11px] font-medium">
-            © 2024 BCT Networks. All Rights Reserved.
-          </p>
-          <div className="flex gap-6">
-            <a href="#" className="text-[#666666] hover:text-white text-[11px] font-medium transition-colors">Privacy Policy</a>
-            <a href="#" className="text-[#666666] hover:text-white text-[11px] font-medium transition-colors">Terms of Service</a>
+        {/* Bottom Section: Copyright & Legal */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] text-slate-600 font-semibold uppercase tracking-wider">
+          <p>© 2026 BCT Networks. All Rights Reserved.</p>
+          <div className="flex gap-4">
+            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
           </div>
         </div>
 

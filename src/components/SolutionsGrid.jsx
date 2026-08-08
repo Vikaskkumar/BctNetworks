@@ -1,24 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
-import {
-  Cable,
-  Video,
-  Wifi,
-  ShieldCheck,
-  MonitorSpeaker,
-  Cctv,
-  Flame,
-  Server,
-  Building2,
-  BatteryCharging,
-  ArrowRight
-} from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronRight, MapPin, ArrowRight } from 'lucide-react';
+import networkingBg from '../assets/networking.jpg';
 
 const SolutionsGrid = ({ onNavigate }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const gridRef = useRef(null);
 
-  // Intersection observer for the smooth cascade entrance animation
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -33,206 +22,184 @@ const SolutionsGrid = ({ onNavigate }) => {
     return () => observer.disconnect();
   }, []);
 
-  // Data strictly mapped to the 10 categories from your brochure
   const solutions = [
     {
-      name: 'Structure Cabling System',
-      icon: Cable,
-      desc: 'High-density copper and optical fiber backbone infrastructures designed for zero-latency data transmission.',
-      partners: 'CommScope, Legrand, D-Link, Molex, Netrack, Belden'
+      name: 'Network Security',
+      fullName: 'Firewall & Cyber Security',
+      desc: 'Simplify and strengthen network security with integrated zero touch, zero trust access security.',
+      imageUrl: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=800&auto=format&fit=crop'
     },
     {
-      name: 'Unified Communication & Telepresence',
-      icon: Video,
-      desc: 'Immersive video conferencing suites and unified voice gateways for seamless enterprise collaboration.',
-      partners: 'Cisco, Avaya, Matrix, NEC, Syntel'
+      name: 'Wireless Access',
+      fullName: 'Enterprise Networking',
+      desc: 'High performance 6 GHz Wi-Fi portfolio for an always-on, indoor and outdoor experience.',
+      imageUrl: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=400&auto=format&fit=crop'
     },
     {
-      name: 'Enterprise Networking',
-      icon: Wifi,
-      desc: 'Resilient network backbones featuring L2/L3 core switching and high-density Wi-Fi access points.',
-      partners: 'Cisco, Cambium, Aruba, D-Link, Extreme, TP-Link'
+      name: 'Wired Access',
+      fullName: 'Structured Cabling System',
+      desc: 'Broad edge-core portfolio with consistent operations and free fabric with purchase.',
+      imageUrl: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=400&auto=format&fit=crop'
     },
     {
-      name: 'Firewall & Cyber Security',
-      icon: ShieldCheck,
-      desc: 'Next-generation firewalls and zero-trust network architectures to secure your perimeter and digital assets.',
-      partners: 'Sophos, Zyxel, SonicWall, Palo Alto, Quick Heal, Seqrite'
+      name: 'Cloud Networking',
+      fullName: 'Unified Communication',
+      desc: 'Unified management with AI for wired, wireless, SD-WAN, and security operations.',
+      imageUrl: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=400&auto=format&fit=crop'
     },
     {
       name: 'Audio Visual',
-      icon: MonitorSpeaker,
-      desc: 'Commercial displays, interactive projectors, and acoustic public address (PA) systems for smart spaces.',
-      partners: 'Bosch, Samsung, JBL, Harman, LG, Epson, Barco, BenQ'
+      fullName: 'Audio Visual Systems',
+      desc: 'Commercial LED video walls & Dante PA paging for enterprise collaboration.',
+      imageUrl: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=400&auto=format&fit=crop'
     },
     {
-      name: 'Security & Surveillance',
-      icon: Cctv,
-      desc: 'End-to-end IP CCTV systems, advanced video analytics, and centralized biometric access control.',
-      partners: 'Bosch, Honeywell, Hanwha, Hikvision, Secure'
+      name: 'Surveillance',
+      fullName: 'Security & Surveillance',
+      desc: 'AI 4K IP CCTV cameras & biometric access gates for complete physical security.',
+      imageUrl: 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?q=80&w=400&auto=format&fit=crop'
     },
     {
       name: 'Fire & Safety',
-      icon: Flame,
-      desc: 'Addressable alarms, VESDA air sampling, and automated gas suppression systems for life safety.',
-      partners: 'Bosch, Notifier, Honeywell, Morley, Edwards, GST, Heinrich'
+      fullName: 'Fire & Safety Systems',
+      desc: 'Addressable fire alarms & VESDA air sampling for early detection.',
+      imageUrl: 'https://images.unsplash.com/photo-1582131503261-f28d81515150?q=80&w=400&auto=format&fit=crop'
     },
     {
       name: 'Server & Storage',
-      icon: Server,
-      desc: 'Scalable data center compute nodes and high-speed storage arrays for mission-critical applications.',
-      partners: 'Cisco, Dell, HP, Hewlett Packard Enterprise'
-    },
-    {
-      name: 'Building Automation',
-      icon: Building2,
-      desc: 'Integrated Building Management Systems (BMS), automated HVAC control, and smart energy metering.',
-      partners: 'Siemens, Honeywell, Schneider Electric'
-    },
-    {
-      name: 'UPS & Backups',
-      icon: BatteryCharging,
-      desc: 'Zero-transfer time online double-conversion UPS systems and smart power distribution units.',
-      partners: 'Eaton, APC, Luminous, Hitachi'
+      fullName: 'Server & Storage Solutions',
+      desc: 'Blade server compute & NVMe SAN storage arrays for heavy workloads.',
+      imageUrl: 'https://images.unsplash.com/photo-1597852074816-d933c7d2b988?q=80&w=400&auto=format&fit=crop'
     },
   ];
 
   const mapSolutionToCategory = (name) => {
     const n = name.toLowerCase();
-    if (n.includes('cabling')) return 'cabling';
-    if (n.includes('networking')) return 'enterprise-networking';
-    if (n.includes('automation')) return 'building-auto';
+    if (n.includes('cabling') || n.includes('wired')) return 'cabling';
+    if (n.includes('networking') || n.includes('wireless')) return 'enterprise-networking';
     if (n.includes('security') && n.includes('surveillance')) return 'security';
-    if (n.includes('firewall') || n.includes('cyber')) return 'security';
-    if (n.includes('communication') || n.includes('telepresence')) return 'unified-comm';
-    if (n.includes('telepresence')) return 'telepresence';
-    if (n.includes('audio') || n.includes('visual')) return 'telepresence'; 
+    if (n.includes('firewall') || n.includes('cyber') || n.includes('security')) return 'security';
+    if (n.includes('collaboration') || n.includes('communication') || n.includes('cloud')) return 'unified-comm';
+    if (n.includes('audio') || n.includes('visual')) return 'telepresence';
     if (n.includes('server') || n.includes('storage')) return 'server-storage';
     if (n.includes('fire') || n.includes('safety')) return 'fire-safety';
-    if (n.includes('ups') || n.includes('power') || n.includes('backup')) return 'ups-power';
     return 'all';
   };
 
   const visibleSolutions = isExpanded ? solutions : solutions.slice(0, 4);
 
   return (
-    <section className="py-20 lg:py-28 bg-[#f8f9fa] dark:bg-[#0a0a0a] transition-colors duration-300 overflow-hidden" id="solutions">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      className="py-12 lg:py-16 text-white overflow-hidden relative transition-colors duration-300 selection:bg-[#E51D25] selection:text-white min-h-screen flex flex-col justify-center"
+      id="solutions"
+      style={{
+        backgroundImage: `url(${networkingBg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
+      {/* Dark overlay so text stays readable */}
+      <div className="absolute inset-0 bg-black/40 pointer-events-none" />
+      {/* Subtle radial color tint on top of overlay */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-gradient-to-r from-purple-900/30 via-blue-900/20 to-purple-900/30 rounded-full blur-[120px] pointer-events-none" />
 
-        {/* Section Header */}
-        <div className="flex flex-col items-center text-center max-w-4xl mx-auto mb-16">
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/30 text-[#E51D25] font-extrabold text-[11px] tracking-[0.2em] uppercase mb-6">
-            <span className="w-2 h-2 rounded-full bg-[#E51D25] animate-pulse"></span>
-            OUR EXPERTISE
-          </span>
-          <h2 className="text-3xl lg:text-4xl font-black text-gray-900 dark:text-white tracking-tight leading-[1.1]">
-            Enterprise-Grade Solutions. <br className="hidden sm:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E51D25] to-red-400">
-              Deployed With Precision.
-            </span>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        {/* Compact Section Header */}
+        <div className="text-center max-w-4xl mx-auto mb-12">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-cyan-400 font-extrabold text-[11px] tracking-[0.2em] uppercase mb-4 backdrop-blur-sm">
+            <MapPin className="w-3.5 h-3.5 text-[#E51D25] animate-bounce" />
+            <span>ENTERPRISE SERVICES IN JAIPUR & RAJASTHAN</span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
+            Jaipur Scale. Unified Technology.<br /> Certified Integration.
           </h2>
         </div>
 
-        {/* 2-Column Solutions Grid (Smaller & Compact Cards) */}
-        <div
+        {/* Animated Cards Grid */}
+        <motion.div
           ref={gridRef}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mb-12"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
+          initial="hidden"
+          animate={isVisible ? 'visible' : 'hidden'}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
         >
-          {visibleSolutions.map((solution, index) => {
-            const Icon = solution.icon;
-            return (
-              <div
-                key={index}
-                onClick={() => onNavigate && onNavigate('solutions', mapSolutionToCategory(solution.name))}
-                className={`group relative flex flex-col p-6 sm:p-8 bg-white dark:bg-[#111] border border-gray-200 dark:border-gray-800 rounded-2xl cursor-pointer overflow-hidden transform transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(229,29,37,0.12)] hover:border-[#E51D25]/30 dark:hover:border-[#E51D25]/40 hover:-translate-y-1.5 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                  }`}
-                style={{ transitionDelay: `${index * 50}ms` }}
+          <AnimatePresence>
+            {visibleSolutions.map((solution, index) => (
+              <motion.div
+                key={solution.name}
+                layout
+                variants={{
+                  hidden: { opacity: 0, y: 50, scale: 0.92, rotateX: 8 },
+                  visible: {
+                    opacity: 1, y: 0, scale: 1, rotateX: 0,
+                    transition: { type: 'spring', stiffness: 100, damping: 15, delay: index * 0.07 }
+                  }
+                }}
+                whileHover={{ y: -10, scale: 1.02, transition: { type: 'spring', stiffness: 300, damping: 20 } }}
+                onClick={() => onNavigate && onNavigate('solutions', mapSolutionToCategory(solution.fullName))}
+                className="group relative rounded-2xl cursor-pointer overflow-hidden flex flex-col h-[460px]"
+                style={{ perspective: 800 }}
               >
-                {/* Background Hover Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-red-50/50 via-transparent to-transparent dark:from-red-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                {/* Glassmorphism base */}
+                <div className="absolute inset-0 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 group-hover:border-white/50 transition-all duration-400" />
 
-                <div className="relative z-10 flex flex-col h-full">
+                {/* Animated glow border on hover */}
+                <motion.div
+                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                  style={{ boxShadow: '0 0 40px 2px rgba(139,92,246,0.4), inset 0 0 30px rgba(139,92,246,0.15)' }}
+                />
 
-                  {/* Top Row: Icon & Top Right Arrow Button */}
-                  <div className="flex items-start justify-between mb-6">
-                    <div className="w-12 h-12 rounded-xl bg-gray-50 dark:bg-gray-800/50 flex items-center justify-center group-hover:bg-[#E51D25] group-hover:scale-105 transition-all duration-500 shadow-sm">
-                      <Icon strokeWidth={1.5} className="w-6 h-6 text-gray-800 dark:text-gray-200 group-hover:text-white transition-colors duration-500" />
-                    </div>
+                {/* Shimmer sweep on hover */}
+                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out bg-gradient-to-r from-transparent via-white/15 to-transparent skew-x-12 pointer-events-none z-20" />
 
-                    <div className="w-8 h-8 rounded-full bg-transparent border border-gray-200 dark:border-gray-700 flex items-center justify-center group-hover:border-[#E51D25] group-hover:bg-red-50 dark:group-hover:bg-red-900/20 transition-all duration-300">
-                      <ArrowRight className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#E51D25] transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
-                    </div>
-                  </div>
+                {/* Background image with zoom */}
+                <div className="absolute inset-0 overflow-hidden rounded-2xl">
+                  <img
+                    src={solution.imageUrl}
+                    alt={solution.name}
+                    className="w-full h-full object-cover object-center transition-transform duration-700 scale-100 group-hover:scale-110"
+                  />
+                  {/* Dark scrim so text is readable */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
+                </div>
 
-                  {/* Content */}
-                  <h3 className="text-xl font-black text-gray-900 dark:text-white tracking-tight mb-3 group-hover:text-[#E51D25] transition-colors duration-300">
+                {/* Content sits at bottom */}
+                <div className="relative z-10 mt-auto p-6">
+                  <h3 className="text-lg font-black text-white tracking-tight mb-2 group-hover:text-purple-300 transition-colors duration-300">
                     {solution.name}
                   </h3>
-
-                  <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-6 flex-grow">
+                  <p className="text-xs text-white/70 leading-relaxed mb-4 line-clamp-2">
                     {solution.desc}
                   </p>
-
-                  {/* Bottom Ribbon: Partners + Explore in Details Button */}
-                  <div className="pt-4 mt-auto border-t border-gray-100 dark:border-gray-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div>
-                      <p className="text-[9px] text-gray-400 dark:text-gray-500 font-extrabold tracking-[0.15em] uppercase mb-0.5">
-                        OEM Partners
-                      </p>
-                      <p className="text-[11px] sm:text-xs text-gray-800 dark:text-gray-300 font-bold leading-tight">
-                        {solution.partners}
-                      </p>
-                    </div>
-
-                    {/* Card "Explore in Details" Button */}
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        if (onNavigate) onNavigate('solutions', mapSolutionToCategory(solution.name));
-                      }}
-                      className="inline-flex items-center justify-center gap-1.5 text-[11px] font-extrabold text-[#E51D25] dark:text-red-400 uppercase tracking-wider flex-shrink-0 bg-red-50 dark:bg-red-950/30 px-3 py-2 rounded-lg border border-red-100 dark:border-red-900/40 transition-all duration-300 hover:bg-[#E51D25] hover:text-white dark:hover:bg-[#E51D25] dark:hover:text-white hover:border-[#E51D25]"
-                    >
-                      <span>Explore in Details</span>
-                      <ArrowRight className="w-3 h-3" />
-                    </button>
+                  <div className="flex items-center gap-1.5 text-[11px] font-extrabold text-purple-400 group-hover:text-white transition-colors duration-300 uppercase tracking-wider">
+                    <span>Explore</span>
+                    <ChevronRight className="w-3.5 h-3.5 transform group-hover:translate-x-1.5 transition-transform duration-300" />
                   </div>
-
                 </div>
-              </div>
-            );
-          })}
-        </div>
 
-        {/* Expand / Show More Trigger */}
-        <div className="flex justify-center mb-12">
+                {/* Top accent pill */}
+                <div className="absolute top-4 left-4 z-10">
+                  <span className="px-2.5 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-[10px] font-bold text-white/80 uppercase tracking-wider">
+                    Enterprise
+                  </span>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+
+        {/* Show More Toggle Button */}
+        <div className="flex justify-center mt-4">
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="group inline-flex items-center gap-3 bg-red-50 dark:bg-red-950/30 border border-red-100 dark:border-red-900/40 text-[#E51D25] dark:text-red-400 px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-350 hover:bg-[#E51D25] hover:text-white dark:hover:bg-[#E51D25] dark:hover:text-white hover:border-[#E51D25] shadow-sm hover:shadow-[#E51D25]/10"
+            className="group inline-flex items-center gap-2.5 bg-white/5 border border-white/10 text-white hover:bg-white/10 px-6 py-3 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 backdrop-blur-sm"
           >
             <span>{isExpanded ? 'Show Less Solutions' : 'Show More Solutions'}</span>
-            <ArrowRight className={`w-4 h-4 transition-transform duration-300 ${isExpanded ? '-rotate-90' : 'group-hover:translate-x-1'}`} />
+            <ArrowRight className={`w-3.5 h-3.5 transition-transform duration-300 ${isExpanded ? '-rotate-90' : 'group-hover:translate-x-1'}`} />
           </button>
         </div>
-
-        {/* Action Buttons in Section Footer */}
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-          <a
-            href="#contact"
-            className="group w-full sm:w-auto inline-flex items-center justify-center gap-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-8 py-4 rounded-xl font-black text-sm uppercase tracking-wider transition-all duration-300 shadow-xl hover:shadow-[#E51D25]/20 hover:-translate-y-1"
-          >
-            <span>Discuss Your Infrastructure Needs</span>
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </a>
-
-          <button
-            onClick={() => onNavigate && onNavigate('solutions')}
-            className="group w-full sm:w-auto inline-flex items-center justify-center gap-4 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-gray-900 dark:text-white px-8 py-4 rounded-xl font-black text-sm uppercase tracking-wider hover:border-[#E51D25] dark:hover:border-[#E51D25] hover:text-[#E51D25] dark:hover:text-red-400 transition-all duration-300 shadow-sm hover:-translate-y-1"
-          >
-            <span>Explore in Details</span>
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
-        </div>
-
       </div>
     </section>
   );
