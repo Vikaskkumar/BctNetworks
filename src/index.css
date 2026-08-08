@@ -1,584 +1,218 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme {
-  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-display: 'Outfit', system-ui, sans-serif;
+html {
+  scroll-behavior: smooth;
 }
 
-/* Light Mode Custom Styling Overrides */
-html.light {
-  color-scheme: light;
+/* ============================================================ */
+/* BULLETPROOF DARK THEME OVERRIDES (Full Page Dark Mode)       */
+/* ============================================================ */
+
+/* When dark mode is active on html, body, or #root */
+html.dark,
+html.dark body,
+html.dark #root,
+body.dark,
+body.dark #root,
+[data-theme="dark"],
+[data-theme="dark"] body,
+[data-theme="dark"] #root {
+  background-color: #0b0f19 !important;
+  color: #f8fafc !important;
+  color-scheme: dark;
 }
 
-html.light body,
-html.light #root > div {
-  background-color: #f8fafc !important;
-  color: #0f172a !important;
+/* Header & Navbar */
+.dark header,
+[data-theme="dark"] header {
+  background-color: rgba(15, 23, 42, 0.95) !important;
+  border-color: #1e293b !important;
 }
 
-html.light section {
-  background-color: #ffffff !important;
-  border-color: #e2e8f0 !important;
+.dark header a:not(.bg-\[\#E51D25\]),
+[data-theme="dark"] header a:not(.bg-\[\#E51D25\]) {
+  color: #f1f5f9 !important;
 }
 
-/* Hero Light Mode Enhancements */
-html.light .hero-container {
-  background: linear-gradient(to bottom, #f1f5f9, #eff6ff, #f8fafc) !important;
-  color: #0f172a !important;
-}
-
-html.light .html-light-dot-matrix {
-  background-image: radial-gradient(rgba(37, 99, 235, 0.15) 1.2px, transparent 1.2px) !important;
-  opacity: 0.3 !important;
-}
-
-html.light .hero-ambient-glow {
-  mix-blend-mode: multiply !important;
-  opacity: 0.09 !important;
-  background-color: #3b82f6 !important;
-}
-
-html.light .bg-gradient-to-r.from-blue-400 {
-  background-image: linear-gradient(to right, #1d4ed8, #4f46e5, #3b82f6) !important;
-}
-
-/* Navbar Light Mode Enhancements */
-html.light .navbar-nav-container {
-  background-color: rgba(255, 255, 255, 0.8) !important;
-  border-color: rgba(37, 99, 235, 0.1) !important;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-}
-
-html.light .navbar-nav-container a {
-  color: #475569 !important;
-}
-
-html.light .navbar-nav-container a:hover {
-  color: #0f172a !important;
-}
-
-html.light .navbar-nav-container a.text-blue-400 {
-  color: #1d4ed8 !important;
-  font-weight: 700 !important;
-}
-
-html.light .navbar-active-bar {
-  background-color: #1d4ed8 !important;
-}
-
-html.light .navbar-cta-btn {
+/* Mobile Menu Container */
+.dark header div.lg\:hidden.bg-white,
+[data-theme="dark"] header div.lg\:hidden.bg-white {
   background-color: #0f172a !important;
+  border-color: #1e293b !important;
+}
+
+/* Sections & Page Wrappers */
+.dark section,
+.dark main,
+.dark page,
+.dark div.min-h-screen,
+[data-theme="dark"] section,
+[data-theme="dark"] main,
+[data-theme="dark"] page,
+[data-theme="dark"] div.min-h-screen {
+  background-color: #0b0f19 !important;
+  color: #f8fafc !important;
+}
+
+/* Hero Section Gradient Overrides */
+.dark section.bg-gradient-to-b,
+[data-theme="dark"] section.bg-gradient-to-b {
+  background-image: linear-gradient(to bottom, #0b0f19, #0f172a, #0b0f19) !important;
+  border-color: #1e293b !important;
+}
+
+/* All Cards, Grid Containers, and Feature Boxes */
+.dark div.bg-white,
+.dark div.bg-\[\#fcfcfc\],
+.dark div.bg-\[\#f8f9fa\],
+.dark div.bg-gray-50,
+.dark div.bg-gray-50\/50,
+.dark section.bg-white,
+.dark section.bg-\[\#fcfcfc\],
+.dark section.bg-\[\#f8f9fa\],
+.dark section.bg-gray-50,
+[data-theme="dark"] div.bg-white,
+[data-theme="dark"] div.bg-\[\#fcfcfc\],
+[data-theme="dark"] div.bg-\[\#f8f9fa\],
+[data-theme="dark"] div.bg-gray-50,
+[data-theme="dark"] div.bg-gray-50\/50,
+[data-theme="dark"] section.bg-white,
+[data-theme="dark"] section.bg-\[\#fcfcfc\],
+[data-theme="dark"] section.bg-\[\#f8f9fa\],
+[data-theme="dark"] section.bg-gray-50 {
+  background-color: #111827 !important;
+  border-color: #1f2937 !important;
+  color: #f8fafc !important;
+}
+
+/* Card Hover States */
+.dark div.hover\:bg-white:hover,
+[data-theme="dark"] div.hover\:bg-white:hover {
+  background-color: #1f2937 !important;
+}
+
+/* Headings and Important Text */
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6,
+.dark .text-gray-900,
+.dark .text-slate-900,
+.dark .text-gray-800,
+.dark .text-slate-800,
+.dark .text-gray-700,
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6,
+[data-theme="dark"] .text-gray-900,
+[data-theme="dark"] .text-slate-900,
+[data-theme="dark"] .text-gray-800,
+[data-theme="dark"] .text-slate-800,
+[data-theme="dark"] .text-gray-700 {
   color: #ffffff !important;
 }
 
-html.light .navbar-cta-btn:hover {
+/* Secondary Text & Paragraphs */
+.dark p,
+.dark span.text-gray-600,
+.dark span.text-slate-600,
+.dark span.text-gray-500,
+.dark span.text-slate-500,
+.dark p.text-gray-600,
+.dark p.text-slate-600,
+.dark p.text-gray-500,
+.dark p.text-slate-500,
+.dark div.text-gray-600,
+.dark div.text-slate-600,
+.dark div.text-gray-500,
+.dark div.text-slate-500,
+[data-theme="dark"] p,
+[data-theme="dark"] span.text-gray-600,
+[data-theme="dark"] span.text-slate-600,
+[data-theme="dark"] span.text-gray-500,
+[data-theme="dark"] span.text-slate-500,
+[data-theme="dark"] p.text-gray-600,
+[data-theme="dark"] p.text-slate-600,
+[data-theme="dark"] p.text-gray-500,
+[data-theme="dark"] p.text-slate-500,
+[data-theme="dark"] div.text-gray-600,
+[data-theme="dark"] div.text-slate-600,
+[data-theme="dark"] div.text-gray-500,
+[data-theme="dark"] div.text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+/* Secondary White Buttons in Hero & CTA */
+.dark a.bg-white,
+.dark button.bg-white,
+[data-theme="dark"] a.bg-white,
+[data-theme="dark"] button.bg-white {
   background-color: #1e293b !important;
-}
-
-/* Typography contrast corrections in Light Mode */
-html.light .text-white {
-  color: #0f172a !important;
-}
-
-html.light .text-slate-200,
-html.light .text-slate-300,
-html.light .text-gray-400,
-html.light .text-slate-400,
-html.light .text-gray-300 {
-  color: #334155 !important;
-}
-
-html.light .border-white\/10,
-html.light .border-white\/5,
-html.light .border-white\/20 {
-  border-color: #e2e8f0 !important;
-}
-
-html.light .bg-white\/\[0\.02\],
-html.light .bg-white\/\[0\.03\],
-html.light .bg-white\/5,
-html.light .bg-white\/10,
-html.light .bg-\[\#0a0a0c\],
-html.light .bg-\[\#0c0a1a\]\/60 {
-  background-color: #ffffff !important;
-  border-color: #e2e8f0 !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
-}
-
-/* Global Theme Transition */
-body, section, nav, div, h1, h2, h3, h4, p, span, button {
-  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
-}
-
-/* Features Light Mode Overrides */
-html.light section.bg-white {
-  background-color: #ffffff !important;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04) !important;
-}
-
-html.light section.bg-white h2 {
-  color: #0f172a !important;
-}
-
-html.light section.bg-white .bg-\[\#0c0a1a\] {
-  background-color: #f8fafc !important;
-  border-color: #e2e8f0 !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02) !important;
-}
-
-html.light section.bg-white .bg-\[\#0c0a1a\]:hover {
-  background-color: #ffffff !important;
-  border-color: #cbd5e1 !important;
-  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.08) !important;
-}
-
-html.light section.bg-white .bg-white\/5 {
-  background-color: rgba(0, 0, 0, 0.03) !important;
-  border-color: rgba(0, 0, 0, 0.06) !important;
-}
-
-html.light section.bg-white .group-hover\:bg-white\/10 {
-  background-color: rgba(0, 0, 0, 0.05) !important;
-}
-
-html.light section.bg-white .text-white {
-  color: #0f172a !important;
-}
-
-html.light section.bg-white .text-white\/5 {
-  color: rgba(15, 23, 42, 0.05) !important;
-}
-
-html.light section.bg-white .group-hover\:text-white\/10 {
-  color: rgba(15, 23, 42, 0.08) !important;
-}
-
-/* Pricing Light Mode Overrides */
-html.light section.bg-\[\#06060c\] h2 {
-  color: #0f172a !important;
-}
-
-html.light section.bg-\[\#06060c\] .bg-white\/\[0\.03\] {
-  background-color: rgba(15, 23, 42, 0.03) !important;
-  border-color: rgba(15, 23, 42, 0.08) !important;
-}
-
-html.light section.bg-\[\#06060c\] .bg-\[\#0c0a1a\]\/40 {
-  background-color: #ffffff !important;
-  border-color: #e2e8f0 !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
-}
-
-html.light section.bg-\[\#06060c\] .bg-\[\#0c0a1a\]\/40:hover {
-  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.06) !important;
-}
-
-html.light section.bg-\[\#06060c\] .border-purple-500\/40 {
-  border-color: #7c3aed !important;
-  box-shadow: 0 10px 40px rgba(124, 58, 237, 0.12) !important;
-}
-
-html.light section.bg-\[\#06060c\] .text-slate-300 {
-  color: #334155 !important;
-}
-
-html.light section.bg-\[\#06060c\] .bg-purple-500\/10 {
-  background-color: rgba(124, 58, 237, 0.08) !important;
-}
-
-html.light section.bg-\[\#06060c\] button.bg-white\/5 {
-  background-color: rgba(0, 0, 0, 0.03) !important;
-  border-color: rgba(0, 0, 0, 0.06) !important;
-  color: #334155 !important;
-}
-
-html.light section.bg-\[\#06060c\] button.bg-white\/5:hover {
-  background-color: rgba(0, 0, 0, 0.06) !important;
-}
-
-/* Ecosystem Light Mode Overrides */
-html.light section.bg-\[\#06060c\] .bg-\[\#0c0a1a\]\/60 {
-  background-color: #ffffff !important;
-  border-color: #e2e8f0 !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03) !important;
-}
-
-html.light section.bg-\[\#06060c\] .bg-slate-950 {
-  background-color: #ffffff !important;
-  border-color: #e2e8f0 !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06) !important;
-}
-
-html.light section.bg-\[\#06060c\] .bg-slate-950 span.text-white {
-  color: #0f172a !important;
-}
-
-html.light section.bg-\[\#06060c\] .bg-slate-900,
-html.light section.bg-\[\#06060c\] .bg-slate-950.border-slate-700 {
-  background-color: #ffffff !important;
-  border-color: #cbd5e1 !important;
-}
-
-html.light section.bg-\[\#06060c\] .border-purple-500\/10 {
-  border-color: rgba(124, 58, 237, 0.15) !important;
-}
-
-html.light section.bg-\[\#06060c\] .border-purple-500\/50,
-html.light section.bg-\[\#06060c\] .border-indigo-500\/50,
-html.light section.bg-\[\#06060c\] .border-violet-500\/50 {
-  border-color: #cbd5e1 !important;
-}
-
-html.light section.bg-\[\#06060c\] .bg-slate-900 svg {
-  color: #7c3aed !important;
-}
-
-html.light section.bg-\[\#06060c\] .bg-slate-900 span,
-html.light section.bg-\[\#06060c\] .bg-slate-900 + span {
-  color: #334155 !important;
-}
-
-html.light section.bg-\[\#06060c\] .animate-spin-reverse span.bg-black\/60 {
-  background-color: rgba(255, 255, 255, 0.9) !important;
-  color: #0f172a !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
-  border: 1px solid #cbd5e1 !important;
-}
-
-/* CustomerReviews Light Mode Overrides */
-html.light section.bg-slate-950 {
-  background-color: #ffffff !important;
-  border-color: #e2e8f0 !important;
-}
-
-html.light section.bg-slate-950 blockquote.text-slate-100 {
-  color: #0f172a !important;
-}
-
-html.light section.bg-slate-950 h4.text-white {
-  color: #0f172a !important;
-}
-
-html.light section.bg-slate-950 p.text-slate-400 {
-  color: #64748b !important;
-}
-
-html.light section.bg-slate-950 button.border-slate-800 {
-  border-color: #e2e8f0 !important;
-  color: #64748b !important;
-}
-
-html.light section.bg-slate-950 button.border-slate-800:hover {
-  border-color: #7c3aed !important;
-  color: #7c3aed !important;
-  background-color: rgba(124, 58, 237, 0.05) !important;
-}
-
-html.light section.bg-slate-950 .border-white\/5 {
-  border-color: #e2e8f0 !important;
-}
-
-html.light section.bg-slate-950 .bg-slate-700 {
-  background-color: #cbd5e1 !important;
-}
-
-html.light section.bg-slate-950 .bg-slate-700.bg-purple-500 {
-  background-color: #7c3aed !important;
-}
-
-/* Contact Light Mode Overrides */
-html.light section.contact-section {
-  background-color: #f8fafc !important;
-  border-color: #e2e8f0 !important;
-}
-
-html.light section.contact-section .contact-title {
-  color: #0f172a !important;
-}
-
-html.light section.contact-section .contact-desc {
-  color: #64748b !important;
-}
-
-html.light section.contact-section .contact-icon-box {
-  background-color: #ffffff !important;
-  border-color: #cbd5e1 !important;
-  color: #0f172a !important;
-}
-
-html.light section.contact-section .contact-link {
-  color: #0f172a !important;
-}
-
-html.light section.contact-section .contact-link:hover {
-  color: #7c3aed !important;
-}
-
-html.light section.contact-section .contact-link-text {
-  color: #334155 !important;
-}
-
-html.light section.contact-section .contact-form-card {
-  background-color: #ffffff !important;
-  border-color: #e2e8f0 !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04) !important;
-}
-
-html.light section.contact-section .contact-label {
-  color: #475569 !important;
-}
-
-html.light section.contact-section .contact-input,
-html.light section.contact-section .contact-select,
-html.light section.contact-section .contact-textarea {
-  background-color: #f8fafc !important;
-  border-color: #cbd5e1 !important;
-  color: #0f172a !important;
-}
-
-html.light section.contact-section .contact-input:focus,
-html.light section.contact-section .contact-select:focus,
-html.light section.contact-section .contact-textarea:focus {
-  border-color: #7c3aed !important;
-}
-
-html.light section.contact-section .contact-submit-btn {
-  background-color: #0f172a !important;
   color: #ffffff !important;
+  border-color: #334155 !important;
 }
 
-html.light section.contact-section .contact-submit-btn:hover {
-  background-color: #1e293b !important;
+.dark a.bg-white:hover,
+.dark button.bg-white:hover,
+[data-theme="dark"] a.bg-white:hover,
+[data-theme="dark"] button.bg-white:hover {
+  background-color: #334155 !important;
 }
 
-/* Login Light Mode Overrides */
-html.light section.login-section {
-  background-color: #f8fafc !important;
+/* Form Inputs, Selects, and Textareas */
+.dark input,
+.dark select,
+.dark textarea,
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea {
+  background-color: #0b0f19 !important;
+  border-color: #1e293b !important;
+  color: #f8fafc !important;
 }
 
-html.light section.login-section .login-card {
-  background-color: #ffffff !important;
-  border-color: #e2e8f0 !important;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04) !important;
-}
-
-html.light section.login-section .login-title {
-  color: #0f172a !important;
-}
-
-html.light section.login-section .login-subtitle {
-  color: #64748b !important;
-}
-
-html.light section.login-section .login-label {
-  color: #475569 !important;
-}
-
-html.light section.login-section .login-input {
-  background-color: #f8fafc !important;
-  border-color: #cbd5e1 !important;
-  color: #0f172a !important;
-}
-
-html.light section.login-section .login-input:focus {
-  border-color: #7c3aed !important;
-}
-
-html.light section.login-section .login-submit-btn {
+.dark select option,
+[data-theme="dark"] select option {
   background-color: #0f172a !important;
-  color: #ffffff !important;
+  color: #f8fafc !important;
 }
 
-html.light section.login-section .login-submit-btn:hover {
-  background-color: #1e293b !important;
+/* Icon Containers with Light Red Backgrounds */
+.dark .bg-red-50,
+.dark .bg-red-50\/50,
+.dark .bg-red-50\/80,
+[data-theme="dark"] .bg-red-50,
+[data-theme="dark"] .bg-red-50\/50,
+[data-theme="dark"] .bg-red-50\/80 {
+  background-color: rgba(229, 29, 37, 0.15) !important;
 }
 
-html.light section.login-section .border-t {
-  border-color: rgba(15, 23, 42, 0.08) !important;
-}
-
-html.light section.login-section button.text-slate-400 {
-  color: #64748b !important;
-}
-
-html.light section.login-section button.text-slate-400:hover {
-  color: #0f172a !important;
-}
-
-html.light section.login-section .login-google-btn {
-  background-color: #ffffff !important;
-  border-color: #cbd5e1 !important;
-  color: #0f172a !important;
-}
-
-html.light section.login-section .login-google-btn:hover {
-  background-color: #f1f5f9 !important;
-}
-
-/* Expertise / Smart TV Light Mode Overrides */
-html.light section.expertise-section {
-  background-color: #f8fafc !important;
-  border-color: #e2e8f0 !important;
-}
-
-html.light section.expertise-section h2 {
-  color: #0f172a !important;
-}
-
-html.light section.expertise-section p.text-slate-400 {
-  color: #64748b !important;
-}
-
-/* Hero Background Light Mode Mask */
-html.light .html-light-hero-overlay {
-  background: linear-gradient(to right, rgba(248, 250, 252, 0.85), rgba(248, 250, 252, 0.65), rgba(248, 250, 252, 0.4)) !important;
+/* General Borders */
+.dark .border-gray-100,
+.dark .border-gray-200,
+.dark .border-gray-300,
+.dark .border-slate-200,
+[data-theme="dark"] .border-gray-100,
+[data-theme="dark"] .border-gray-200,
+[data-theme="dark"] .border-gray-300,
+[data-theme="dark"] .border-slate-200 {
+  border-color: #1e293b !important;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
-.no-scrollbar::-webkit-scrollbar {
+.scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
-.no-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
-
-/* Light Mode Global Amber/Gold Accessibility Contrast Corrections */
-html.light .text-\[\#e2b86d\] {
-  color: #b45309 !important;
-}
-html.light .border-\[\#e2b86d\] {
-  border-color: #d97706 !important;
-}
-html.light .bg-\[\#e2b86d\]\/20 {
-  background-color: rgba(217, 119, 6, 0.08) !important;
-}
-html.light .bg-\[\#e2b86d\]\/10 {
-  background-color: rgba(217, 119, 6, 0.05) !important;
-}
-html.light .text-amber-400 {
-  color: #b45309 !important;
-}
-html.light .bg-black\/60 {
-  background-color: rgba(217, 119, 6, 0.08) !important;
-}
-html.light .border-white\/20 {
-  border-color: #cbd5e1 !important;
-}
-html.light .bg-white\/5 {
-  background-color: rgba(0, 0, 0, 0.03) !important;
-  border-color: rgba(0, 0, 0, 0.06) !important;
-}
-html.light .border-slate-800 {
-  border-color: #e2e8f0 !important;
-  color: #475569 !important;
-}
-html.light .bg-\[\#0a111c\]\/80 {
-  background-color: #ffffff !important;
-  border-color: #e2e8f0 !important;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05) !important;
-}
-
-/* Light Mode Overrides for Expertise */
-html.light .expertise-container {
-  background-color: #f8fafc !important;
-  color: #0f172a !important;
-}
-
-html.light .expertise-card {
-  background-color: #ffffff !important;
-  border-color: #e2e8f0 !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02) !important;
-}
-
-html.light .expertise-card:hover {
-  background-color: #f1f5f9 !important;
-  border-color: #cbd5e1 !important;
-}
-
-html.light .expertise-card.bg-\[\#161b28\] {
-  background-color: #eff6ff !important;
-  border-color: rgba(37, 99, 235, 0.2) !important;
-  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.08) !important;
-}
-
-html.light .expertise-card.bg-\[\#161b28\] h3 {
-  color: #1d4ed8 !important;
-}
-
-html.light .expertise-card h3 {
-  color: #334155 !important;
-}
-
-html.light .expertise-card p.text-slate-400 {
-  color: #475569 !important;
-}
-
-html.light .expertise-card span.text-slate-400,
-html.light .expertise-card:hover span.text-slate-400 {
-  color: #475569 !important;
-}
-
-html.light .expertise-card span.text-\[\#e2b86d\] {
-  color: #1d4ed8 !important;
-}
-
-html.light .expertise-container .border-\[\#0a0f18\] {
-  border-color: #0f172a !important;
-}
-
-/* Light Mode Overrides for Footer */
-html.light footer {
-  background-color: #f1f5f9 !important;
-  border-color: #cbd5e1 !important;
-}
-
-html.light footer .text-white {
-  color: #0f172a !important;
-}
-
-html.light footer .bg-white {
-  background-color: #0f172a !important;
-}
-
-html.light footer .bg-white svg {
-  color: #ffffff !important;
-}
-
-html.light footer p.text-slate-400,
-html.light footer a.text-slate-400 {
-  color: #475569 !important;
-}
-
-html.light footer a.text-slate-400:hover {
-  color: #1d4ed8 !important;
-}
-
-html.light footer .border-t {
-  border-color: #e2e8f0 !important;
-}
-
-/* 3D TV Screen Responsive Transforms for mobile layout friendly scaling */
-.expertise-tv-frame {
-  transform: perspective(1400px) rotateY(-4deg) rotateX(1deg) scale(0.98);
-  transform-style: preserve-3d;
-  box-shadow: -15px 20px 40px rgba(0,0,0,0.5), inset 0 0 25px rgba(255,255,255,0.04);
-}
-
-@media (min-width: 1024px) {
-  .expertise-tv-frame {
-    transform: perspective(1400px) rotateY(-12deg) rotateX(2deg) scale(0.96) !important;
-    box-shadow: -25px 35px 70px rgba(0,0,0,0.6), inset 0 0 35px rgba(255,255,255,0.04) !important;
-  }
-}
-
-/* Light Mode Divider Text background override */
-html.light .divider-text {
-  background-color: #ffffff !important;
-}
-
-

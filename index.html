@@ -5,16 +5,29 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <!-- Inline theme initialization script to prevent theme flash -->
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('bct-theme');
+          var isDark = saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (isDark) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- SEO Meta Tags -->
-    <title>Vardhman TV - Complete IPTV, OTT & Hospitality Platform</title>
-    <meta name="description" content="Deliver cinematic in-room entertainment, seamless PMS sync, and mobile guest connectivity. Vardhman TV is the leading platform for hospitality, maritime, healthcare, and enterprise." />
+    <title>BCT Networks - Enterprise Networking & Infrastructure</title>
+    <meta name="description" content="Deliver integrated solutions in networking, communications, security, audio visual, fire safety, data infrastructure and building automation." />
     
     <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   </head>
-  <body class="bg-[#06060c] text-slate-300 antialiased font-sans">
+  <body className="antialiased bg-white dark:bg-slate-950 text-gray-900 dark:text-slate-100">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

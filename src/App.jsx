@@ -1,116 +1,138 @@
-import React, { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Stats from './components/Stats';
-import Ecosystem from './components/Ecosystem';
-import Pricing from './components/Pricing';
-import FAQ from './components/FAQ';
-import Footer from './components/Footer';
-import Expertise from './components/Expertise';
-import CustomerReviews from './components/CustomerReviews';
-import Contact from './components/Contact';
-import Login from './components/Login';
-import { supabase, isSupabaseConfigured } from './supabaseClient';
+import { useState, useEffect } from 'react';
 
-export default function App() {
-  const [currentHash, setCurrentHash] = useState(window.location.hash);
-  const [user, setUser] = useState(() => {
-    return localStorage.getItem('userEmail') || null;
+// Import Layout Components
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+
+// Import Home Page Showcase Sections
+import Hero from './components/Hero';
+import TrustedPartners from './components/TrustedPartners';
+import AboutSection from './components/AboutSection';
+import SolutionsGrid from './components/SolutionsGrid';
+import TechPartners from './components/TechPartners';
+import IndustriesServed from './components/IndustriesServed';
+import FeaturedProject from './components/FeaturedProject';
+import WhyChooseUs from './components/WhyChooseUs';
+import CtaBanner from './components/CtaBanner';
+
+// Import Dedicated Pages
+import AboutPage from './components/pages/AboutPage';
+import SolutionsPage from './components/pages/SolutionsPage';
+import ServicesPage from './components/pages/ServicesPage';
+import IndustriesPage from './components/pages/IndustriesPage';
+import ProjectsPage from './components/pages/ProjectsPage';
+import PartnersPage from './components/pages/PartnersPage';
+import ResourcesPage from './components/pages/ResourcesPage';
+import ContactPage from './components/pages/ContactPage';
+
+function App() {
+  const [activePage, setActivePage] = useState('home');
+  const [subFilter, setSubFilter] = useState('all');
+  
+  // Theme Management
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const savedTheme = localStorage.getItem('bct-theme');
+      if (savedTheme) return savedTheme;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    return 'light';
   });
 
   useEffect(() => {
+    const root = document.documentElement;
+    const body = document.body;
+
+    if (theme === 'dark') {
+      root.classList.add('dark');
+      body.classList.add('dark');
+      root.setAttribute('data-theme', 'dark');
+      body.setAttribute('data-theme', 'dark');
+    } else {
+      root.classList.remove('dark');
+      body.classList.remove('dark');
+      root.removeAttribute('data-theme');
+      body.removeAttribute('data-theme');
+    }
+    localStorage.setItem('bct-theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
+  // Read URL Hash on load & handle browser back/forward buttons
+  useEffect(() => {
     const handleHashChange = () => {
-      setCurrentHash(window.location.hash);
-      // Smooth scroll back to top when switching views
-      window.scrollTo({ top: 0, behavior: 'instant' });
+      const hash = window.location.hash.replace('#', '');
+      const validPages = ['home', 'about', 'solutions', 'services', 'industries', 'projects', 'partners', 'resources', 'contact'];
+      
+      if (validPages.includes(hash)) {
+        setActivePage(hash);
+      } else {
+        setActivePage('home');
+      }
     };
 
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    handleHashChange();
+    window.addEventListener('popstate', handleHashChange);
+    return () => window.removeEventListener('popstate', handleHashChange);
   }, []);
 
-  // Listen to Supabase Auth State Changes (Email / Google OAuth)
-  useEffect(() => {
-    if (!isSupabaseConfigured) return;
-
-    // Check active session on initial render
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session?.user) {
-        setUser(session.user.email);
-        localStorage.setItem('userEmail', session.user.email);
-      }
-    });
-
-    // Subscribe to auth state changes (login, signup, OAuth redirect)
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (session?.user) {
-        setUser(session.user.email);
-        localStorage.setItem('userEmail', session.user.email);
-      } else {
-        setUser(null);
-        localStorage.removeItem('userEmail');
-      }
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
-
-  const handleLoginSuccess = (email) => {
-    setUser(email);
-    localStorage.setItem('userEmail', email);
-    window.location.hash = ''; // Redirect to home on login success
+  // Navigation Trigger Handler
+  const handleNavigate = (pageId, filter = 'all') => {
+    setActivePage(pageId);
+    setSubFilter(filter);
+    window.location.hash = `#${pageId}`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleSignOut = async () => {
-    if (isSupabaseConfigured) {
-      await supabase.auth.signOut();
+  // Render Dynamic Page View
+  const renderContent = () => {
+    switch (activePage) {
+      case 'about':
+        return <AboutPage />;
+      case 'solutions':
+        return <SolutionsPage initialFilter={subFilter} />;
+      case 'services':
+        return <ServicesPage />;
+      case 'industries':
+        return <IndustriesPage />;
+      case 'projects':
+        return <ProjectsPage />;
+      case 'partners':
+        return <PartnersPage />;
+      case 'resources':
+        return <ResourcesPage />;
+      case 'contact':
+        return <ContactPage />;
+      case 'home':
+      default:
+        return (
+          <main>
+            <Hero />
+            <TrustedPartners />
+            <AboutSection />
+            <SolutionsGrid />
+            <TechPartners />
+            <IndustriesServed />
+            <FeaturedProject />
+            <WhyChooseUs />
+            <CtaBanner />
+          </main>
+        );
     }
-    setUser(null);
-    localStorage.removeItem('userEmail');
-    window.location.hash = ''; // Redirect to home on sign out
   };
-
-  const isPricingPage = currentHash === '#pricing';
-  const isEcosystemPage = currentHash === '#ecosystem';
-  const isContactPage = currentHash === '#contact';
-  const isLoginPage = currentHash === '#login';
 
   return (
-    <div className="min-h-screen bg-[#06060c] font-sans selection:bg-purple-500/30 selection:text-white text-slate-300">
-      <Navbar user={user} onSignOut={handleSignOut} />
-
-      {isPricingPage ? (
-        // Render ONLY the pricing page when hash is #pricing
-        <div className="pt-20">
-          <Pricing />
-        </div>
-      ) : isEcosystemPage ? (
-        // Render ONLY the ecosystem page when hash is #ecosystem
-        <div className="pt-20">
-          <Ecosystem />
-        </div>
-      ) : isContactPage ? (
-        // Render ONLY the contact page when hash is #contact
-        <div className="pt-20">
-          <Contact />
-        </div>
-      ) : isLoginPage ? (
-        // Render ONLY the login page when hash is #login
-        <div className="pt-20">
-          <Login onLoginSuccess={handleLoginSuccess} />
-        </div>
-      ) : (
-        // Render home page modules (without Ecosystem, Pricing, Contact and Login)
-        <>
-          <Hero />
-          <Stats />
-          <Expertise />
-          <CustomerReviews />
-          <FAQ />
-        </>
-      )}
-
-      <Footer />
+    <div className="min-h-screen font-sans text-gray-900 bg-white dark:bg-slate-950 dark:text-slate-100 flex flex-col justify-between transition-colors duration-300">
+      <Navbar activePage={activePage} onNavigate={handleNavigate} theme={theme} onToggleTheme={toggleTheme} />
+      <div className="flex-grow">
+        {renderContent()}
+      </div>
+      <Footer onNavigate={handleNavigate} />
     </div>
   );
 }
+
+export default App;
