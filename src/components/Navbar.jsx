@@ -234,6 +234,10 @@ const Navbar = ({ activePage = 'home', onNavigate = () => {}, theme = 'light', o
           </div>
         </div>
       </div>
+
+      <div className="bg-[#E51D25] px-4 py-1.5 text-center text-[10px] font-extrabold tracking-[0.16em] text-white uppercase">
+        This website is currently under testing
+      </div>
     </header>
   );
 };

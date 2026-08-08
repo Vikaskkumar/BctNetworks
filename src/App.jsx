@@ -111,7 +111,7 @@ function App() {
         return (
           <main>
             <Hero />
-            <TrustedPartners />
+            {/* <TrustedPartners /> */}
             <AboutSection onNavigate={handleNavigate} />
             <SolutionsGrid onNavigate={handleNavigate} />
             <TechPartners />
