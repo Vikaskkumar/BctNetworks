@@ -141,7 +141,7 @@ const Footer = ({ onNavigate = () => { } }) => {
               <li className="flex items-center gap-2.5">
                 <Phone className="w-3.5 h-3.5 text-[#E51D25] flex-shrink-0" />
                 <a href="tel:+9116141401" className="hover:text-white font-semibold transition-colors">
-                  +9116141401
+                  +91 9116141401
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
