@@ -3,7 +3,7 @@ import HeroNetworkDiagram from './HeroNetworkDiagram';
 
 const Hero = () => {
   return (
-    <section className="relative bg-gradient-to-b from-white via-slate-50/40 to-white dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 pt-10 pb-16 lg:pt-14 lg:pb-24 overflow-hidden border-b border-gray-100/80 dark:border-slate-850/80 transition-colors duration-300">
+    <section className="relative bg-gradient-to-b from-white via-slate-50/40 to-white dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 pt-10 pb-16 lg:pt-14 lg:pb-24 overflow-hidden border-b border-gray-100/80 dark:border-slate-800/80 transition-colors duration-300">
       {/* Ambient background glow accents */}
       <div className="absolute top-12 right-1/4 w-[500px] h-[500px] bg-red-500/5 dark:bg-red-500/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute -bottom-20 -left-20 w-[400px] h-[400px] bg-slate-900/5 dark:bg-slate-900/20 rounded-full blur-[120px] pointer-events-none" />

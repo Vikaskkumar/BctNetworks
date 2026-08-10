@@ -34,7 +34,6 @@ const Footer = ({ onNavigate = () => { } }) => {
 
   const quickLinks = [
     { name: 'About Us', id: 'about' },
-    { name: 'Services', id: 'services' },
     { name: 'Industries', id: 'industries' },
     { name: 'Projects', id: 'projects' },
     { name: 'Partners', id: 'partners' },

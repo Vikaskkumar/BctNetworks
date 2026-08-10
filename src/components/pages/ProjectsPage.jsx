@@ -114,7 +114,7 @@ const ProjectsPage = () => {
                 <div>
                   <span className="text-[#E51D25] font-extrabold text-[10px] tracking-widest uppercase">{proj.client}</span>
                   <h2 className="text-2xl font-black text-gray-900 dark:text-white mt-1 mb-3">{proj.title}</h2>
-                  <p className="text-sm text-gray-600 dark:text-slate-350 leading-relaxed mb-6">{proj.desc}</p>
+                  <p className="text-sm text-gray-600 dark:text-slate-300 leading-relaxed mb-6">{proj.desc}</p>
                   
                   <div className="mb-6">
                     <span className="text-xs font-extrabold text-gray-900 dark:text-white uppercase tracking-wider block mb-2">Technologies Used:</span>

@@ -76,7 +76,7 @@ const PartnersPage = () => {
                   <span className="bg-red-50 dark:bg-red-950/20 text-[#E51D25] dark:text-red-400 text-xs font-extrabold px-3 py-1 rounded-full">{p.tier}</span>
                 </div>
                 <h2 className="text-2xl font-black text-gray-900 dark:text-white mb-3">{p.name}</h2>
-                <p className="text-sm text-gray-600 dark:text-slate-350 leading-relaxed mb-6">{p.desc}</p>
+                <p className="text-sm text-gray-600 dark:text-slate-300 leading-relaxed mb-6">{p.desc}</p>
               </div>
 
               <div className="flex items-center gap-2 text-xs font-bold text-gray-700 dark:text-slate-300 pt-4 border-t border-gray-100 dark:border-slate-800">

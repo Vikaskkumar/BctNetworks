@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { ArrowRight, ChevronDown, Menu, X, Sun, Moon } from 'lucide-react';
 import BctLogo from './BctLogo';
 
-const Navbar = ({ activePage = 'home', onNavigate = () => {}, theme = 'light', onToggleTheme = () => {} }) => {
+const Navbar = ({ activePage = 'home', onNavigate = () => { }, theme = 'light', onToggleTheme = () => { } }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -28,7 +28,6 @@ const Navbar = ({ activePage = 'home', onNavigate = () => {}, theme = 'light', o
         { name: 'Unified Communication', filter: 'communication', href: '#solutions' },
       ]
     },
-    { id: 'services', name: 'SERVICES', href: '#services' },
     {
       id: 'industries',
       name: 'INDUSTRIES',
@@ -61,20 +60,18 @@ const Navbar = ({ activePage = 'home', onNavigate = () => {}, theme = 'light', o
 
   return (
     <header
-      className={`w-full sticky top-0 z-50 transition-all duration-300 backdrop-blur-md ${
-        isScrolled 
-          ? 'shadow-md bg-white/95 dark:bg-slate-900/95 border-b-0' 
-          : 'shadow-sm bg-white dark:bg-slate-900 border-b border-gray-100 dark:border-slate-800'
-      }`}
+      className={`w-full sticky top-0 z-50 transition-all duration-300 backdrop-blur-md ${isScrolled
+        ? 'shadow-md bg-white/95 dark:bg-slate-900/95 border-b-0'
+        : 'shadow-sm bg-white dark:bg-slate-900 border-b border-gray-100 dark:border-slate-800'
+        }`}
     >
       <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16">
-        <div className={`flex items-center justify-between transition-all duration-300 ${
-          isScrolled ? 'h-16' : 'h-20'
-        }`}>
+        <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'h-16' : 'h-20'
+          }`}>
 
           {/* Brand Logo */}
-          <a 
-            href="#home" 
+          <a
+            href="#home"
             onClick={(e) => handleNavClick(e, 'home')}
             className="flex-shrink-0 focus:outline-none rounded cursor-pointer"
           >
@@ -90,11 +87,10 @@ const Navbar = ({ activePage = 'home', onNavigate = () => {}, theme = 'light', o
                   <a
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.id)}
-                    className={`relative flex items-center gap-1 text-[11px] font-extrabold tracking-wider transition-colors duration-200 h-full cursor-pointer ${
-                      isActive
-                        ? 'text-[#E51D25]'
-                        : 'text-gray-800 dark:text-slate-200 hover:text-[#E51D25] dark:hover:text-[#E51D25]'
-                    }`}
+                    className={`relative flex items-center gap-1 text-[11px] font-extrabold tracking-wider transition-colors duration-200 h-full cursor-pointer ${isActive
+                      ? 'text-[#E51D25]'
+                      : 'text-gray-800 dark:text-slate-200 hover:text-[#E51D25] dark:hover:text-[#E51D25]'
+                      }`}
                   >
                     {link.name}
                     {link.subItems && (
@@ -103,9 +99,8 @@ const Navbar = ({ activePage = 'home', onNavigate = () => {}, theme = 'light', o
 
                     {/* Animated Underline */}
                     <span
-                      className={`absolute bottom-0 left-0 h-[2.5px] bg-[#E51D25] rounded-t-md transition-all duration-300 ${
-                        isActive ? 'w-full' : 'w-0 group-hover:w-full'
-                      }`}
+                      className={`absolute bottom-0 left-0 h-[2.5px] bg-[#E51D25] rounded-t-md transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                        }`}
                     />
                   </a>
 
@@ -133,7 +128,7 @@ const Navbar = ({ activePage = 'home', onNavigate = () => {}, theme = 'light', o
 
           {/* Right Header Actions */}
           <div className="hidden lg:flex items-center gap-6">
-            
+
             {/* Dark/Light Mode Theme Toggle Button */}
             <button
               onClick={onToggleTheme}
@@ -159,7 +154,7 @@ const Navbar = ({ activePage = 'home', onNavigate = () => {}, theme = 'light', o
 
           {/* Mobile Menu Actions */}
           <div className="flex lg:hidden items-center gap-2">
-            
+
             {/* Mobile Theme Toggle */}
             <button
               onClick={onToggleTheme}
@@ -183,9 +178,8 @@ const Navbar = ({ activePage = 'home', onNavigate = () => {}, theme = 'light', o
 
       {/* Mobile Navigation Drawer */}
       <div
-        className={`lg:hidden bg-white dark:bg-slate-900 border-t border-gray-100 dark:border-slate-850 overflow-hidden transition-all duration-300 ease-in-out shadow-lg absolute w-full ${
-          mobileMenuOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'
-        }`}
+        className={`lg:hidden bg-white dark:bg-slate-900 border-t border-gray-100 dark:border-slate-800 overflow-hidden transition-all duration-300 ease-in-out shadow-lg absolute w-full ${mobileMenuOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'
+          }`}
       >
         <div className="px-6 pt-2 pb-6 space-y-1">
           {navLinks.map((link) => {
@@ -195,11 +189,10 @@ const Navbar = ({ activePage = 'home', onNavigate = () => {}, theme = 'light', o
                 <a
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.id)}
-                  className={`flex items-center justify-between px-4 py-3 rounded-md text-xs font-bold transition-colors ${
-                    isActive
-                      ? 'bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400'
-                      : 'text-gray-800 dark:text-slate-200 hover:bg-gray-50 dark:hover:bg-slate-800 hover:text-red-600'
-                  }`}
+                  className={`flex items-center justify-between px-4 py-3 rounded-md text-xs font-bold transition-colors ${isActive
+                    ? 'bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400'
+                    : 'text-gray-800 dark:text-slate-200 hover:bg-gray-50 dark:hover:bg-slate-800 hover:text-red-600'
+                    }`}
                 >
                   <span>{link.name}</span>
                   {link.subItems && <ChevronDown className="w-4 h-4 text-gray-400" />}

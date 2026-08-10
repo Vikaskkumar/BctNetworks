@@ -2,226 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-  max-width: 100vw;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  body {
+    overflow-x: hidden;
+    max-width: 100vw;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-overflow-scrolling: touch;
+    background-color: #ffffff;
+    color: #0f172a;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  html.dark body,
+  body.dark {
+    background-color: #090d16;
+    color: #f8fafc;
+    color-scheme: dark;
+  }
 }
 
-body {
-  overflow-x: hidden;
-  max-width: 100vw;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* ============================================================ */
-/* BULLETPROOF DARK THEME OVERRIDES (Full Page Dark Mode)       */
-/* ============================================================ */
-
-/* When dark mode is active on html, body, or #root */
-html.dark,
-html.dark body,
-html.dark #root,
-body.dark,
-body.dark #root,
-[data-theme="dark"],
-[data-theme="dark"] body,
-[data-theme="dark"] #root {
-  background-color: #0b0f19 !important;
-  color: #f8fafc !important;
-  color-scheme: dark;
-}
-
-/* Header & Navbar */
-.dark header,
-[data-theme="dark"] header {
-  background-color: rgba(15, 23, 42, 0.95) !important;
-  border-color: #1e293b !important;
-}
-
-.dark header a:not(.bg-\[\#E51D25\]),
-[data-theme="dark"] header a:not(.bg-\[\#E51D25\]) {
-  color: #f1f5f9 !important;
-}
-
-/* Mobile Menu Container */
-.dark header div.lg\:hidden.bg-white,
-[data-theme="dark"] header div.lg\:hidden.bg-white {
-  background-color: #0f172a !important;
-  border-color: #1e293b !important;
-}
-
-/* Sections & Page Wrappers */
-.dark section,
-.dark main,
-.dark page,
-.dark div.min-h-screen,
-[data-theme="dark"] section,
-[data-theme="dark"] main,
-[data-theme="dark"] page,
-[data-theme="dark"] div.min-h-screen {
-  background-color: #0b0f19 !important;
-  color: #f8fafc !important;
-}
-
-/* Hero Section Gradient Overrides */
-.dark section.bg-gradient-to-b,
-[data-theme="dark"] section.bg-gradient-to-b {
-  background-image: linear-gradient(to bottom, #0b0f19, #0f172a, #0b0f19) !important;
-  border-color: #1e293b !important;
-}
-
-/* All Cards, Grid Containers, and Feature Boxes */
-.dark div.bg-white,
-.dark div.bg-\[\#fcfcfc\],
-.dark div.bg-\[\#f8f9fa\],
-.dark div.bg-gray-50,
-.dark div.bg-gray-50\/50,
-.dark section.bg-white,
-.dark section.bg-\[\#fcfcfc\],
-.dark section.bg-\[\#f8f9fa\],
-.dark section.bg-gray-50,
-[data-theme="dark"] div.bg-white,
-[data-theme="dark"] div.bg-\[\#fcfcfc\],
-[data-theme="dark"] div.bg-\[\#f8f9fa\],
-[data-theme="dark"] div.bg-gray-50,
-[data-theme="dark"] div.bg-gray-50\/50,
-[data-theme="dark"] section.bg-white,
-[data-theme="dark"] section.bg-\[\#fcfcfc\],
-[data-theme="dark"] section.bg-\[\#f8f9fa\],
-[data-theme="dark"] section.bg-gray-50 {
-  background-color: #111827 !important;
-  border-color: #1f2937 !important;
-  color: #f8fafc !important;
-}
-
-/* Card Hover States */
-.dark div.hover\:bg-white:hover,
-[data-theme="dark"] div.hover\:bg-white:hover {
-  background-color: #1f2937 !important;
-}
-
-/* Headings and Important Text */
-.dark h1,
-.dark h2,
-.dark h3,
-.dark h4,
-.dark h5,
-.dark h6,
-.dark .text-gray-900,
-.dark .text-slate-900,
-.dark .text-gray-800,
-.dark .text-slate-800,
-.dark .text-gray-700,
-[data-theme="dark"] h1,
-[data-theme="dark"] h2,
-[data-theme="dark"] h3,
-[data-theme="dark"] h4,
-[data-theme="dark"] h5,
-[data-theme="dark"] h6,
-[data-theme="dark"] .text-gray-900,
-[data-theme="dark"] .text-slate-900,
-[data-theme="dark"] .text-gray-800,
-[data-theme="dark"] .text-slate-800,
-[data-theme="dark"] .text-gray-700 {
-  color: #ffffff !important;
-}
-
-/* Secondary Text & Paragraphs */
-.dark p,
-.dark span.text-gray-600,
-.dark span.text-slate-600,
-.dark span.text-gray-500,
-.dark span.text-slate-500,
-.dark p.text-gray-600,
-.dark p.text-slate-600,
-.dark p.text-gray-500,
-.dark p.text-slate-500,
-.dark div.text-gray-600,
-.dark div.text-slate-600,
-.dark div.text-gray-500,
-.dark div.text-slate-500,
-[data-theme="dark"] p,
-[data-theme="dark"] span.text-gray-600,
-[data-theme="dark"] span.text-slate-600,
-[data-theme="dark"] span.text-gray-500,
-[data-theme="dark"] span.text-slate-500,
-[data-theme="dark"] p.text-gray-600,
-[data-theme="dark"] p.text-slate-600,
-[data-theme="dark"] p.text-gray-500,
-[data-theme="dark"] p.text-slate-500,
-[data-theme="dark"] div.text-gray-600,
-[data-theme="dark"] div.text-slate-600,
-[data-theme="dark"] div.text-gray-500,
-[data-theme="dark"] div.text-slate-500 {
-  color: #94a3b8 !important;
-}
-
-/* Secondary White Buttons in Hero & CTA */
-.dark a.bg-white,
-.dark button.bg-white,
-[data-theme="dark"] a.bg-white,
-[data-theme="dark"] button.bg-white {
-  background-color: #1e293b !important;
-  color: #ffffff !important;
-  border-color: #334155 !important;
-}
-
-.dark a.bg-white:hover,
-.dark button.bg-white:hover,
-[data-theme="dark"] a.bg-white:hover,
-[data-theme="dark"] button.bg-white:hover {
-  background-color: #334155 !important;
-}
-
-/* Form Inputs, Selects, and Textareas */
-.dark input,
-.dark select,
-.dark textarea,
-[data-theme="dark"] input,
-[data-theme="dark"] select,
-[data-theme="dark"] textarea {
-  background-color: #0b0f19 !important;
-  border-color: #1e293b !important;
-  color: #f8fafc !important;
-}
-
-.dark select option,
-[data-theme="dark"] select option {
-  background-color: #0f172a !important;
-  color: #f8fafc !important;
-}
-
-/* Icon Containers with Light Red Backgrounds */
-.dark .bg-red-50,
-.dark .bg-red-50\/50,
-.dark .bg-red-50\/80,
-[data-theme="dark"] .bg-red-50,
-[data-theme="dark"] .bg-red-50\/50,
-[data-theme="dark"] .bg-red-50\/80 {
-  background-color: rgba(229, 29, 37, 0.15) !important;
-}
-
-/* General Borders */
-.dark .border-gray-100,
-.dark .border-gray-200,
-.dark .border-gray-300,
-.dark .border-slate-200,
-[data-theme="dark"] .border-gray-100,
-[data-theme="dark"] .border-gray-200,
-[data-theme="dark"] .border-gray-300,
-[data-theme="dark"] .border-slate-200 {
-  border-color: #1e293b !important;
-}
-
-/* Hide scrollbar for Chrome, Safari and Opera */
+/* Hide scrollbar utilities */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Custom themed scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
 }

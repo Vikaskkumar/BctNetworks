@@ -71,7 +71,7 @@ const ContactPage = () => {
                   <CheckCircle2 className="w-12 h-12 text-green-500" />
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-black text-gray-900 dark:text-white">Requirements Submitted</h3>
-                <p className="text-sm text-gray-600 dark:text-slate-350 max-w-md mx-auto leading-relaxed">
+                <p className="text-sm text-gray-600 dark:text-slate-300 max-w-md mx-auto leading-relaxed">
                   Your details have been successfully received. A senior BCT Network Architect has been notified and will contact you within 2 business hours.
                 </p>
                 <button 

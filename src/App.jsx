@@ -18,7 +18,6 @@ import CtaBanner from './components/CtaBanner';
 // Import Dedicated Pages
 import AboutPage from './components/pages/AboutPage';
 import SolutionsPage from './components/pages/SolutionsPage';
-import ServicesPage from './components/pages/ServicesPage';
 import IndustriesPage from './components/pages/IndustriesPage';
 import ProjectsPage from './components/pages/ProjectsPage';
 import PartnersPage from './components/pages/PartnersPage';
@@ -28,7 +27,7 @@ import ContactPage from './components/pages/ContactPage';
 function App() {
   const [activePage, setActivePage] = useState('home');
   const [subFilter, setSubFilter] = useState('all');
-  
+
   // Theme Management
   const [theme, setTheme] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -65,8 +64,8 @@ function App() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '');
-      const validPages = ['home', 'about', 'solutions', 'services', 'industries', 'projects', 'partners', 'resources', 'contact'];
-      
+      const validPages = ['home', 'about', 'solutions', 'industries', 'projects', 'partners', 'resources', 'contact'];
+
       if (validPages.includes(hash)) {
         setActivePage(hash);
       } else {
@@ -94,8 +93,6 @@ function App() {
         return <AboutPage />;
       case 'solutions':
         return <SolutionsPage initialFilter={subFilter} />;
-      case 'services':
-        return <ServicesPage />;
       case 'industries':
         return <IndustriesPage />;
       case 'projects':

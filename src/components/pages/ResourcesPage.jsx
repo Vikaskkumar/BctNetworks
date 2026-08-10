@@ -52,7 +52,7 @@ const ResourcesPage = () => {
                   <span className="text-xs text-gray-400 dark:text-slate-400 font-semibold">{res.size}</span>
                 </div>
                 <h2 className="text-xl font-black text-gray-900 dark:text-white mb-3">{res.title}</h2>
-                <p className="text-sm text-gray-600 dark:text-slate-350 leading-relaxed mb-6">{res.desc}</p>
+                <p className="text-sm text-gray-600 dark:text-slate-300 leading-relaxed mb-6">{res.desc}</p>
               </div>
 
               <button className="inline-flex items-center gap-2 text-xs font-black text-[#E51D25] dark:text-red-400 hover:text-[#c9151c] dark:hover:text-red-300 uppercase tracking-wider">

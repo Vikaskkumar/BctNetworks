@@ -186,7 +186,7 @@ const AboutPage = () => {
                 <p className="text-sm text-gray-400 dark:text-slate-400 leading-relaxed flex-grow">
                   Transforming physical operations by digitizing complex workflows. We deploy cloud-based administrative systems that centralize data fetching and automate payroll and receipt processing.
                 </p>
-                <a href="#services" className="inline-flex items-center gap-2 text-xs font-bold text-[#E51D25] dark:text-red-400 mt-6 group-hover:gap-3 transition-all">
+                <a href="#solutions" className="inline-flex items-center gap-2 text-xs font-bold text-[#E51D25] dark:text-red-400 mt-6 group-hover:gap-3 transition-all">
                   EXPLORE <ArrowRight className="w-3 h-3" />
                 </a>
               </div>
