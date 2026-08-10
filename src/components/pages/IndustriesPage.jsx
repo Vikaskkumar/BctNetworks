@@ -1,5 +1,5 @@
-import { useState, useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring, useMotionValueEvent } from 'framer-motion';
+import { useState, useRef, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import {
   Building2,
   Hotel,
@@ -12,7 +12,8 @@ import {
   ArrowRight,
   ShieldCheck,
   Check,
-  Network
+  Network,
+  Sparkles
 } from 'lucide-react';
 
 const industriesDetail = [
@@ -82,244 +83,262 @@ const industriesDetail = [
   }
 ];
 
-const comparisonData = [
-  { industry: 'Corporate', density: 'High', security: 'Zero-Trust', compliance: 'ISO 27001', uptime: '99.999%', scale: 'Multi-Floor' },
-  { industry: 'Hospitality', density: 'High', security: 'Segregated', compliance: 'PCI-DSS', uptime: '99.99%', scale: 'Campus' },
-  { industry: 'Healthcare', density: 'Critical', security: 'HIPAA', compliance: 'HIPAA/HITECH', uptime: '99.999%', scale: 'Campus' },
-  { industry: 'Education', density: 'Ultra-High', security: 'Filtered', compliance: 'CIPA', uptime: '99.9%', scale: 'Multi-Building' },
-  { industry: 'Manufacturing', density: 'Medium', security: 'OT/IT Split', compliance: 'IEC 62443', uptime: '99.99%', scale: 'Wide-Area' },
-  { industry: 'Public Sector', density: 'Medium', security: 'Air-Gapped', compliance: 'FIPS 140-2', uptime: '99.999%', scale: 'Regional' },
-  { industry: 'Retail', density: 'High', security: 'PCI', compliance: 'PCI-DSS', uptime: '99.9%', scale: 'Multi-Site' },
-  { industry: 'Banking', density: 'Low', security: 'Encrypted', compliance: 'RBI/PCI', uptime: '99.999%', scale: 'Distributed' },
-];
-
 const IndustriesPage = () => {
   const containerRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const trackRef = useRef(null);
+  
+  const [translateX, setTranslateX] = useState(0);
+  const [scrollRange, setScrollRange] = useState(0);
 
-  // Setup scroll tracking for the horizontal pinned section
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-  });
+  const touchStartX = useRef(0);
+  const touchStartTranslateX = useRef(0);
 
-  // Smooth out the progress for the progress bar
-  const springProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
+  // Calculate dynamic scroll range based on viewport width vs track width
+  useEffect(() => {
+    const calculateRange = () => {
+      if (trackRef.current) {
+        const trackWidth = trackRef.current.scrollWidth;
+        const viewportWidth = window.innerWidth;
+        // Align last card exactly to right viewport edge by subtracting right padding margin (10vw)
+        const rightPadding = viewportWidth * 0.1;
+        const range = trackWidth - rightPadding - viewportWidth;
+        setScrollRange(Math.max(0, range));
+      }
+    };
 
-  // Map vertical scroll progress to horizontal translation percentages for robust cross-browser rendering
-  const xTransform = useTransform(scrollYProgress, [0, 1], ["0%", "-62%"]);
+    calculateRange();
+    const timer = setTimeout(calculateRange, 500);
 
-  // Set up opacities for different glowing ambient layers to avoid interpolating complex gradient strings
-  const glowOpacity1 = useTransform(scrollYProgress, [0, 0.5, 1], [0.15, 0.05, 0.15]);
-  const glowOpacity2 = useTransform(scrollYProgress, [0, 0.5, 1], [0.05, 0.25, 0.05]);
+    window.addEventListener('resize', calculateRange);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', calculateRange);
+    };
+  }, []);
 
-  // Calculate which card should be "active" based on scroll progress
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const totalCards = industriesDetail.length;
-    const index = Math.max(0, Math.min(Math.floor(latest * totalCards), totalCards - 1));
-    setActiveIndex(index);
-  });
+  // Intercept scroll and drag gestures to lock vertical page scroll and translate horizontal cards
+  useEffect(() => {
+    const element = containerRef.current;
+    if (!element) return;
+
+    const handleWheel = (e) => {
+      if (scrollRange <= 0) return;
+
+      const nextX = translateX - e.deltaY;
+      const isScrollingHorizontal =
+        (e.deltaY > 0 && translateX > -scrollRange) || // scrolling down, not at end
+        (e.deltaY < 0 && translateX < 0);            // scrolling up, not at start
+
+      if (isScrollingHorizontal) {
+        e.preventDefault();
+        setTranslateX(Math.max(-scrollRange, Math.min(0, nextX)));
+      }
+    };
+
+    const handleTouchStart = (e) => {
+      touchStartX.current = e.touches[0].clientX;
+      touchStartTranslateX.current = translateX;
+    };
+
+    const handleTouchMove = (e) => {
+      if (scrollRange <= 0) return;
+
+      const touchX = e.touches[0].clientX;
+      const diffX = touchX - touchStartX.current;
+      const nextX = touchStartTranslateX.current + diffX;
+
+      const isScrollingHorizontal =
+        (diffX < 0 && translateX > -scrollRange) || // swiping left (scroll down)
+        (diffX > 0 && translateX < 0);            // swiping right (scroll up)
+
+      if (isScrollingHorizontal) {
+        e.preventDefault();
+        setTranslateX(Math.max(-scrollRange, Math.min(0, nextX)));
+      }
+    };
+
+    element.addEventListener('wheel', handleWheel, { passive: false });
+    element.addEventListener('touchstart', handleTouchStart, { passive: true });
+    element.addEventListener('touchmove', handleTouchMove, { passive: false });
+
+    return () => {
+      element.removeEventListener('wheel', handleWheel);
+      element.removeEventListener('touchstart', handleTouchStart);
+      element.removeEventListener('touchmove', handleTouchMove);
+    };
+  }, [translateX, scrollRange]);
+
+  const progress = scrollRange > 0 ? -translateX / scrollRange : 0;
+  const activeIndex = Math.max(
+    0,
+    Math.min(Math.floor(progress * industriesDetail.length), industriesDetail.length - 1)
+  );
 
   return (
     <div className="bg-[#020617] min-h-screen text-slate-200 font-sans selection:bg-[#E51D25] selection:text-white">
 
-      {/* 1. SCROLL-DRIVEN HORIZONTAL SECTION */}
-      {/* Tall container to generate scroll height */}
-      <div ref={containerRef} className="relative h-[400vh]">
+      {/* Main pinned viewport section matching flush under navbar */}
+      <div 
+        ref={containerRef} 
+        className="h-[calc(100vh-80px)] w-full flex flex-col justify-center overflow-hidden bg-[#020617] relative z-10"
+      >
+        {/* Background SVG Grid with parallax shift */}
+        <motion.div 
+          className="absolute inset-0 z-0 opacity-10 pointer-events-none"
+          animate={{ x: progress * -40 }}
+          transition={{ type: "spring", stiffness: 100, damping: 20 }}
+        >
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="network-grid" width="60" height="60" patternUnits="userSpaceOnUse">
+                <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
+                <circle cx="0" cy="0" r="1.5" fill="rgba(255,255,255,0.4)" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#network-grid)" />
+          </svg>
+        </motion.div>
 
-        {/* Sticky viewport container */}
-        <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden bg-[#0a0a0a]">
+        {/* Dynamic Background Glow Layer 1 */}
+        <motion.div
+          className="absolute w-[80vw] h-[50vh] rounded-[100%] blur-[120px] pointer-events-none z-0 bg-[#E51D25]"
+          style={{ 
+            left: "50%",
+            top: "50%",
+            y: "-50%"
+          }}
+          animate={{
+            x: `${-50 + (progress * 10)}%`,
+            opacity: 0.15 - (Math.abs(progress - 0.5) * 0.08)
+          }}
+          transition={{ type: "spring", stiffness: 100, damping: 20 }}
+        />
 
-          {/* Background Elements */}
-          <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
-            {/* Minimal Network Topology SVG Pattern */}
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern id="network-grid" width="60" height="60" patternUnits="userSpaceOnUse">
-                  <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
-                  <circle cx="0" cy="0" r="1.5" fill="rgba(255,255,255,0.3)" />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#network-grid)" />
-            </svg>
-          </div>
+        {/* Dynamic Background Glow Layer 2 */}
+        <motion.div
+          className="absolute w-[80vw] h-[50vh] rounded-[100%] blur-[120px] pointer-events-none z-0 bg-red-800"
+          style={{ 
+            left: "50%",
+            top: "50%",
+            y: "-50%"
+          }}
+          animate={{
+            x: `${-50 - (progress * 10)}%`,
+            opacity: 0.05 + (Math.abs(progress - 0.5) * 0.15)
+          }}
+          transition={{ type: "spring", stiffness: 100, damping: 20 }}
+        />
 
-          {/* Dynamic Background Glow Layer 1 (Red Accent) */}
-          <motion.div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[50vh] rounded-[100%] blur-[120px] pointer-events-none z-0 bg-[#E51D25]"
-            style={{ opacity: glowOpacity1 }}
-          />
-
-          {/* Dynamic Background Glow Layer 2 (Blue-Gray Depth) */}
-          <motion.div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[50vh] rounded-[100%] blur-[120px] pointer-events-none z-0 bg-[#334155]"
-            style={{ opacity: glowOpacity2 }}
-          />
-
-          {/* Top Progress Bar & Header */}
-          <div className="absolute top-0 left-0 w-full z-50">
+        {/* Top Progress Bar & Header */}
+        <div className="absolute top-0 left-0 w-full z-30">
+          <div className="w-full h-1 bg-slate-950/60 backdrop-blur-sm">
             <motion.div
-              className="h-1 bg-[#E51D25] origin-left"
-              style={{ scaleX: springProgress }}
+              className="h-full bg-[#E51D25]"
+              style={{ width: `${progress * 100}%` }}
+              transition={{ type: "spring", stiffness: 100, damping: 20 }}
             />
-            <div className="max-w-[90vw] mx-auto pt-8 md:pt-12 flex justify-between items-end">
-              <div>
-                <span className="text-[#E51D25] font-extrabold text-[10px] tracking-[0.2em] uppercase mb-2 block">
-                  ARCHITECTURE BY SECTOR
-                </span>
-                <h1 className="text-3xl md:text-5xl font-black text-white tracking-tight">
-                  Industries We Serve
-                </h1>
-              </div>
-              <div className="hidden md:flex items-center gap-2 text-slate-500 font-bold text-xs uppercase tracking-widest">
-                <Network className="w-4 h-4" />
-                <span>Scroll to Explore</span>
-              </div>
-            </div>
           </div>
-
-          {/* Horizontal Translating Track */}
-          <motion.div
-            className="flex gap-6 md:gap-8 px-[5vw] md:px-[10vw] relative z-20 mt-10"
-            style={{ x: xTransform }}
-          >
-            {industriesDetail.map((industry, index) => {
-              const isActive = activeIndex === index;
-              const Icon = industry.icon;
-
-              return (
-                <motion.div
-                  key={industry.id}
-                  className={`relative flex-shrink-0 w-[85vw] md:w-[45vw] lg:w-[30vw] flex flex-col bg-[#0f1219]/80 backdrop-blur-xl border border-slate-800/80 rounded-2xl overflow-hidden cursor-default transition-shadow duration-500 ${isActive ? 'shadow-[0_20px_40px_-15px_rgba(229,29,37,0.15)]' : ''
-                    }`}
-                  animate={{
-                    scale: isActive ? 1 : 0.95,
-                    opacity: isActive ? 1 : 0.4,
-                    y: isActive ? 0 : 20
-                  }}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                >
-                  {/* Animated Red Accent Line */}
-                  <motion.div
-                    className="absolute top-0 left-0 h-1 bg-[#E51D25]"
-                    initial={{ width: '0%' }}
-                    animate={{ width: isActive ? '100%' : '0%' }}
-                    transition={{ duration: 0.6, ease: "circOut" }}
-                  />
-
-                  <div className="p-8 md:p-10 flex flex-col h-full">
-
-                    {/* Icon & Label */}
-                    <div className="flex items-center justify-between mb-8">
-                      <motion.div
-                        className={`w-14 h-14 rounded-xl flex items-center justify-center transition-colors duration-500 ${isActive ? 'bg-[#E51D25] text-white' : 'bg-slate-800 text-slate-400'
-                          }`}
-                        animate={{ y: isActive ? 0 : 10 }}
-                        transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                      >
-                        <Icon className="w-6 h-6" strokeWidth={1.5} />
-                      </motion.div>
-                      <span className="text-[10px] font-black tracking-widest uppercase text-slate-600">
-                        {String(index + 1).padStart(2, '0')} / {String(industriesDetail.length).padStart(2, '0')}
-                      </span>
-                    </div>
-
-                    {/* Content */}
-                    <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight mb-2">
-                      {industry.name}
-                    </h2>
-                    <p className="text-[#E51D25] text-xs font-bold uppercase tracking-wider mb-6">
-                      {industry.tagline}
-                    </p>
-                    <p className="text-sm text-slate-400 leading-relaxed mb-8 flex-grow">
-                      {industry.description}
-                    </p>
-
-                    {/* Capabilities */}
-                    <div className="space-y-3 mb-10">
-                      {industry.capabilities.map((cap, i) => (
-                        <div key={i} className="flex items-center gap-3">
-                          <Check className="w-4 h-4 text-[#E51D25]" />
-                          <span className="text-xs font-semibold text-slate-300">{cap}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* CTA */}
-                    <a
-                      href={`#${industry.id}`}
-                      className={`group mt-auto inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-colors ${isActive ? 'text-white hover:text-[#E51D25]' : 'text-slate-500'
-                        }`}
-                    >
-                      Explore Architecture
-                      <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-                    </a>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        </div>
-      </div>
-
-      {/* 2. COMPACT COMPARISON GRID */}
-      <section className="relative z-10 bg-[#020617] py-24 md:py-32 border-t border-slate-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-            <div className="max-w-2xl">
-              <span className="text-[#E51D25] font-extrabold text-[10px] tracking-[0.2em] uppercase mb-2 block">
-                TECHNICAL SPECIFICATIONS
+          <div className="max-w-[90vw] mx-auto pt-6 sm:pt-10 flex justify-between items-end">
+            <div>
+              <span className="text-[#E51D25] font-extrabold text-[10px] tracking-[0.2em] uppercase mb-1 block">
+                ARCHITECTURE BY SECTOR
               </span>
-              <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight">
-                Engineering Baselines
-              </h2>
+              <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
+                Industries We Serve
+              </h1>
             </div>
-            <div className="flex items-center gap-2 text-slate-400 text-sm font-medium">
-              <ShieldCheck className="w-5 h-5 text-[#E51D25]" />
-              <span>All deployments backed by BCT SLA guarantees</span>
+            <div className="hidden sm:flex items-center gap-2 text-slate-500 font-bold text-xs uppercase tracking-widest">
+              <Network className="w-4 h-4 text-red-500 animate-pulse" />
+              <span>Scroll to slide</span>
             </div>
           </div>
-
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse min-w-[800px]">
-              <thead>
-                <tr className="border-b border-slate-800">
-                  <th className="py-5 px-6 text-xs font-black text-slate-500 uppercase tracking-widest w-[20%]">Sector</th>
-                  <th className="py-5 px-6 text-xs font-black text-slate-500 uppercase tracking-widest">Network Density</th>
-                  <th className="py-5 px-6 text-xs font-black text-slate-500 uppercase tracking-widest">Security Model</th>
-                  <th className="py-5 px-6 text-xs font-black text-slate-500 uppercase tracking-widest">Compliance</th>
-                  <th className="py-5 px-6 text-xs font-black text-slate-500 uppercase tracking-widest">Uptime SLA</th>
-                  <th className="py-5 px-6 text-xs font-black text-slate-500 uppercase tracking-widest">Avg. Scale</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-800/50">
-                {comparisonData.map((row, index) => (
-                  <tr
-                    key={index}
-                    className="group hover:bg-slate-900/50 transition-colors cursor-default"
-                  >
-                    <td className="py-5 px-6">
-                      <span className="text-sm font-bold text-white group-hover:text-[#E51D25] transition-colors">
-                        {row.industry}
-                      </span>
-                    </td>
-                    <td className="py-5 px-6 text-sm text-slate-400 font-medium">{row.density}</td>
-                    <td className="py-5 px-6 text-sm text-slate-400 font-medium">{row.security}</td>
-                    <td className="py-5 px-6 text-sm text-slate-400 font-medium">
-                      <span className="inline-block px-2.5 py-1 bg-slate-800 text-slate-300 rounded border border-slate-700 text-xs">
-                        {row.compliance}
-                      </span>
-                    </td>
-                    <td className="py-5 px-6 text-sm font-mono text-[#E51D25] font-bold">{row.uptime}</td>
-                    <td className="py-5 px-6 text-sm text-slate-400 font-medium">{row.scale}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
         </div>
-      </section>
+
+        {/* Horizontal Translating Track (Accelerated with hardware GPU composites) */}
+        <motion.div
+          ref={trackRef}
+          className="flex gap-6 md:gap-8 px-[10vw] relative z-20 mt-12 transform-gpu will-change-transform"
+          animate={{ x: translateX }}
+          transition={{ type: "spring", stiffness: 100, damping: 20, mass: 0.5 }}
+        >
+          {industriesDetail.map((industry, index) => {
+            const isActive = activeIndex === index;
+            const Icon = industry.icon;
+
+            return (
+              <motion.div
+                key={industry.id}
+                className={`relative flex-shrink-0 w-[80vw] sm:w-[45vw] lg:w-[30vw] flex flex-col bg-[#0f1219]/85 backdrop-blur-xl border rounded-2xl overflow-hidden cursor-default transition-all duration-300 ${
+                  isActive 
+                    ? 'border-[#E51D25]/60 shadow-[0_20px_40px_-15px_rgba(229,29,37,0.25)] ring-1 ring-[#E51D25]/30' 
+                    : 'border-slate-800/80'
+                }`}
+                animate={{
+                  scale: isActive ? 1.02 : 0.95,
+                  opacity: isActive ? 1 : 0.45,
+                  y: isActive ? 0 : 15
+                }}
+                transition={{ type: "spring", stiffness: 200, damping: 25 }}
+              >
+                {/* Glowing top line for focused industry */}
+                <div
+                  className={`absolute top-0 inset-x-0 h-[2px] transition-all duration-300 ${
+                    isActive ? 'bg-gradient-to-r from-[#E51D25] to-red-500 opacity-100' : 'bg-transparent opacity-0'
+                  }`}
+                />
+
+                <div className="p-8 md:p-10 flex flex-col h-full">
+                  {/* Icon & Label */}
+                  <div className="flex items-center justify-between mb-8">
+                    <div
+                      className={`w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                        isActive ? 'bg-[#E51D25] text-white shadow-lg shadow-red-500/30' : 'bg-slate-800 text-slate-400'
+                      }`}
+                    >
+                      <Icon className="w-6 h-6" strokeWidth={1.8} />
+                    </div>
+                    <span className="text-[10px] font-mono font-black tracking-widest uppercase text-slate-500">
+                      {String(index + 1).padStart(2, '0')} / {String(industriesDetail.length).padStart(2, '0')}
+                    </span>
+                  </div>
+
+                  {/* Content */}
+                  <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight mb-2">
+                    {industry.name}
+                  </h2>
+                  <p className="text-[#E51D25] text-xs font-bold uppercase tracking-wider mb-6">
+                    {industry.tagline}
+                  </p>
+                  <p className="text-sm text-slate-400 leading-relaxed mb-8 flex-grow">
+                    {industry.description}
+                  </p>
+
+                  {/* Capabilities list */}
+                  <div className="space-y-3 mb-10">
+                    {industry.capabilities.map((cap, i) => (
+                      <div key={i} className="flex items-center gap-3">
+                        <Check className="w-4 h-4 text-[#E51D25]" />
+                        <span className="text-xs font-semibold text-slate-300">{cap}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* CTA */}
+                  <a
+                    href="#contact"
+                    className={`group mt-auto inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-colors ${
+                      isActive ? 'text-white hover:text-[#E51D25]' : 'text-slate-500'
+                    }`}
+                  >
+                    <span>Get Infrastructure Consultation</span>
+                    <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-250" />
+                  </a>
+                </div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+      </div>
     </div>
   );
 };
