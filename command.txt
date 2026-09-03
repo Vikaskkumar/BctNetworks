@@ -1,0 +1,795 @@
+# BCT Networks Website — Refined & Optimized Project Brief
+
+Based strictly on the brochure images, the website should be positioned as a **B2B technology infrastructure and integrated solutions company**. The brochure identifies BCT Networks around Enterprise Network, Server & Storage, Security & Surveillance, Structured Cabling System, Unified Communication, Telepresence & Collaboration, and also lists Fire & Safety, Audio Visual, and Building Automation as areas of expertise. 
+
+The website should **not simply reproduce the brochure**. It should convert the brochure's information into a modern, fast, conversion-focused corporate website.
+
+---
+
+# 1. Core Website Goal
+
+The website has three jobs:
+
+### 1. Explain
+
+Clearly communicate what BCT Networks does.
+
+### 2. Build Trust
+
+Show company profile, certifications, expertise, sectors and capabilities.
+
+### 3. Generate Leads
+
+Make it extremely easy for a business visitor to request a quote or contact the company.
+
+The entire website should support this flow:
+
+```text
+Discover
+   ↓
+Understand
+   ↓
+Trust
+   ↓
+Explore
+   ↓
+Enquire
+```
+
+---
+
+# 2. Primary Positioning
+
+### Main positioning
+
+**Integrated Technology Infrastructure for Modern Organizations**
+
+### Brand line
+
+**Building The Future of Networking.**
+
+This phrase appears on the brochure and should remain the primary brand message rather than replacing it with a generic marketing slogan. 
+
+### Supporting message
+
+A concise website statement could be:
+
+> BCT Networks delivers integrated infrastructure, networking, security, communication and technology solutions for organizations.
+
+This stays close to the brochure's positioning without introducing unsupported claims. The company profile specifically describes expertise across multiple infrastructure and technology areas and says it works across public and private sectors. 
+
+---
+
+# 3. Optimized Website Architecture
+
+Instead of creating many unnecessary pages, use a **small, focused structure**.
+
+```text
+HOME
+│
+├── ABOUT
+│
+├── SOLUTIONS
+│   ├── Enterprise Network
+│   ├── Server & Storage
+│   ├── Security & Surveillance
+│   ├── Structured Cabling
+│   ├── Unified Communication
+│   ├── Telepresence & Collaboration
+│   ├── Audio Visual
+│   ├── Fire & Safety
+│   └── Building Automation
+│
+├── INDUSTRIES
+│
+├── PROJECTS / CAPABILITIES
+│
+└── CONTACT / GET QUOTE
+```
+
+This is better than making every brochure subsection a separate heavy page.
+
+---
+
+# 4. Homepage Structure
+
+The homepage should be approximately:
+
+```text
+01 Hero
+02 Company Introduction
+03 Solutions
+04 Why BCT Networks
+05 Industries
+06 Capabilities / Projects
+07 Certifications & Trust
+08 CTA
+09 Footer
+```
+
+This creates a natural business story without making the site unnecessarily long.
+
+---
+
+# 5. Hero Section
+
+The hero is the most important section.
+
+### Recommended copy
+
+**Building The Future of Networking.**
+
+> Integrated technology infrastructure for connected, secure and efficient organizations.
+
+Buttons:
+
+```text
+[ Explore Solutions ]
+[ Get a Quote ]
+```
+
+### Visual
+
+Use a large enterprise infrastructure image/video with subtle network-line animation.
+
+Avoid:
+
+* Huge amounts of text
+* Multiple competing buttons
+* Excessive particle animations
+* Huge 3D effects
+
+The hero should communicate the company in **5 seconds or less**.
+
+---
+
+# 6. Company Profile — Make It Scannable
+
+The brochure's company profile currently places a lot of information inside a paragraph. The website should break that into four simple messages.
+
+The brochure describes BCT Networks as having expertise in networking and multiple technology areas, emphasizes public/private-sector work, and mentions dedication, customer experience, trust, loyalty and ISO certification. 
+
+Convert this to:
+
+### Who We Are
+
+**Network Expertise**
+Enterprise infrastructure and connectivity.
+
+**Integrated Solutions**
+Multiple technology disciplines under one organization.
+
+**Sector Experience**
+Solutions spanning public and private sectors.
+
+**Customer Focus**
+Built around reliability, service and customer experience.
+
+Then add:
+
+```text
+ISO Certified
+Enterprise Solutions
+Integrated Expertise
+Public & Private Sector
+```
+
+This is much easier to read than reproducing the brochure paragraph.
+
+---
+
+# 7. Solutions Section — The Core of the Website
+
+This should become the centerpiece of the website.
+
+Instead of nine large paragraphs, create a **solution grid**.
+
+```text
+┌──────────────────┬──────────────────┬──────────────────┐
+│ Enterprise       │ Server &         │ Security &       │
+│ Network          │ Storage          │ Surveillance     │
+├──────────────────┼──────────────────┼──────────────────┤
+│ Structured       │ Unified          │ Telepresence &   │
+│ Cabling          │ Communication    │ Collaboration    │
+├──────────────────┼──────────────────┼──────────────────┤
+│ Audio Visual     │ Fire & Safety    │ Building         │
+│                  │                  │ Automation       │
+└──────────────────┴──────────────────┴──────────────────┘
+```
+
+Each card should contain:
+
+```text
+Icon
+Solution Name
+1-line description
+→
+```
+
+Hover:
+
+```text
+Card lifts slightly
+Image/gradient changes
+Arrow moves
+```
+
+Don't use complicated animations.
+
+---
+
+# 8. Enterprise Network
+
+The brochure explains Enterprise Network as infrastructure connecting computers, devices, departments and networks and enabling access to information and resources. 
+
+Website presentation:
+
+### Enterprise Network
+
+**Connect every part of your organization.**
+
+Show:
+
+```text
+Users
+  ↓
+Wi-Fi / LAN
+  ↓
+Enterprise Network
+  ↓
+Servers / Applications
+  ↓
+Data / Resources
+```
+
+This is more understandable than displaying the original paragraph.
+
+---
+
+# 9. Server & Storage
+
+The brochure focuses on centralized applications, business data, storage and the importance of efficient, scalable and redundant infrastructure. 
+
+Website layout:
+
+### Server & Storage
+
+**Reliable infrastructure for critical business data.**
+
+Three simple pillars:
+
+```text
+Performance
+Scalability
+Reliability
+```
+
+Then a visual server/data infrastructure section.
+
+Avoid making unsupported promises like "99.99% uptime" unless BCT Networks can substantiate them.
+
+---
+
+# 10. Security & Surveillance
+
+The brochure treats security and surveillance as an important infrastructure capability. 
+
+Make this visually stronger:
+
+### Secure Your Infrastructure
+
+Use four categories:
+
+```text
+Network Security
+Surveillance
+Monitoring
+Access Protection
+```
+
+The exact services should be confirmed with BCT Networks before turning these into detailed service claims.
+
+---
+
+# 11. Structured Cabling
+
+The brochure describes structured cabling as an essential passive network foundation supporting modern business networks and transmission media. 
+
+The website should show:
+
+```text
+Design
+  ↓
+Cabling
+  ↓
+Rack Infrastructure
+  ↓
+Connectivity
+  ↓
+Testing
+```
+
+Use a technical infrastructure photograph rather than a generic office image.
+
+---
+
+# 12. Unified Communication
+
+The brochure describes Unified Communications as bringing communication methods such as voice, video, mobility, instant messaging, fax and voicemail together under one umbrella. 
+
+Simplify the website messaging to:
+
+### Unified Communication
+
+**Bring communication together.**
+
+Then visually show:
+
+```text
+Voice
+Video
+Messaging
+Mobility
+Collaboration
+```
+
+---
+
+# 13. Telepresence & Collaboration
+
+The brochure focuses on geographically distributed teams, video communication, meetings, file/media sharing, tele-education and telemedicine. 
+
+Use a modern meeting-room visual and concise messaging:
+
+### Telepresence & Collaboration
+
+**Connect people across locations.**
+
+---
+
+# 14. Industries
+
+The industry section should be about **business problems**, not just company categories.
+
+Use cards such as:
+
+```text
+Corporate & Enterprise
+Healthcare
+Hospitality
+Education
+Government / Public Sector
+Commercial
+```
+
+Only publish sectors that BCT Networks confirms it actually serves.
+
+Each card can answer:
+
+> What does this industry need?
+
+For example:
+
+```text
+Healthcare
+Secure + Reliable + Connected
+```
+
+This makes the section more useful than a simple list of industries.
+
+---
+
+# 15. Trust Section
+
+The brochure includes ISO certification badges and several organizational/program logos. Because these are visible in the supplied material, certifications and affiliations should be a dedicated trust section. 
+
+### Recommended layout
+
+**Trusted Standards & Recognition**
+
+```text
+[ ISO ]
+[ ISO ]
+
+[ Affiliation ]
+[ Recognition ]
+[ Partner / Registration ]
+```
+
+Important:
+
+Don't label every logo as a "certification." Some may represent registrations, programs, affiliations or other relationships.
+
+The website copy should identify each item accurately after verification.
+
+---
+
+# 16. Why BCT Networks
+
+Rather than inventing a long list of marketing claims, base this section around themes already present in the brochure.
+
+### Why BCT Networks?
+
+**Integrated Expertise**
+Multiple infrastructure capabilities.
+
+**Customer Experience**
+Strong emphasis on customer service.
+
+**Trust**
+A stated company value.
+
+**Reliability**
+Central to enterprise infrastructure solutions.
+
+**End-to-End Approach**
+Networking, servers, security, communication and infrastructure represented together.
+
+The brochure itself emphasizes dedication, customer experience, trust and loyalty, so these are better foundations than generic claims such as "best-in-class" or "number one." 
+
+---
+
+# 17. Projects / Work
+
+This section should be added only when real project data is available.
+
+Do **not** invent projects from the brochure.
+
+Once real project information is available, use:
+
+```text
+Project
+Industry
+Challenge
+Solution
+Technology
+Outcome
+```
+
+A case-study format will be much stronger for B2B conversion than a generic portfolio gallery.
+
+---
+
+# 18. Conversion Strategy
+
+The website should have only **two primary actions**:
+
+### Primary
+
+**Get a Quote**
+
+### Secondary
+
+**Explore Solutions**
+
+Then use small contextual CTAs:
+
+```text
+Talk to an Expert →
+View Solution →
+Discuss Your Requirement →
+```
+
+Avoid having five different CTA styles.
+
+---
+
+# 19. Animation Strategy
+
+Since you've been working on scroll animations, I recommend keeping animation **premium and restrained**.
+
+### Hero
+
+Slow background movement.
+
+### Solutions
+
+Cards reveal on scroll.
+
+### Industry section
+
+Pinned card transition like the animation we've been working on.
+
+### Infrastructure diagrams
+
+Nodes/lines animate subtly.
+
+### Images
+
+Small parallax movement.
+
+### Text
+
+Fade + 10–20px movement.
+
+Avoid:
+
+```text
+❌ Excessive bouncing
+❌ Large rotations
+❌ Flashing effects
+❌ Constant moving backgrounds
+❌ Heavy 3D everywhere
+```
+
+BCT Networks should look like an **enterprise infrastructure company**, not a gaming website.
+
+---
+
+# 20. Visual Design System
+
+### Colors
+
+Use the existing brand identity from the brochure:
+
+```text
+Deep Navy    → Primary
+White        → Main light background
+BCT Blue     → Primary accent
+Red/Orange   → Secondary accent
+Gray         → Supporting text
+```
+
+### Typography
+
+Use one modern sans-serif family.
+
+Hierarchy:
+
+```text
+Hero         64–80px
+Section      44–56px
+Card title   24–32px
+Body         16–18px
+Small label  11–13px
+```
+
+Don't use too many font weights.
+
+---
+
+# 21. Performance Optimization
+
+This is especially important.
+
+The website should be visually impressive **without becoming slow**.
+
+### Images
+
+Use:
+
+```text
+WebP / AVIF
+Responsive sizes
+Lazy loading
+Proper compression
+```
+
+### Animations
+
+Prefer:
+
+```text
+transform
+opacity
+```
+
+Avoid animations that constantly modify layout.
+
+### Framer Motion
+
+Use it for:
+
+```text
+opacity
+x
+y
+scale
+```
+
+Don't create dozens of unnecessary scroll transforms.
+
+### Video
+
+Don't autoplay huge background videos on mobile.
+
+### Code
+
+Keep components modular:
+
+```text
+Navbar
+Hero
+About
+Solutions
+SolutionCard
+Industries
+IndustryCard
+Trust
+CTA
+Footer
+```
+
+This will make your project much easier to maintain.
+
+---
+
+# 22. Mobile Experience
+
+Mobile should not simply be a compressed desktop version.
+
+On mobile:
+
+```text
+Navbar
+ ↓
+Hero
+ ↓
+About
+ ↓
+Solution cards
+ ↓
+Industry cards
+ ↓
+Trust
+ ↓
+CTA
+```
+
+Cards should become one-column.
+
+The complex pinned animation can be simplified or disabled on smaller screens if it hurts usability.
+
+---
+
+# 23. SEO Structure
+
+Use clear page titles and semantic sections.
+
+Homepage title:
+
+> **BCT Networks | Enterprise Networking & Technology Solutions**
+
+Possible keywords based on the brochure's actual offering:
+
+```text
+Enterprise Network Solutions
+Server and Storage Solutions
+Security and Surveillance
+Structured Cabling
+Unified Communication
+Telepresence and Collaboration
+Audio Visual Solutions
+Fire and Safety
+Building Automation
+```
+
+Don't stuff these repeatedly into pages. Use them naturally.
+
+---
+
+# 24. Recommended Homepage Copy Structure
+
+A very clean final flow would look like:
+
+### Hero
+
+**Building The Future of Networking.**
+
+Integrated technology infrastructure for modern organizations.
+
+**[ Explore Solutions ] [ Get a Quote ]**
+
+---
+
+### About
+
+**Technology Infrastructure Built Around Your Business**
+
+BCT Networks provides integrated technology and infrastructure capabilities across networking, server and storage, security, communication and related technology systems.
+
+---
+
+### Solutions
+
+**Our Solutions**
+
+Enterprise Network
+Server & Storage
+Security & Surveillance
+Structured Cabling
+Unified Communication
+Telepresence & Collaboration
+Audio Visual
+Fire & Safety
+Building Automation
+
+---
+
+### Industries
+
+**Solutions for Demanding Environments**
+
+Corporate
+Healthcare
+Hospitality
+Education
+Government / Public Sector
+Commercial
+
+---
+
+### Trust
+
+**Built on Experience, Trust and Standards**
+
+Show verified certifications, affiliations and recognitions.
+
+---
+
+### CTA
+
+**Let's Build Your Infrastructure**
+
+Tell us what your organization needs.
+
+**[ Get a Quote ]**
+
+---
+
+# 25. Final Recommended Experience
+
+The finished website should feel like:
+
+```text
+           BCT NETWORKS
+                 │
+                 ▼
+     BUILDING THE FUTURE
+        OF NETWORKING
+                 │
+                 ▼
+       COMPANY PROFILE
+                 │
+                 ▼
+       CORE SOLUTIONS
+                 │
+       ┌─────────┼─────────┐
+       ▼         ▼         ▼
+   Network     Server    Security
+       │         │         │
+       └─────────┼─────────┘
+                 ▼
+        COMMUNICATION
+                 │
+                 ▼
+           INDUSTRIES
+                 │
+                 ▼
+        TRUST & STANDARDS
+                 │
+                 ▼
+           GET A QUOTE
+```
+
+## The key optimization
+
+The biggest improvement is to stop treating the website as a **digital brochure**.
+
+Treat it as a **B2B lead-generation website built around the brochure's information**.
+
+That means:
+
+**Less text → more hierarchy**
+
+**Fewer pages → clearer navigation**
+
+**Fewer animations → better performance**
+
+**More diagrams → easier technical understanding**
+
+**More trust signals → stronger credibility**
+
+**Clear CTAs → more enquiries**
+
+The supplied brochure already gives you a solid information architecture; the website's job is to make that information **clearer, faster to consume, more credible, and easier to act on**.

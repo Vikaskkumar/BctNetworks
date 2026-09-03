@@ -2,15 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ─── Exact Carbon design tokens ─────────────────────────────────────── */
-:root {
-  --bg:          #050505;
-  --surface:     #0C0D0F;
-  --border:      #272B36;
-  --accent:      #0066FF;
-  --accent-h:    #0052cc;
-  --text:        #FFFFFF;
-  --muted:       #A6A6A6;
+/* ─── Dark theme tokens (default) ──────────────────────────────────────── */
+:root,
+[data-theme="dark"] {
+  --bg:           #050505;
+  --bg-alt:       #0A0B0D;
+  --surface:      #0C0D0F;
+  --surface-2:    #111318;
+  --border:       #272B36;
+  --border-light: rgba(255,255,255,0.07);
+  --accent:       #0066FF;
+  --accent-h:     #0052cc;
+  --accent-glow:  rgba(0,102,255,0.25);
+  --text:         #FFFFFF;
+  --text-2:       #E5E7EB;
+  --muted:        #A6A6A6;
+  --muted-2:      #6B7280;
+  --card-bg:      #0C0D0F;
+  --card-border:  #272B36;
+  --hero-overlay: rgba(5,5,5,0.45);
+  --nav-bg:       rgba(5,5,5,0.92);
+  --nav-border:   #272B36;
+  --input-bg:     #050507;
+  --scrollbar:    #272B36;
+}
+
+/* ─── Light theme tokens ────────────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg:           #FAFAFA;
+  --bg-alt:       #F4F4F5;
+  --surface:      #FFFFFF;
+  --surface-2:    #F4F4F5;
+  --border:       #E4E4E7;
+  --border-light: rgba(0,0,0,0.06);
+  --accent:       #2563EB;
+  --accent-h:     #1D4ED8;
+  --accent-glow:  rgba(37,99,235,0.15);
+  --text:         #09090B;
+  --text-2:       #27272A;
+  --muted:        #71717A;
+  --muted-2:      #A1A1AA;
+  --card-bg:      #FFFFFF;
+  --card-border:  #E4E4E7;
+  --hero-overlay: rgba(250,250,250,0.85);
+  --nav-bg:       rgba(255,255,255,0.85);
+  --nav-border:   rgba(0,0,0,0.08);
+  --input-bg:     #FFFFFF;
+  --scrollbar:    #E4E4E7;
 }
 
 @layer base {
@@ -44,6 +82,15 @@
     width: 100%;
     max-width: 100%;
     overflow-x: hidden !important;
+  }
+
+  .app-root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg);
+    color: var(--text);
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   h1, h2, h3, h4, h5, h6 { margin: 0; }

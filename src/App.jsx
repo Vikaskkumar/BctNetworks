@@ -13,12 +13,12 @@ const Footer = lazy(() => import('./components/Footer'));
 
 export default function App() {
   return (
-    <div style={{ background: '#050507', color: '#fff', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div className="app-root">
       <Navbar />
       <main style={{ flex: 1 }}>
         <Hero />
         
-        <Suspense fallback={<div className="min-h-screen bg-[#050505]" />}>
+        <Suspense fallback={<div className="min-h-screen" style={{ background: 'var(--bg)' }} />}>
           <AboutSection />
           <SolutionsGrid />
           <IndustriesServed />

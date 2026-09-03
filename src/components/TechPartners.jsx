@@ -15,7 +15,7 @@ const partners = [
 
 const TechPartners = () => (
   <section
-    className="py-10 md:py-14 bg-[#050505] border-t border-white/5 overflow-hidden relative w-full"
+    className="py-10 md:py-14 bg-[var(--bg)] border-t border-[var(--border-light)] overflow-hidden relative w-full"
     id="partners"
   >
     {/* Minimalist Header */}
@@ -45,7 +45,7 @@ const TechPartners = () => (
           {partners.map((partner, i) => (
             <div
               key={`first-${i}`}
-              className="flex items-center gap-2.5 sm:gap-4 px-3 sm:px-6 py-2.5 sm:py-4 rounded-xl border border-transparent hover:bg-white/[0.02] hover:border-white/10 transition-all duration-500 cursor-default group"
+              className="flex items-center gap-2.5 sm:gap-4 px-3 sm:px-6 py-2.5 sm:py-4 rounded-xl border border-transparent hover:bg-[var(--surface)] hover:border-[var(--border)] transition-all duration-500 cursor-default group"
             >
               <img
                 src={partner.logo}
@@ -53,7 +53,7 @@ const TechPartners = () => (
                 className="h-4 sm:h-6 md:h-7 w-auto object-contain brightness-0 invert opacity-40 group-hover:brightness-100 group-hover:invert-0 group-hover:opacity-100 transition-all duration-500"
                 onError={(e) => e.target.style.display = 'none'}
               />
-              <span className="text-[11px] sm:text-sm font-bold tracking-[0.14em] sm:tracking-[0.16em] text-gray-500 group-hover:text-white transition-colors duration-500 uppercase whitespace-nowrap">
+              <span className="text-[11px] sm:text-sm font-bold tracking-[0.14em] sm:tracking-[0.16em] text-[var(--muted)] group-hover:text-[var(--text)] transition-colors duration-500 uppercase whitespace-nowrap">
                 {partner.name}
               </span>
             </div>
@@ -65,7 +65,7 @@ const TechPartners = () => (
           {partners.map((partner, i) => (
             <div
               key={`second-${i}`}
-              className="flex items-center gap-2.5 sm:gap-4 px-3 sm:px-6 py-2.5 sm:py-4 rounded-xl border border-transparent hover:bg-white/[0.02] hover:border-white/10 transition-all duration-500 cursor-default group"
+              className="flex items-center gap-2.5 sm:gap-4 px-3 sm:px-6 py-2.5 sm:py-4 rounded-xl border border-transparent hover:bg-[var(--surface)] hover:border-[var(--border)] transition-all duration-500 cursor-default group"
             >
               <img
                 src={partner.logo}
@@ -73,7 +73,7 @@ const TechPartners = () => (
                 className="h-4 sm:h-6 md:h-7 w-auto object-contain brightness-0 invert opacity-40 group-hover:brightness-100 group-hover:invert-0 group-hover:opacity-100 transition-all duration-500"
                 onError={(e) => e.target.style.display = 'none'}
               />
-              <span className="text-[11px] sm:text-sm font-bold tracking-[0.14em] sm:tracking-[0.16em] text-gray-500 group-hover:text-white transition-colors duration-500 uppercase whitespace-nowrap">
+              <span className="text-[11px] sm:text-sm font-bold tracking-[0.14em] sm:tracking-[0.16em] text-[var(--muted)] group-hover:text-[var(--text)] transition-colors duration-500 uppercase whitespace-nowrap">
                 {partner.name}
               </span>
             </div>

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import BctLogo from './BctLogo';
+import { useTheme } from '../context/ThemeContext';
 
 const navLinks = [
   { name: 'Home', href: '#home' },
@@ -14,6 +15,7 @@ const navLinks = [
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,10 +30,10 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 w-full ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full ${
         scrolled
-          ? 'bg-[#050505]/95 backdrop-blur-md border-b border-[#272B36]'
-          : 'bg-[#050505]/80 backdrop-blur-sm border-b border-transparent md:bg-transparent md:backdrop-blur-none'
+          ? 'bg-[var(--nav-bg)] backdrop-blur-md border-b border-[var(--nav-border)] shadow-sm'
+          : 'bg-[var(--bg)]/80 backdrop-blur-sm border-b border-transparent md:bg-transparent md:backdrop-blur-none'
       }`}
     >
       <div className="max-w-[1300px] mx-auto px-3 sm:px-6 lg:px-12 h-[64px] md:h-[80px] flex items-center justify-between gap-2 sm:gap-3 relative z-20">
@@ -45,12 +47,12 @@ const Navbar = () => {
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-10">
+        <nav className="hidden md:flex items-center gap-2">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-[14px] font-normal text-[#A6A6A6] hover:text-white transition-colors duration-200"
+              className="px-3.5 py-1.5 rounded-full text-[14px] font-medium text-[var(--muted)] hover:text-[var(--text)] hover:bg-[var(--border-light)] transition-all duration-200"
             >
               {link.name}
             </a>
@@ -59,17 +61,33 @@ const Navbar = () => {
 
         {/* Desktop CTA & Mobile Toggle */}
         <div className="flex items-center gap-2 sm:gap-3 relative z-10">
+          <button
+            onClick={toggleTheme}
+            className="hidden md:flex items-center justify-center w-10 h-10 rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] hover:bg-[var(--border-light)] shadow-sm transition-all hover:scale-105 active:scale-95 cursor-pointer"
+            aria-label="Toggle Theme"
+          >
+            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+
           <a
             href="#contact"
-            className="hidden sm:inline-flex items-center justify-center px-4 py-2.5 rounded-[8px] bg-white text-black font-semibold text-[14px] hover:bg-gray-200 transition-colors"
+            className="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-[var(--text)] text-[var(--bg)] font-semibold text-[14px] hover:opacity-90 transition-all shadow-sm hover:scale-[1.02] active:scale-95"
           >
             Get Quote
           </a>
 
           <button
+            onClick={toggleTheme}
+            className="md:hidden flex items-center justify-center w-11 h-11 rounded-xl border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] hover:bg-[var(--border-light)] transition-colors focus:outline-none"
+            aria-label="Toggle Theme"
+          >
+            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
+
+          <button
             onClick={() => setOpen(!open)}
             type="button"
-            className="md:hidden relative z-30 flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-[#A6A6A6] hover:text-white hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-white/20 active:scale-[0.98]"
+            className="md:hidden relative z-30 flex h-11 w-11 items-center justify-center rounded-xl border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] hover:bg-[var(--border-light)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/50 active:scale-[0.98]"
             aria-label="Toggle menu"
             aria-expanded={open}
           >
@@ -92,7 +110,7 @@ const Navbar = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="md:hidden absolute top-full left-0 right-0 z-10 w-full bg-[#050505]/95 backdrop-blur-xl border-t border-[#272B36] max-h-[calc(100vh-64px)] overflow-y-auto shadow-[0_20px_40px_rgba(0,0,0,0.35)]"
+            className="md:hidden absolute top-full left-0 right-0 z-10 w-full bg-[var(--nav-bg)] backdrop-blur-xl border-t border-[var(--border)] max-h-[calc(100vh-64px)] overflow-y-auto shadow-xl"
           >
             <div className="mx-auto max-w-[1300px] px-4 min-[360px]:px-6 py-5 pb-8 flex flex-col gap-2">
               {navLinks.map((link, i) => (
@@ -103,10 +121,10 @@ const Navbar = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.06 }}
                   onClick={() => setOpen(false)}
-                  className="flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.02] px-4 py-3.5 text-base font-medium text-[#E5E7EB] hover:bg-white/[0.04] hover:text-white transition-colors"
+                  className="flex items-center justify-between rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3.5 text-base font-medium text-[var(--text)] hover:bg-[var(--border-light)] transition-colors"
                 >
                   <span>{link.name}</span>
-                  <span className="text-[#A6A6A6]">→</span>
+                  <span className="text-[var(--muted)]">→</span>
                 </motion.a>
               ))}
               <motion.a
@@ -115,7 +133,7 @@ const Navbar = () => {
                 transition={{ delay: 0.28 }}
                 href="#contact"
                 onClick={() => setOpen(false)}
-                className="mt-4 flex items-center justify-center py-3.5 rounded-xl bg-white text-black font-semibold text-base shadow-lg shadow-white/10"
+                className="mt-4 flex items-center justify-center py-3.5 rounded-xl bg-[var(--text)] text-[var(--bg)] font-semibold text-base shadow-lg"
               >
                 Get Quote
               </motion.a>

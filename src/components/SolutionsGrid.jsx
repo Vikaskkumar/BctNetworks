@@ -59,7 +59,7 @@ const SolutionsGrid = () => {
           {duplicatedCards.map((card, idx) => (
             <div
               key={idx}
-              className="flex-shrink-0 flex flex-col justify-between group transition-all duration-300 w-[240px] min-[360px]:w-[270px] sm:w-[380px] rounded-2xl p-3.5 sm:p-4 border border-[#272B36] bg-[#0C0D0F] hover:border-white/20 transition-all"
+              className="flex-shrink-0 flex flex-col justify-between group transition-all duration-300 w-[240px] min-[360px]:w-[270px] sm:w-[380px] rounded-2xl p-3.5 sm:p-4 border border-[var(--card-border)] bg-[var(--card-bg)] hover:border-[var(--border)] transition-all"
             >
               {/* Clear, high-visibility image banner */}
               <div className="relative overflow-hidden mb-3 sm:mb-4 h-[140px] min-[360px]:h-[160px] sm:h-[220px] rounded-xl">
@@ -73,10 +73,10 @@ const SolutionsGrid = () => {
 
               {/* Clean text section below image */}
               <div className="px-1 pt-1 pb-1">
-                <h3 className="text-sm min-[360px]:text-base font-semibold text-white tracking-tight leading-snug mb-1.5">
+                <h3 className="text-sm min-[360px]:text-base font-semibold text-[var(--text)] tracking-tight leading-snug mb-1.5">
                   {card.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-[#A6A6A6] tracking-tight">
+                <p className="text-xs sm:text-sm text-[var(--muted)] tracking-tight">
                   {card.stats}
                 </p>
               </div>

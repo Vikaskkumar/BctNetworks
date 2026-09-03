@@ -70,7 +70,7 @@ const AboutSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-14 sm:py-20 lg:py-32 bg-[#050505] text-white overflow-hidden relative"
+      className="py-14 sm:py-20 lg:py-32 bg-[var(--bg)] text-[var(--text)] overflow-hidden relative"
       id="about"
     >
       {/* Dynamic Background Elements */}
@@ -116,14 +116,14 @@ const AboutSection = () => {
                 key={i}
                 whileHover={{ y: -5, scale: 1.02, backgroundColor: 'rgba(255,255,255,0.08)' }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                className="flex flex-col gap-3 p-4 sm:p-6 rounded-2xl bg-[#0C0D0F]/80 backdrop-blur-sm border border-white/5 transition-colors cursor-pointer group shadow-xl shadow-black/20"
+                className="flex flex-col gap-3 p-4 sm:p-6 rounded-2xl bg-[var(--surface)]/80 backdrop-blur-sm border border-[var(--border-light)] transition-colors cursor-pointer group shadow-xl shadow-[var(--shadow-color,rgba(0,0,0,0.2))]"
               >
-                <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/10 flex items-center justify-center border border-blue-500/30 group-hover:border-blue-400 transition-colors">
-                  <Icon size={22} className="text-blue-400 group-hover:text-blue-300 transition-colors" />
+                <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-[var(--accent)]/20 to-[var(--accent-h)]/10 flex items-center justify-center border border-[var(--accent)]/30 group-hover:border-[var(--accent)] transition-colors">
+                  <Icon size={22} className="text-[var(--accent)] transition-colors" />
                 </div>
                 <div>
-                  <p className="text-base sm:text-lg font-bold text-gray-100 tracking-tight mb-1">{title}</p>
-                  <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">{sub}</p>
+                  <p className="text-base sm:text-lg font-bold text-[var(--text)] tracking-tight mb-1">{title}</p>
+                  <p className="text-xs sm:text-sm text-[var(--muted)] leading-relaxed">{sub}</p>
                 </div>
               </motion.div>
             ))}

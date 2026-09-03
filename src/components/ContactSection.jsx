@@ -33,7 +33,7 @@ const ContactSection = () => {
 
   return (
     <section
-      className="py-12 md:py-24 bg-[#050505] text-white relative overflow-hidden border-t border-white/5 w-full"
+      className="py-12 md:py-24 bg-[var(--bg)] text-[var(--text)] relative overflow-hidden border-t border-[var(--border-light)] w-full"
       id="contact"
     >
       {/* Ambient Blue Glow */}
@@ -70,8 +70,11 @@ const ContactSection = () => {
         >
           {/* Left Column: Form Card */}
           <motion.div
-            variants={itemVariants}
-            className="lg:col-span-7 bg-[#0C0D0F] border border-white/10 rounded-2xl p-4 min-[360px]:p-6 sm:p-8 lg:p-10 shadow-2xl relative overflow-hidden"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-7 bg-[var(--surface)] border border-[var(--border-light)] rounded-2xl p-4 min-[360px]:p-6 sm:p-8 lg:p-10 shadow-2xl relative overflow-hidden"
           >
             <AnimatePresence mode="wait">
               {submitted ? (
@@ -86,13 +89,13 @@ const ContactSection = () => {
                   <div className="w-16 h-16 rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center justify-center mb-6">
                     <CheckCircle2 size={32} className="text-blue-500" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">Requirements Received!</h3>
+                  <h3 className="text-2xl font-bold text-[var(--text)] mb-2 tracking-tight">Requirements Received!</h3>
                   <p className="text-gray-400 mb-8 max-w-sm">
                     Thank you. A network architect from our Jaipur office will reach out shortly.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 text-gray-300 font-semibold border border-white/10 hover:bg-white/10 hover:text-white transition-all active:scale-95"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--border-light)] text-[var(--text)] font-semibold border border-[var(--border-light)] hover:bg-[var(--border)] hover:text-[var(--text)] transition-all active:scale-95"
                   >
                     Submit Another Request <ArrowRight size={16} />
                   </button>
@@ -107,7 +110,7 @@ const ContactSection = () => {
                   onSubmit={handleSubmit}
                   className="space-y-5"
                 >
-                  <h3 className="text-xl font-bold text-white tracking-tight mb-6">Request a Quote</h3>
+                  <h3 className="text-xl font-bold text-[var(--text)] tracking-tight mb-6">Request a Quote</h3>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <input
@@ -116,7 +119,7 @@ const ContactSection = () => {
                       required
                       value={form.name}
                       onChange={updateForm('name')}
-                      className="w-full bg-[#050507] border border-[#272B36] rounded-xl text-white placeholder:text-gray-600 px-4 py-3.5 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all shadow-inner"
+                      className="w-full bg-[var(--input-bg)] border border-[var(--border)] rounded-xl text-[var(--text)] placeholder-[var(--muted)] px-4 py-3.5 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all shadow-inner"
                     />
                     <input
                       type="email"
@@ -124,7 +127,7 @@ const ContactSection = () => {
                       required
                       value={form.email}
                       onChange={updateForm('email')}
-                      className="w-full bg-[#050507] border border-[#272B36] rounded-xl text-white placeholder:text-gray-600 px-4 py-3.5 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all shadow-inner"
+                      className="w-full bg-[var(--input-bg)] border border-[var(--border)] rounded-xl text-[var(--text)] placeholder-[var(--muted)] px-4 py-3.5 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all shadow-inner"
                     />
                   </div>
 
@@ -133,7 +136,7 @@ const ContactSection = () => {
                     placeholder="Describe your network requirements..."
                     value={form.message}
                     onChange={updateForm('message')}
-                    className="w-full bg-[#050507] border border-[#272B36] rounded-xl text-white placeholder:text-gray-600 px-4 py-3.5 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all resize-none shadow-inner"
+                    className="w-full bg-[var(--input-bg)] border border-[var(--border)] rounded-xl text-[var(--text)] placeholder-[var(--muted)] px-4 py-3.5 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all resize-none shadow-inner"
                   />
 
                   <button
@@ -151,10 +154,13 @@ const ContactSection = () => {
 
           {/* Right Column: Info Card */}
           <motion.div
-            variants={itemVariants}
-            className="lg:col-span-5 bg-[#0C0D0F] border border-white/10 rounded-2xl p-5 sm:p-8 lg:p-10 flex flex-col h-full"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-5 bg-[var(--surface)] border border-[var(--border-light)] rounded-2xl p-5 sm:p-8 lg:p-10 flex flex-col h-full"
           >
-            <h3 className="text-xl font-bold text-white tracking-tight mb-8">Direct Contact</h3>
+            <h3 className="text-xl font-bold text-[var(--text)] tracking-tight mb-8">Direct Contact</h3>
 
             <div className="space-y-6 mb-auto">
               {[
@@ -163,12 +169,12 @@ const ContactSection = () => {
                 { icon: Mail, text: 'Sales@bctnetworks.in', href: 'mailto:Sales@bctnetworks.in', isLink: true },
               ].map(({ icon: Icon, text, href, isLink }, i) => (
                 <div key={i} className="flex items-start gap-4 group">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-blue-500/10 group-hover:border-blue-500/30 transition-colors">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[var(--border-light)] border border-[var(--border)] flex items-center justify-center group-hover:bg-blue-500/10 group-hover:border-blue-500/30 transition-colors">
                     <Icon size={18} className="text-gray-400 group-hover:text-blue-400 transition-colors" />
                   </div>
                   <div className="mt-2.5">
                     {isLink ? (
-                      <a href={href} className="text-[15px] text-gray-400 hover:text-white transition-colors">
+                      <a href={href} className="text-[15px] text-[var(--muted)] hover:text-[var(--text)] transition-colors">
                         {text}
                       </a>
                     ) : (
@@ -192,7 +198,7 @@ const ContactSection = () => {
                   <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
                 </span>
                 <p className="text-sm text-gray-300">
-                  Typically within <span className="font-semibold text-white">2 business hours</span>
+                  Typically within <span className="font-semibold text-[var(--text)]">2 business hours</span>
                 </p>
               </div>
             </div>
