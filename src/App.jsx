@@ -1,12 +1,15 @@
+import React, { Suspense, lazy } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import AboutSection from './components/AboutSection';
-import SolutionsGrid from './components/SolutionsGrid';
-import IndustriesServed from './components/IndustriesServed';
-import TechPartners from './components/TechPartners';
-import ContactSection from './components/ContactSection';
-import FAQ from './components/FAQ';
-import Footer from './components/Footer';
+
+// Lazy loaded components (below the fold)
+const AboutSection = lazy(() => import('./components/AboutSection'));
+const SolutionsGrid = lazy(() => import('./components/SolutionsGrid'));
+const IndustriesServed = lazy(() => import('./components/IndustriesServed'));
+const TechPartners = lazy(() => import('./components/TechPartners'));
+const ContactSection = lazy(() => import('./components/ContactSection'));
+const FAQ = lazy(() => import('./components/FAQ'));
+const Footer = lazy(() => import('./components/Footer'));
 
 export default function App() {
   return (
@@ -14,14 +17,20 @@ export default function App() {
       <Navbar />
       <main style={{ flex: 1 }}>
         <Hero />
-        <AboutSection />
-        <SolutionsGrid />
-        <IndustriesServed />
-        <TechPartners />
-        <ContactSection />
-        <FAQ />
+        
+        <Suspense fallback={<div className="min-h-screen bg-[#050505]" />}>
+          <AboutSection />
+          <SolutionsGrid />
+          <IndustriesServed />
+          <TechPartners />
+          <ContactSection />
+          <FAQ />
+        </Suspense>
       </main>
-      <Footer />
+      
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </div>
   );
 }

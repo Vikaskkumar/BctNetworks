@@ -167,6 +167,7 @@ const AboutSection = () => {
               <img
                 src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80"
                 alt="Server Room"
+                loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
             </motion.div>
@@ -205,6 +206,7 @@ const AboutSection = () => {
               <img
                 src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80"
                 alt="Network Infrastructure"
+                loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
             </motion.div>

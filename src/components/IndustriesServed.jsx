@@ -115,6 +115,7 @@ const IndustriesServed = () => {
             key={activeItem.name} // Forces re-render for smooth fade/image swap
             src={activeItem.image}
             alt={activeItem.name}
+            loading="lazy"
             className="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-[5000ms] ease-linear group-hover:scale-105 animate-in fade-in zoom-in-95"
           />
 
