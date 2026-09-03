@@ -5,19 +5,21 @@ import SolutionsGrid from './components/SolutionsGrid';
 import IndustriesServed from './components/IndustriesServed';
 import TechPartners from './components/TechPartners';
 import ContactSection from './components/ContactSection';
+import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col justify-between">
+    <div style={{ background: '#050507', color: '#fff', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Navbar />
-      <main>
+      <main style={{ flex: 1 }}>
         <Hero />
         <AboutSection />
         <SolutionsGrid />
         <IndustriesServed />
         <TechPartners />
         <ContactSection />
+        <FAQ />
       </main>
       <Footer />
     </div>

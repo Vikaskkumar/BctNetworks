@@ -1,55 +1,126 @@
-import { useState } from 'react';
-import { ArrowRight, Menu, X, Sun, Moon } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
 import BctLogo from './BctLogo';
 
 const navLinks = [
-  { name: 'HOME', href: '#home' },
-  { name: 'ABOUT', href: '#about' },
-  { name: 'SOLUTIONS', href: '#solutions' },
-  { name: 'INDUSTRIES', href: '#industries' },
-  { name: 'CONTACT', href: '#contact' },
+  { name: 'Home', href: '#home' },
+  { name: 'About', href: '#about' },
+  { name: 'Solutions', href: '#solutions' },
+  { name: 'Industries', href: '#industries' },
+  { name: 'Contact', href: '#contact' },
 ];
 
 const Navbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [dark, setDark] = useState(() => document.documentElement.classList.contains('dark'));
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  const toggleTheme = () => {
-    const isDark = document.documentElement.classList.toggle('dark');
-    setDark(isDark);
-    localStorage.setItem('bct-theme', isDark ? 'dark' : 'light');
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 bg-white dark:bg-slate-950 border-b border-gray-100 dark:border-slate-800">
-      <div className="container-custom flex items-center justify-between h-14">
-        <a href="#home"><BctLogo /></a>
-        <nav className="hidden md:flex items-center space-x-5 text-xs font-bold">
-          {navLinks.map((l) => (
-            <a key={l.name} href={l.href} className="text-slate-700 dark:text-slate-300 hover:text-[#E51D25]">{l.name}</a>
+    <motion.header
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+        scrolled
+          ? 'bg-[#050505]/95 backdrop-blur-md border-b border-[#272B36]'
+          : 'bg-transparent border-b border-transparent'
+      }`}
+    >
+      <div className="max-w-[1300px] mx-auto px-6 lg:px-12 h-[80px] flex items-center justify-between">
+        {/* Logo */}
+        <a
+          href="#home"
+          className="relative z-10"
+          onClick={() => setOpen(false)}
+        >
+          <BctLogo />
+        </a>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-10">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              className="text-[14px] font-normal text-[#A6A6A6] hover:text-white transition-colors duration-200"
+            >
+              {link.name}
+            </a>
           ))}
         </nav>
-        <div className="flex items-center gap-3">
-          <button onClick={toggleTheme} className="p-1 text-slate-700 dark:text-slate-300" aria-label="Toggle Theme">
-            {dark ? <Sun className="w-4 h-4 text-amber-500" /> : <Moon className="w-4 h-4" />}
-          </button>
-          <a href="#contact" className="btn-primary">
-            <span>QUOTE</span>
-            <ArrowRight className="w-3 h-3" />
+
+        {/* Desktop CTA & Mobile Toggle */}
+        <div className="flex items-center gap-6 relative z-10">
+          <a
+            href="#contact"
+            className="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-[8px] bg-white text-black font-semibold text-[14px] hover:bg-gray-200 transition-colors"
+          >
+            Get Quote
           </a>
-          <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden p-1 text-slate-700 dark:text-slate-300">
-            {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+
+          <button
+            onClick={() => setOpen(!open)}
+            className="md:hidden p-2 rounded-lg text-[#A6A6A6] hover:text-white hover:bg-white/5 transition-colors focus:outline-none"
+            aria-label="Toggle menu"
+          >
+            <motion.div
+              initial={false}
+              animate={{ rotate: open ? 90 : 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              {open ? <X size={24} /> : <Menu size={24} />}
+            </motion.div>
           </button>
         </div>
       </div>
-      {menuOpen && (
-        <div className="md:hidden bg-white dark:bg-slate-950 border-t border-gray-100 dark:border-slate-800 p-3 space-y-2 text-xs font-bold">
-          {navLinks.map((l) => (
-            <a key={l.name} href={l.href} onClick={() => setMenuOpen(false)} className="block py-1 text-slate-700 dark:text-slate-300">{l.name}</a>
-          ))}
-        </div>
-      )}
-    </header>
+
+      {/* Mobile Menu (Animated) */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: '100vh' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="md:hidden absolute top-[80px] left-0 right-0 bg-[#050505] border-t border-[#272B36] overflow-hidden flex flex-col"
+          >
+            <div className="px-6 py-8 flex flex-col gap-6">
+              {navLinks.map((link, i) => (
+                <motion.a
+                  key={link.name}
+                  href={link.href}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  onClick={() => setOpen(false)}
+                  className="text-xl font-medium text-[#A6A6A6] hover:text-white transition-colors"
+                >
+                  {link.name}
+                </motion.a>
+              ))}
+              <motion.a
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                href="#contact"
+                onClick={() => setOpen(false)}
+                className="mt-6 flex items-center justify-center py-4 rounded-[8px] bg-white text-black font-semibold text-lg"
+              >
+                Get Quote
+              </motion.a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 };
 

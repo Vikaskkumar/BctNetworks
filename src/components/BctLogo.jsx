@@ -1,14 +1,17 @@
+import React from 'react';
 import bctNetworksLogo from '../assets/bct-networks-logo.jpeg';
 
-export const BctLogo = ({ className = '' }) => {
+const BctLogo = ({ className = '' }) => {
   return (
-    <div className={`inline-flex rounded-md bg-white p-1 ${className}`}>
-      <img
-        src={bctNetworksLogo}
-        alt="BCT Networks"
-        className="h-11 w-auto object-contain sm:h-12"
-      />
-    </div>
+    <img
+      src={bctNetworksLogo}
+      alt="BCT Networks"
+      className={`h-11 md:h-12 w-auto object-contain rounded-lg ${className}`}
+      style={{
+        mixBlendMode: 'lighten',
+        filter: 'contrast(1.15) brightness(1.15)',
+      }}
+    />
   );
 };
 

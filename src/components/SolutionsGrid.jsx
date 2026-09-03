@@ -1,32 +1,121 @@
-import { ChevronRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
-const solutions = [
-  { name: 'Firewall & Security', desc: 'Zero trust firewall protection & CCTV.', img: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=400&auto=format&fit=crop' },
-  { name: 'Enterprise Wi-Fi', desc: 'High performance Wi-Fi 6E infrastructure.', img: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=400&auto=format&fit=crop' },
-  { name: 'Structured Cabling', desc: 'Fiber optics & Cat6A structured cabling.', img: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=400&auto=format&fit=crop' },
-  { name: 'Unified Telecom & AV', desc: 'IP Telephony, VoIP & commercial AV systems.', img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=400&auto=format&fit=crop' },
+const serviceCards = [
+  {
+    title: 'Enterprise Wi-Fi 6E High-Density Rollouts',
+    stats: '150+ Projects • 99.9% Uptime Guarantee',
+    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    title: 'Zero-Trust Firewall & Perimeter Security',
+    stats: '24/7 NOC Shield • Threat Prevention',
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    title: 'Structured Fiber Optic & Cat6A Cabling',
+    stats: 'TIA/EIA Certified • 10Gbps Backbone',
+    image: 'https://images.unsplash.com/photo-1551703599-6b3e8379aa8b?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    title: 'Unified IP Telephony & Commercial AV Systems',
+    stats: 'VoIP & UC • Multi-Zone Audio',
+    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    title: 'AI Video Surveillance & Access Control',
+    stats: '4K Smart Cameras • Cloud Storage',
+    image: 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    title: 'Data Center Rack & Precision Cooling Setup',
+    stats: 'Tier-3 Certified • Smart PDU Power',
+    image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=800&q=80',
+  },
 ];
 
 const SolutionsGrid = () => {
-  return (
-    <section className="section-padding bg-slate-900 text-white" id="solutions">
-      <div className="container-custom">
-        <div className="text-center max-w-md mx-auto mb-6">
-          <span className="section-tag">ENTERPRISE SERVICES</span>
-          <h2 className="section-title text-white">Unified Technology Integration</h2>
-        </div>
+  // Duplicate list to create a seamless infinite marquee loop
+  const duplicatedCards = [...serviceCards, ...serviceCards];
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {solutions.map((item, idx) => (
-            <div key={idx} className="group relative rounded-lg overflow-hidden h-48 border border-slate-800">
-              <img src={item.img} alt={item.name} className="absolute inset-0 w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent p-3.5 flex flex-col justify-end">
-                <h3 className="text-xs font-bold text-white mb-0.5">{item.name}</h3>
-                <p className="text-[10px] text-slate-300 mb-1.5">{item.desc}</p>
-                <a href="#contact" className="flex items-center gap-0.5 text-[9px] font-bold text-[#E51D25] uppercase">
-                  <span>Enquire</span>
-                  <ChevronRight className="w-3 h-3" />
-                </a>
+  return (
+    <section className="section-padding section-border overflow-hidden relative" id="solutions">
+      <div className="container-custom mb-10 relative z-10">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div>
+            <span className="section-tag">Featured Solutions</span>
+            <h2 className="section-title">
+              Enterprise Networking Services
+            </h2>
+          </div>
+          <a href="#contact" className="btn-secondary flex-shrink-0">
+            View All Services <ArrowRight size={14} />
+          </a>
+        </div>
+      </div>
+
+      {/* Infinite right-to-left marquee slider with clean, high-visibility image cards */}
+      <div className="marquee-container py-2">
+        <div className="marquee-track">
+          {duplicatedCards.map((card, idx) => (
+            <div
+              key={idx}
+              className="flex-shrink-0 flex flex-col justify-between group transition-all duration-300"
+              style={{
+                width: 400,
+                background: '#0C0D0F',
+                border: '1px solid #272B36',
+                borderRadius: 20,
+                padding: 16,
+                cursor: 'pointer',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)';
+                e.currentTarget.style.transform = 'translateY(-4px)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = '#272B36';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}
+            >
+              {/* Clear, high-visibility image banner */}
+              <div
+                className="relative overflow-hidden mb-4"
+                style={{
+                  borderRadius: 14,
+                  height: 240,
+                }}
+              >
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  style={{ opacity: 1 }}
+                />
+              </div>
+
+              {/* Clean text section below image */}
+              <div className="px-1 pt-1 pb-1">
+                <h3
+                  style={{
+                    fontSize: 16,
+                    fontWeight: 600,
+                    color: '#FFFFFF',
+                    letterSpacing: '-0.02em',
+                    lineHeight: 1.35,
+                    marginBottom: 6,
+                  }}
+                >
+                  {card.title}
+                </h3>
+                <p
+                  style={{
+                    fontSize: 13,
+                    color: '#A6A6A6',
+                    letterSpacing: '-0.01em',
+                  }}
+                >
+                  {card.stats}
+                </p>
               </div>
             </div>
           ))}
