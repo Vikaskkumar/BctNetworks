@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Activity, Shield, Wifi } from 'lucide-react';
-import bgImage from '../assets/bgi5.jfif';
+import bgImage from '../assets/bgi9.jpg';
 
 const metrics = [
   { value: '150+', label: 'Projects Delivered' },
@@ -45,7 +45,7 @@ const Hero = () => (
     <img
       src={bgImage}
       alt="Network Infrastructure"
-      className="absolute inset-0 w-full h-full object-cover opacity-70 pointer-events-none"
+      className="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none"
     />
 
     {/* Refined Gradient Overlay for contrast and depth */}
