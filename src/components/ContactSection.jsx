@@ -33,7 +33,7 @@ const ContactSection = () => {
 
   return (
     <section
-      className="py-24 bg-[#050505] text-white relative overflow-hidden border-t border-white/5"
+      className="py-12 md:py-24 bg-[#050505] text-white relative overflow-hidden border-t border-white/5"
       id="contact"
     >
       {/* Ambient Blue Glow */}
@@ -53,7 +53,7 @@ const ContactSection = () => {
             <span className="text-xs font-bold tracking-[0.15em] text-blue-400 uppercase">Get In Touch</span>
             <span className="w-6 h-[1px] bg-blue-500/50"></span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4">
             Let's build your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">network.</span>
           </h2>
           <p className="text-gray-400 max-w-xl mx-auto text-lg">
@@ -71,7 +71,7 @@ const ContactSection = () => {
           {/* Left Column: Form Card */}
           <motion.div
             variants={itemVariants}
-            className="lg:col-span-7 bg-[#0C0D0F] border border-white/10 rounded-2xl p-6 sm:p-10 shadow-2xl relative overflow-hidden"
+            className="lg:col-span-7 bg-[#0C0D0F] border border-white/10 rounded-2xl p-5 sm:p-8 lg:p-10 shadow-2xl relative overflow-hidden"
           >
             <AnimatePresence mode="wait">
               {submitted ? (
@@ -152,7 +152,7 @@ const ContactSection = () => {
           {/* Right Column: Info Card */}
           <motion.div
             variants={itemVariants}
-            className="lg:col-span-5 bg-[#0C0D0F] border border-white/10 rounded-2xl p-6 sm:p-10 flex flex-col h-full"
+            className="lg:col-span-5 bg-[#0C0D0F] border border-white/10 rounded-2xl p-5 sm:p-8 lg:p-10 flex flex-col h-full"
           >
             <h3 className="text-xl font-bold text-white tracking-tight mb-8">Direct Contact</h3>
 

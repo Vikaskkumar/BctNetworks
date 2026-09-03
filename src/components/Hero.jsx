@@ -38,7 +38,7 @@ const floatingElementVariants = {
 
 const Hero = () => (
   <section
-    className="relative min-h-[95vh] flex items-center justify-center pt-32 pb-24 bg-[#050505] overflow-hidden"
+    className="relative min-h-[100dvh] md:min-h-[95vh] flex items-center justify-center pt-32 pb-12 md:pb-24 bg-[#050505] overflow-hidden"
     id="home"
   >
     {/* Background Video */}
@@ -78,7 +78,7 @@ const Hero = () => (
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
           </span>
-          <span className="text-[11px] font-bold tracking-[0.18em] text-gray-300 uppercase">
+          <span className="text-[10px] sm:text-[11px] font-bold tracking-[0.18em] text-gray-300 uppercase text-center">
             Enterprise Networking Solutions
           </span>
         </motion.div>
@@ -87,7 +87,7 @@ const Hero = () => (
         <motion.div variants={itemVariants} className="relative">
           {/* Subtle text shadow/glow behind the text */}
           <div className="absolute inset-0 blur-3xl bg-blue-500/10 -z-10 rounded-full transform scale-150" />
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-white mb-6 leading-[1.12] max-w-4xl mx-auto drop-shadow-2xl">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-white mb-4 sm:mb-6 leading-[1.15] sm:leading-[1.12] max-w-4xl mx-auto drop-shadow-2xl px-2">
             Network infrastructure <br className="hidden md:block" />
             built to scale with your{' '}
             <span className="relative inline-block">
@@ -105,7 +105,7 @@ const Hero = () => (
         {/* Subtext */}
         <motion.p
           variants={itemVariants}
-          className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed"
+          className="text-sm sm:text-base md:text-lg text-gray-400 max-w-2xl mx-auto mb-10 sm:mb-12 leading-relaxed px-4"
         >
           We design, deploy, secure, and manage enterprise networks that keep your business
           connected, protected, and operational — <span className="text-gray-200 font-medium">around the clock</span>.
@@ -114,11 +114,11 @@ const Hero = () => (
         {/* CTAs */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-24 w-full sm:w-auto"
+          className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-5 mb-14 md:mb-24 w-full sm:w-auto px-6"
         >
           <a
             href="#contact"
-            className="relative w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white text-black font-bold tracking-wide transition-all hover:scale-105 active:scale-95 group overflow-hidden"
+            className="relative w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-8 sm:py-4 rounded-full bg-white text-black font-bold tracking-wide transition-all hover:scale-105 active:scale-95 group overflow-hidden text-sm sm:text-base"
           >
             {/* Hover sweeping glow effect */}
             <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-black/10 to-transparent" />
@@ -127,7 +127,7 @@ const Hero = () => (
           </a>
           <a
             href="#solutions"
-            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#0C0D0F]/60 text-white font-semibold border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all hover:scale-105 active:scale-95 backdrop-blur-md"
+            className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 sm:px-8 sm:py-4 rounded-full bg-[#0C0D0F]/60 text-white font-semibold border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all hover:scale-105 active:scale-95 backdrop-blur-md text-sm sm:text-base"
           >
             Explore Solutions
           </a>
@@ -141,12 +141,12 @@ const Hero = () => (
           {/* Subtle glow behind stats */}
           <div className="absolute inset-0 bg-blue-500/5 blur-3xl rounded-3xl" />
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/5 border border-white/10 rounded-3xl overflow-hidden backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/5 border border-white/10 rounded-2xl md:rounded-3xl overflow-hidden backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
             {metrics.map((m, i) => (
               <motion.div
                 key={i}
                 whileHover={{ backgroundColor: 'rgba(255,255,255,0.08)' }}
-                className="bg-black/40 p-8 lg:p-10 text-center transition-colors cursor-default relative group"
+                className="bg-black/40 p-4 sm:p-6 lg:p-10 text-center transition-colors cursor-default relative group"
               >
                 {/* Hover gradient accent */}
                 <div className="absolute inset-0 bg-gradient-to-b from-blue-500/0 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -155,11 +155,11 @@ const Hero = () => (
                   initial={{ scale: 0.5, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.6 + (i * 0.1), type: 'spring', stiffness: 100 }}
-                  className="text-4xl md:text-5xl font-extrabold tracking-tighter text-white mb-2 relative z-10 drop-shadow-md"
+                  className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tighter text-white mb-1 sm:mb-2 relative z-10 drop-shadow-md"
                 >
                   {m.value}
                 </motion.p>
-                <p className="text-[11px] md:text-xs font-bold text-gray-400 uppercase tracking-[0.2em] relative z-10">
+                <p className="text-[9px] sm:text-[11px] md:text-xs font-bold text-gray-400 uppercase tracking-[0.2em] relative z-10">
                   {m.label}
                 </p>
               </motion.div>

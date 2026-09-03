@@ -15,7 +15,7 @@ const partners = [
 
 const TechPartners = () => (
   <section
-    className="py-14 bg-[#050505] border-t border-white/5 overflow-hidden relative"
+    className="py-10 md:py-14 bg-[#050505] border-t border-white/5 overflow-hidden relative"
     id="partners"
   >
     {/* Minimalist Header */}
@@ -41,7 +41,7 @@ const TechPartners = () => (
         className="flex w-max"
       >
         {/* Block 1 */}
-        <div className="flex gap-8 md:gap-14 pr-8 md:pr-14 items-center">
+        <div className="flex gap-6 sm:gap-8 md:gap-14 pr-6 sm:pr-8 md:pr-14 items-center">
           {partners.map((partner, i) => (
             <div
               key={`first-${i}`}
@@ -56,10 +56,10 @@ const TechPartners = () => (
                   invert = turns black to white
                   On hover, we remove both so the original colors show!
                 */
-                className="h-6 md:h-7 w-auto object-contain brightness-0 invert opacity-40 group-hover:brightness-100 group-hover:invert-0 group-hover:opacity-100 transition-all duration-500"
+                className="h-5 sm:h-6 md:h-7 w-auto object-contain brightness-0 invert opacity-40 group-hover:brightness-100 group-hover:invert-0 group-hover:opacity-100 transition-all duration-500"
                 onError={(e) => e.target.style.display = 'none'}
               />
-              <span className="text-sm font-bold tracking-[0.16em] text-gray-500 group-hover:text-white transition-colors duration-500 uppercase whitespace-nowrap">
+              <span className="text-xs sm:text-sm font-bold tracking-[0.16em] text-gray-500 group-hover:text-white transition-colors duration-500 uppercase whitespace-nowrap">
                 {partner.name}
               </span>
             </div>
@@ -67,7 +67,7 @@ const TechPartners = () => (
         </div>
 
         {/* Block 2 (Exact duplicate for seamless looping) */}
-        <div className="flex gap-8 md:gap-14 pr-8 md:pr-14 items-center">
+        <div className="flex gap-6 sm:gap-8 md:gap-14 pr-6 sm:pr-8 md:pr-14 items-center">
           {partners.map((partner, i) => (
             <div
               key={`second-${i}`}
@@ -76,10 +76,10 @@ const TechPartners = () => (
               <img
                 src={partner.logo}
                 alt={`${partner.name} logo`}
-                className="h-6 md:h-7 w-auto object-contain brightness-0 invert opacity-40 group-hover:brightness-100 group-hover:invert-0 group-hover:opacity-100 transition-all duration-500"
+                className="h-5 sm:h-6 md:h-7 w-auto object-contain brightness-0 invert opacity-40 group-hover:brightness-100 group-hover:invert-0 group-hover:opacity-100 transition-all duration-500"
                 onError={(e) => e.target.style.display = 'none'}
               />
-              <span className="text-sm font-bold tracking-[0.16em] text-gray-500 group-hover:text-white transition-colors duration-500 uppercase whitespace-nowrap">
+              <span className="text-xs sm:text-sm font-bold tracking-[0.16em] text-gray-500 group-hover:text-white transition-colors duration-500 uppercase whitespace-nowrap">
                 {partner.name}
               </span>
             </div>

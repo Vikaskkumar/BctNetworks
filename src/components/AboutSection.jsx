@@ -70,7 +70,7 @@ const AboutSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-32 bg-[#050505] text-white overflow-hidden relative"
+      className="py-20 lg:py-32 bg-[#050505] text-white overflow-hidden relative"
       id="about"
     >
       {/* Dynamic Background Elements */}
@@ -79,7 +79,7 @@ const AboutSection = () => {
         className="absolute top-0 left-1/4 -translate-x-1/2 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[150px] pointer-events-none" 
       />
       
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center relative z-10">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center relative z-10">
 
         {/* Left Content */}
         <motion.div
@@ -97,7 +97,7 @@ const AboutSection = () => {
           </motion.div>
 
           <motion.div variants={itemVariants} className="overflow-hidden">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-[1.15]">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-[1.15]">
               Jaipur's most trusted <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-emerald-400 animate-gradient-x bg-[length:200%_auto]">
                 infrastructure partner.
@@ -146,7 +146,7 @@ const AboutSection = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="relative grid grid-cols-2 gap-6 h-[600px] items-center"
+          className="relative grid grid-cols-2 gap-4 md:gap-6 h-[400px] md:h-[600px] items-center"
         >
           {/* Decorative background grid behind images */}
           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay rounded-3xl" />
@@ -161,7 +161,7 @@ const AboutSection = () => {
             <motion.div 
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="relative rounded-3xl overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] h-[350px] group"
+              className="relative rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] h-[250px] md:h-[350px] group"
             >
               <div className="absolute inset-0 bg-blue-500/20 mix-blend-overlay group-hover:bg-transparent transition-colors duration-500 z-10" />
               <img
@@ -185,7 +185,7 @@ const AboutSection = () => {
           <motion.div
             variants={imageVariants}
             style={{ y: y2 }}
-            className="col-span-1 flex flex-col gap-6 -mt-32"
+            className="col-span-1 flex flex-col gap-6 -mt-16 md:-mt-32"
           >
             {/* Floating abstract element */}
             <motion.div 
@@ -199,7 +199,7 @@ const AboutSection = () => {
             <motion.div 
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="relative rounded-3xl overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] h-[400px] group"
+              className="relative rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] h-[250px] md:h-[400px] group"
             >
               <div className="absolute inset-0 bg-cyan-500/10 mix-blend-overlay group-hover:bg-transparent transition-colors duration-500 z-10" />
               <img

@@ -44,7 +44,7 @@ const IndustriesServed = () => {
   }, [activeIndex]);
 
   return (
-    <section id="industries" className="bg-black text-white py-24 px-6 min-h-screen flex items-center relative">
+    <section id="industries" className="bg-black text-white py-12 sm:py-20 lg:py-24 px-4 sm:px-6 min-h-screen flex items-center relative">
       {/* Injecting keyframes for the progress bar animation so it works without Tailwind config changes */}
       <style>{`
         @keyframes timer-progress {
@@ -56,15 +56,15 @@ const IndustriesServed = () => {
         }
       `}</style>
 
-      <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+      <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row gap-8 sm:gap-12 lg:gap-24 items-center">
 
         {/* Left Side: Industry List with Timer */}
         <div className="w-full lg:w-1/3 flex flex-col">
-          <div className="mb-12">
+          <div className="mb-6 sm:mb-10 lg:mb-12">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-500 mb-2">
               Sector Coverage
             </p>
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight">
               Industries We Serve
             </h2>
           </div>
@@ -77,18 +77,18 @@ const IndustriesServed = () => {
                 <div
                   key={index}
                   onClick={() => setActiveIndex(index)}
-                  className={`py-6 border-b cursor-pointer transition-all duration-300 ${isActive ? 'border-white' : 'border-white/10 hover:border-white/30'
+                  className={`py-4 sm:py-5 border-b cursor-pointer transition-all duration-300 ${isActive ? 'border-white' : 'border-white/10 hover:border-white/30'
                     }`}
                 >
-                  <h3 className={`text-lg font-medium transition-colors duration-300 ${isActive ? 'text-white' : 'text-gray-500'
+                  <h3 className={`text-base sm:text-lg font-medium transition-colors duration-300 ${isActive ? 'text-white' : 'text-gray-500'
                     }`}>
                     {item.name}
                   </h3>
 
                   {/* Expandable Description & Progress Bar */}
-                  <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isActive ? 'max-h-40 opacity-100 mt-4' : 'max-h-0 opacity-0'
+                  <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isActive ? 'max-h-40 opacity-100 mt-3 sm:mt-4' : 'max-h-0 opacity-0'
                     }`}>
-                    <p className="text-gray-400 text-sm leading-relaxed pr-4 mb-4">
+                    <p className="text-gray-400 text-xs sm:text-sm leading-relaxed pr-2 sm:pr-4 mb-3 sm:mb-4">
                       {item.desc}
                     </p>
 
@@ -109,7 +109,7 @@ const IndustriesServed = () => {
         </div>
 
         {/* Right Side: Big Interactive Card */}
-        <div className="w-full lg:w-2/3 h-[500px] lg:h-[700px] relative rounded-3xl overflow-hidden group bg-[#121212]">
+        <div className="w-full lg:w-2/3 h-[420px] sm:h-[500px] lg:h-[680px] relative rounded-2xl sm:rounded-3xl overflow-hidden group bg-[#121212]">
           {/* Dynamic Background Image */}
           <img
             key={activeItem.name} // Forces re-render for smooth fade/image swap
@@ -119,37 +119,37 @@ const IndustriesServed = () => {
           />
 
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
 
           {/* Floating Glassmorphic UI Card */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] sm:w-[80%] max-w-lg bg-[#1c1c1c]/70 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 sm:p-8 shadow-2xl">
-            <div className="flex items-center gap-4 mb-8 text-white">
-              <div className="p-3 bg-white/5 rounded-full border border-white/10">
-                <ActiveIcon size={24} className="text-white" />
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[92%] sm:w-[85%] max-w-lg bg-[#1c1c1c]/80 backdrop-blur-2xl border border-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl">
+            <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6 text-white">
+              <div className="p-2.5 sm:p-3 bg-white/5 rounded-full border border-white/10 flex-shrink-0">
+                <ActiveIcon size={20} className="text-white sm:w-6 sm:h-6" />
               </div>
-              <h4 className="text-xl font-medium">{activeItem.name}</h4>
+              <h4 className="text-base sm:text-xl font-medium leading-tight">{activeItem.name}</h4>
             </div>
 
-            <p className="text-gray-300 mb-8 leading-relaxed">
+            <p className="text-gray-300 text-xs sm:text-sm md:text-base mb-4 sm:mb-6 leading-relaxed">
               {activeItem.desc}
             </p>
 
             {/* Simulated Data Cards */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-[#2a2a2a]/50 rounded-xl p-4 border border-white/5 hover:bg-[#2a2a2a]/80 transition-colors">
-                <div className="w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center mb-3">
-                  <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+            <div className="grid grid-cols-2 gap-2.5 sm:gap-4">
+              <div className="bg-[#2a2a2a]/60 rounded-lg sm:rounded-xl p-2.5 sm:p-4 border border-white/5 hover:bg-[#2a2a2a]/90 transition-colors">
+                <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-blue-500/20 flex items-center justify-center mb-1.5 sm:mb-3">
+                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-blue-500"></div>
                 </div>
-                <p className="text-xs text-gray-400 mb-1">Network Reliability</p>
-                <p className="text-sm font-semibold text-white">99.99% Uptime</p>
+                <p className="text-[10px] sm:text-xs text-gray-400 mb-0.5 sm:mb-1">Network Reliability</p>
+                <p className="text-xs sm:text-sm font-semibold text-white">99.99% Uptime</p>
               </div>
 
-              <div className="bg-[#2a2a2a]/50 rounded-xl p-4 border border-white/5 hover:bg-[#2a2a2a]/80 transition-colors">
-                <div className="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center mb-3">
-                  <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
+              <div className="bg-[#2a2a2a]/60 rounded-lg sm:rounded-xl p-2.5 sm:p-4 border border-white/5 hover:bg-[#2a2a2a]/90 transition-colors">
+                <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-emerald-500/20 flex items-center justify-center mb-1.5 sm:mb-3">
+                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-500"></div>
                 </div>
-                <p className="text-xs text-gray-400 mb-1">Infrastructure</p>
-                <p className="text-sm font-semibold text-white">Zero-Trust Secured</p>
+                <p className="text-[10px] sm:text-xs text-gray-400 mb-0.5 sm:mb-1">Infrastructure</p>
+                <p className="text-xs sm:text-sm font-semibold text-white">Zero-Trust Secured</p>
               </div>
             </div>
           </div>
