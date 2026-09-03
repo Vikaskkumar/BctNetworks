@@ -33,30 +33,30 @@ const ContactSection = () => {
 
   return (
     <section
-      className="py-12 md:py-24 bg-[#050505] text-white relative overflow-hidden border-t border-white/5"
+      className="py-12 md:py-24 bg-[#050505] text-white relative overflow-hidden border-t border-white/5 w-full"
       id="contact"
     >
       {/* Ambient Blue Glow */}
-      <div className="absolute bottom-0 right-0 w-[600px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[300px] sm:w-[600px] h-[300px] sm:h-[500px] bg-blue-600/10 rounded-full blur-[100px] sm:blur-[120px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 min-[360px]:px-6 lg:px-8 relative z-10">
 
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
-          <div className="inline-flex items-center justify-center gap-2 mb-4">
+          <div className="inline-flex items-center justify-center gap-2 mb-3 sm:mb-4">
             <span className="w-6 h-[1px] bg-blue-500/50"></span>
             <span className="text-xs font-bold tracking-[0.15em] text-blue-400 uppercase">Get In Touch</span>
             <span className="w-6 h-[1px] bg-blue-500/50"></span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4">
+          <h2 className="text-2xl min-[360px]:text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-3 sm:mb-4">
             Let's build your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">network.</span>
           </h2>
-          <p className="text-gray-400 max-w-xl mx-auto text-lg">
+          <p className="text-gray-400 max-w-xl mx-auto text-sm sm:text-lg px-2">
             Tell us about your project. Our engineers will respond within 2 business hours.
           </p>
         </motion.div>
@@ -71,7 +71,7 @@ const ContactSection = () => {
           {/* Left Column: Form Card */}
           <motion.div
             variants={itemVariants}
-            className="lg:col-span-7 bg-[#0C0D0F] border border-white/10 rounded-2xl p-5 sm:p-8 lg:p-10 shadow-2xl relative overflow-hidden"
+            className="lg:col-span-7 bg-[#0C0D0F] border border-white/10 rounded-2xl p-4 min-[360px]:p-6 sm:p-8 lg:p-10 shadow-2xl relative overflow-hidden"
           >
             <AnimatePresence mode="wait">
               {submitted ? (

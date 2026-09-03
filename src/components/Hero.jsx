@@ -38,7 +38,7 @@ const floatingElementVariants = {
 
 const Hero = () => (
   <section
-    className="relative min-h-[100dvh] md:min-h-[95vh] flex items-center justify-center pt-32 pb-12 md:pb-24 bg-[#050505] overflow-hidden"
+    className="relative w-full min-h-[100dvh] md:min-h-[95vh] flex items-center justify-center pt-28 pb-12 md:pb-24 bg-[#050505] overflow-hidden"
     id="home"
   >
     {/* Background Image */}
@@ -56,11 +56,9 @@ const Hero = () => (
     <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-transparent to-[#050505]/60 pointer-events-none" />
 
     {/* Ambient Top Glow */}
-    <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-blue-600/20 rounded-full blur-[150px] pointer-events-none mix-blend-screen" />
+    <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[300px] sm:w-[600px] md:w-[800px] h-[300px] sm:h-[500px] md:h-[600px] bg-blue-600/20 rounded-full blur-[120px] sm:blur-[150px] pointer-events-none mix-blend-screen" />
 
-
-
-    <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 w-full text-center">
+    <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10 text-center">
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -71,7 +69,7 @@ const Hero = () => (
         <motion.div
           variants={itemVariants}
           whileHover={{ scale: 1.05 }}
-          className="inline-flex items-center gap-2.5 mb-8 px-4 py-1.5 rounded-full bg-[#0C0D0F]/80 border border-white/10 backdrop-blur-md shadow-[0_0_15px_rgba(59,130,246,0.15)] cursor-default"
+          className="inline-flex items-center gap-2.5 mb-6 sm:mb-8 px-3.5 py-1.5 rounded-full bg-[#0C0D0F]/80 border border-white/10 backdrop-blur-md shadow-[0_0_15px_rgba(59,130,246,0.15)] cursor-default"
         >
           <span className="relative flex h-2.5 w-2.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
@@ -86,7 +84,7 @@ const Hero = () => (
         <motion.div variants={itemVariants} className="relative">
           {/* Subtle text shadow/glow behind the text */}
           <div className="absolute inset-0 blur-3xl bg-blue-500/10 -z-10 rounded-full transform scale-150" />
-          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-white mb-4 sm:mb-6 leading-[1.15] sm:leading-[1.12] max-w-4xl mx-auto drop-shadow-2xl px-2">
+          <h1 className="text-2xl min-[360px]:text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-white mb-4 sm:mb-6 leading-[1.18] sm:leading-[1.12] max-w-4xl mx-auto drop-shadow-2xl px-2">
             Network infrastructure <br className="hidden md:block" />
             built to scale with your{' '}
             <span className="relative inline-block">
@@ -104,7 +102,7 @@ const Hero = () => (
         {/* Subtext */}
         <motion.p
           variants={itemVariants}
-          className="text-sm sm:text-base md:text-lg text-gray-400 max-w-2xl mx-auto mb-10 sm:mb-12 leading-relaxed px-4"
+          className="text-xs min-[360px]:text-sm sm:text-base md:text-lg text-gray-400 max-w-2xl mx-auto mb-8 sm:mb-12 leading-relaxed px-3"
         >
           We design, deploy, secure, and manage enterprise networks that keep your business
           connected, protected, and operational — <span className="text-gray-200 font-medium">around the clock</span>.
@@ -113,7 +111,7 @@ const Hero = () => (
         {/* CTAs */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-5 mb-10 sm:mb-14 md:mb-24 w-full sm:w-auto px-6"
+          className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-5 mb-10 sm:mb-14 md:mb-24 w-full max-w-[420px] sm:max-w-none px-0 sm:px-6"
         >
           <a
             href="#contact"
@@ -135,7 +133,7 @@ const Hero = () => (
         {/* Stats Grid - Enhanced Glassmorphism */}
         <motion.div
           variants={itemVariants}
-          className="w-full max-w-5xl mx-auto relative"
+          className="w-full max-w-[420px] sm:max-w-5xl mx-auto relative"
         >
           {/* Subtle glow behind stats */}
           <div className="absolute inset-0 bg-blue-500/5 blur-3xl rounded-3xl" />
@@ -145,7 +143,7 @@ const Hero = () => (
               <motion.div
                 key={i}
                 whileHover={{ backgroundColor: 'rgba(255,255,255,0.08)' }}
-                className="bg-black/40 p-2 min-[360px]:p-4 sm:p-6 lg:p-10 text-center transition-colors cursor-default relative group"
+                className="bg-black/40 p-3 min-[360px]:p-4 sm:p-6 lg:p-10 text-center transition-colors cursor-default relative group"
               >
                 {/* Hover gradient accent */}
                 <div className="absolute inset-0 bg-gradient-to-b from-blue-500/0 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -154,11 +152,11 @@ const Hero = () => (
                   initial={{ scale: 0.5, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.6 + (i * 0.1), type: 'spring', stiffness: 100 }}
-                  className="text-xl min-[360px]:text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tighter text-white mb-1 sm:mb-2 relative z-10 drop-shadow-md"
+                  className="text-lg min-[360px]:text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tighter text-white mb-1 sm:mb-2 relative z-10 drop-shadow-md"
                 >
                   {m.value}
                 </motion.p>
-                <p className="text-[7px] min-[360px]:text-[9px] sm:text-[11px] md:text-xs font-bold text-gray-400 uppercase tracking-[0.2em] relative z-10">
+                <p className="text-[9px] min-[360px]:text-[10px] sm:text-[11px] md:text-xs font-bold text-gray-400 uppercase tracking-[0.15em] sm:tracking-[0.2em] relative z-10">
                   {m.label}
                 </p>
               </motion.div>

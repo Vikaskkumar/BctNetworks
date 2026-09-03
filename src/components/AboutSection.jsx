@@ -70,16 +70,16 @@ const AboutSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-20 lg:py-32 bg-[#050505] text-white overflow-hidden relative"
+      className="py-14 sm:py-20 lg:py-32 bg-[#050505] text-white overflow-hidden relative"
       id="about"
     >
       {/* Dynamic Background Elements */}
       <motion.div 
         style={{ opacity: opacityGradient }}
-        className="absolute top-0 left-1/4 -translate-x-1/2 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[150px] pointer-events-none" 
+        className="absolute top-0 left-1/4 -translate-x-1/2 w-[300px] sm:w-[600px] lg:w-[800px] h-[300px] sm:h-[600px] lg:h-[800px] bg-blue-600/10 rounded-full blur-[120px] sm:blur-[150px] pointer-events-none" 
       />
       
-      <div className="max-w-7xl mx-auto px-4 min-[360px]:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center relative z-10">
+      <div className="max-w-7xl mx-auto px-4 min-[360px]:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24 items-center relative z-10">
 
         {/* Left Content */}
         <motion.div
@@ -89,15 +89,15 @@ const AboutSection = () => {
           viewport={{ once: true, margin: "-100px" }}
           className="flex flex-col relative z-20"
         >
-          <motion.div variants={itemVariants} className="flex items-center gap-3 mb-6">
+          <motion.div variants={itemVariants} className="flex items-center gap-3 mb-4 sm:mb-6">
             <span className="w-10 h-[2px] bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full"></span>
-            <span className="text-sm font-bold tracking-[0.2em] text-blue-400 uppercase">
+            <span className="text-xs sm:text-sm font-bold tracking-[0.2em] text-blue-400 uppercase">
               About BCT Networks
             </span>
           </motion.div>
 
           <motion.div variants={itemVariants} className="overflow-hidden">
-            <h2 className="text-2xl min-[360px]:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-[1.15]">
+            <h2 className="text-2xl min-[360px]:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 sm:mb-6 leading-[1.15]">
               Jaipur's most trusted <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-emerald-400 animate-gradient-x bg-[length:200%_auto]">
                 infrastructure partner.
@@ -105,25 +105,25 @@ const AboutSection = () => {
             </h2>
           </motion.div>
 
-          <motion.p variants={itemVariants} className="text-gray-400 text-lg mb-12 leading-relaxed max-w-xl">
+          <motion.p variants={itemVariants} className="text-gray-400 text-sm sm:text-base md:text-lg mb-8 sm:mb-12 leading-relaxed max-w-xl">
             BCT Networks delivers enterprise networking, cybersecurity, audio-visual systems, structured cabling,
             and building automation — engineered for scale, built for reliability.
           </motion.p>
 
-          <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+          <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-12">
             {feats.map(({ icon: Icon, title, sub }, i) => (
               <motion.div
                 key={i}
                 whileHover={{ y: -5, scale: 1.02, backgroundColor: 'rgba(255,255,255,0.08)' }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                className="flex flex-col gap-4 p-6 rounded-2xl bg-[#0C0D0F]/80 backdrop-blur-sm border border-white/5 transition-colors cursor-pointer group shadow-xl shadow-black/20"
+                className="flex flex-col gap-3 p-4 sm:p-6 rounded-2xl bg-[#0C0D0F]/80 backdrop-blur-sm border border-white/5 transition-colors cursor-pointer group shadow-xl shadow-black/20"
               >
-                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/10 flex items-center justify-center border border-blue-500/30 group-hover:border-blue-400 transition-colors">
-                  <Icon size={24} className="text-blue-400 group-hover:text-blue-300 transition-colors" />
+                <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/10 flex items-center justify-center border border-blue-500/30 group-hover:border-blue-400 transition-colors">
+                  <Icon size={22} className="text-blue-400 group-hover:text-blue-300 transition-colors" />
                 </div>
                 <div>
-                  <p className="text-lg font-bold text-gray-100 tracking-tight mb-1">{title}</p>
-                  <p className="text-sm text-gray-400 leading-relaxed">{sub}</p>
+                  <p className="text-base sm:text-lg font-bold text-gray-100 tracking-tight mb-1">{title}</p>
+                  <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">{sub}</p>
                 </div>
               </motion.div>
             ))}
@@ -132,7 +132,7 @@ const AboutSection = () => {
           <motion.div variants={itemVariants}>
             <a
               href="#contact"
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black font-bold tracking-wide hover:bg-blue-50 transition-all hover:scale-105 active:scale-95 group shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)]"
+              className="inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-white text-black font-bold tracking-wide hover:bg-blue-50 transition-all hover:scale-105 active:scale-95 group shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] text-sm sm:text-base w-full sm:w-auto"
             >
               Work With Us
               <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform duration-300" />
@@ -146,7 +146,7 @@ const AboutSection = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="relative grid grid-cols-2 gap-4 md:gap-6 h-[400px] md:h-[600px] items-center"
+          className="relative grid grid-cols-2 gap-3 sm:gap-4 md:gap-6 h-auto min-h-[340px] sm:h-[400px] md:h-[600px] items-center overflow-hidden"
         >
           {/* Decorative background grid behind images */}
           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay rounded-3xl" />

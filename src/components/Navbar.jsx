@@ -28,7 +28,7 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 relative ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 w-full ${
         scrolled
           ? 'bg-[#050505]/95 backdrop-blur-md border-b border-[#272B36]'
           : 'bg-[#050505]/80 backdrop-blur-sm border-b border-transparent md:bg-transparent md:backdrop-blur-none'
@@ -89,10 +89,10 @@ const Navbar = () => {
         {open && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'calc(100dvh - 64px)' }}
+            animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="md:hidden absolute top-full left-0 right-0 z-10 bg-[#050505]/95 backdrop-blur-xl border-t border-[#272B36] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.35)]"
+            className="md:hidden absolute top-full left-0 right-0 z-10 w-full bg-[#050505]/95 backdrop-blur-xl border-t border-[#272B36] max-h-[calc(100vh-64px)] overflow-y-auto shadow-[0_20px_40px_rgba(0,0,0,0.35)]"
           >
             <div className="mx-auto max-w-[1300px] px-4 min-[360px]:px-6 py-5 pb-8 flex flex-col gap-2">
               {navLinks.map((link, i) => (

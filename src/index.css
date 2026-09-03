@@ -18,7 +18,9 @@
 
   html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    overflow-x: hidden !important;
+    width: 100%;
+    max-width: 100%;
     background: var(--bg);
   }
 
@@ -30,9 +32,18 @@
     line-height: 1.5;
     background: var(--bg);
     color: var(--text);
-    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important;
+    margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important;
   }
 
   h1, h2, h3, h4, h5, h6 { margin: 0; }
@@ -497,16 +508,24 @@
   overflow: hidden;
   position: relative;
   width: 100%;
+  max-width: 100%;
   mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
 }
 
 .marquee-track {
   display: flex;
-  gap: 24px;
+  gap: 20px;
   width: max-content;
-  animation: marqueeLeft 40s linear infinite;
+  animation: marqueeLeft 35s linear infinite;
   will-change: transform;
+}
+
+@media (max-width: 767px) {
+  .marquee-track {
+    gap: 14px;
+    animation-duration: 25s;
+  }
 }
 
 .marquee-container:hover .marquee-track {

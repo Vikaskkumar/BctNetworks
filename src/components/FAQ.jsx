@@ -28,9 +28,9 @@ const FAQ = () => {
   const [open, setOpen] = useState(null);
 
   return (
-    <section className="section-padding section-border" id="faq">
+    <section className="section-padding section-border relative overflow-hidden w-full" id="faq">
       {/* Carbon subtle blue glow background */}
-      <div className="glow-blue absolute left-1/2 -translate-x-1/2 w-[600px] h-[300px] opacity-30 pointer-events-none" />
+      <div className="glow-blue absolute left-1/2 -translate-x-1/2 w-[300px] sm:w-[600px] h-[200px] sm:h-[300px] opacity-30 pointer-events-none" />
 
       <div className="container-custom relative z-10">
         <div className="text-center mb-12">

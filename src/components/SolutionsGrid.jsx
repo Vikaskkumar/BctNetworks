@@ -38,8 +38,8 @@ const SolutionsGrid = () => {
   const duplicatedCards = [...serviceCards, ...serviceCards];
 
   return (
-    <section className="section-padding section-border overflow-hidden relative" id="solutions">
-      <div className="container-custom mb-10 relative z-10">
+    <section className="section-padding section-border overflow-hidden relative w-full" id="solutions">
+      <div className="container-custom mb-8 sm:mb-10 relative z-10">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
             <span className="section-tag">Featured Solutions</span>
@@ -47,72 +47,36 @@ const SolutionsGrid = () => {
               Enterprise Networking Services
             </h2>
           </div>
-          <a href="#contact" className="btn-secondary flex-shrink-0">
+          <a href="#contact" className="btn-secondary flex-shrink-0 self-start sm:self-auto">
             View All Services <ArrowRight size={14} />
           </a>
         </div>
       </div>
 
       {/* Infinite right-to-left marquee slider with clean, high-visibility image cards */}
-      <div className="marquee-container py-2">
-        <div className="marquee-track">
+      <div className="marquee-container py-2 w-full max-w-full overflow-hidden">
+        <div className="marquee-track solutions-marquee-track">
           {duplicatedCards.map((card, idx) => (
             <div
               key={idx}
-              className="flex-shrink-0 flex flex-col justify-between group transition-all duration-300 w-[250px] min-[360px]:w-[280px] sm:w-[400px]"
-              style={{
-                background: '#0C0D0F',
-                border: '1px solid #272B36',
-                borderRadius: 20,
-                padding: 16,
-                cursor: 'pointer',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)';
-                e.currentTarget.style.transform = 'translateY(-4px)';
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.borderColor = '#272B36';
-                e.currentTarget.style.transform = 'translateY(0)';
-              }}
+              className="flex-shrink-0 flex flex-col justify-between group transition-all duration-300 w-[240px] min-[360px]:w-[270px] sm:w-[380px] rounded-2xl p-3.5 sm:p-4 border border-[#272B36] bg-[#0C0D0F] hover:border-white/20 transition-all"
             >
               {/* Clear, high-visibility image banner */}
-              <div
-                className="relative overflow-hidden mb-4 h-[160px] min-[360px]:h-[180px] sm:h-[240px]"
-                style={{
-                  borderRadius: 14,
-                }}
-              >
+              <div className="relative overflow-hidden mb-3 sm:mb-4 h-[140px] min-[360px]:h-[160px] sm:h-[220px] rounded-xl">
                 <img
                   src={card.image}
                   alt={card.title}
                   loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  style={{ opacity: 1 }}
                 />
               </div>
 
               {/* Clean text section below image */}
               <div className="px-1 pt-1 pb-1">
-                <h3
-                  style={{
-                    fontSize: 16,
-                    fontWeight: 600,
-                    color: '#FFFFFF',
-                    letterSpacing: '-0.02em',
-                    lineHeight: 1.35,
-                    marginBottom: 6,
-                  }}
-                >
+                <h3 className="text-sm min-[360px]:text-base font-semibold text-white tracking-tight leading-snug mb-1.5">
                   {card.title}
                 </h3>
-                <p
-                  style={{
-                    fontSize: 13,
-                    color: '#A6A6A6',
-                    letterSpacing: '-0.01em',
-                  }}
-                >
+                <p className="text-xs sm:text-sm text-[#A6A6A6] tracking-tight">
                   {card.stats}
                 </p>
               </div>

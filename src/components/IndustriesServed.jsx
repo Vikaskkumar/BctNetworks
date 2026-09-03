@@ -44,7 +44,7 @@ const IndustriesServed = () => {
   }, [activeIndex]);
 
   return (
-    <section id="industries" className="bg-black text-white py-12 sm:py-20 lg:py-24 px-4 sm:px-6 min-h-screen flex items-center relative">
+    <section id="industries" className="bg-black text-white py-12 sm:py-20 lg:py-24 px-4 sm:px-6 min-h-screen flex items-center relative overflow-hidden">
       {/* Injecting keyframes for the progress bar animation so it works without Tailwind config changes */}
       <style>{`
         @keyframes timer-progress {
@@ -109,7 +109,7 @@ const IndustriesServed = () => {
         </div>
 
         {/* Right Side: Big Interactive Card */}
-        <div className="w-full lg:w-2/3 h-[380px] sm:h-[500px] lg:h-[680px] relative rounded-2xl sm:rounded-3xl overflow-hidden group bg-[#121212]">
+        <div className="w-full lg:w-2/3 h-[420px] sm:h-[500px] lg:h-[680px] relative rounded-2xl sm:rounded-3xl overflow-hidden group bg-[#121212]">
           {/* Dynamic Background Image */}
           <img
             key={activeItem.name} // Forces re-render for smooth fade/image swap
@@ -123,34 +123,34 @@ const IndustriesServed = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
 
           {/* Floating Glassmorphic UI Card */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[92%] sm:w-[85%] max-w-lg bg-[#1c1c1c]/80 backdrop-blur-2xl border border-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl">
-            <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6 text-white">
-              <div className="p-2.5 sm:p-3 bg-white/5 rounded-full border border-white/10 flex-shrink-0">
-                <ActiveIcon size={20} className="text-white sm:w-6 sm:h-6" />
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[92%] sm:w-[85%] max-w-lg bg-[#1c1c1c]/85 backdrop-blur-2xl border border-white/10 rounded-xl sm:rounded-2xl p-3.5 sm:p-6 md:p-8 shadow-2xl">
+            <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-6 text-white">
+              <div className="p-2 sm:p-3 bg-white/5 rounded-full border border-white/10 flex-shrink-0">
+                <ActiveIcon size={18} className="text-white sm:w-6 sm:h-6" />
               </div>
-              <h4 className="text-base sm:text-xl font-medium leading-tight">{activeItem.name}</h4>
+              <h4 className="text-sm sm:text-xl font-medium leading-tight">{activeItem.name}</h4>
             </div>
 
-            <p className="text-gray-300 text-xs sm:text-sm md:text-base mb-4 sm:mb-6 leading-relaxed">
+            <p className="text-gray-300 text-xs sm:text-sm md:text-base mb-3 sm:mb-6 leading-relaxed">
               {activeItem.desc}
             </p>
 
             {/* Simulated Data Cards */}
-            <div className="grid grid-cols-2 gap-2.5 sm:gap-4">
-              <div className="bg-[#2a2a2a]/60 rounded-lg sm:rounded-xl p-2.5 sm:p-4 border border-white/5 hover:bg-[#2a2a2a]/90 transition-colors">
-                <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-blue-500/20 flex items-center justify-center mb-1.5 sm:mb-3">
+            <div className="grid grid-cols-2 gap-2 sm:gap-4">
+              <div className="bg-[#2a2a2a]/60 rounded-lg sm:rounded-xl p-2 sm:p-4 border border-white/5 hover:bg-[#2a2a2a]/90 transition-colors">
+                <div className="w-4 h-4 sm:w-6 sm:h-6 rounded-full bg-blue-500/20 flex items-center justify-center mb-1 sm:mb-3">
                   <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-blue-500"></div>
                 </div>
-                <p className="text-[10px] sm:text-xs text-gray-400 mb-0.5 sm:mb-1">Network Reliability</p>
-                <p className="text-xs sm:text-sm font-semibold text-white">99.99% Uptime</p>
+                <p className="text-[9px] sm:text-xs text-gray-400 mb-0.5">Network Reliability</p>
+                <p className="text-[11px] sm:text-sm font-semibold text-white">99.99% Uptime</p>
               </div>
 
-              <div className="bg-[#2a2a2a]/60 rounded-lg sm:rounded-xl p-2.5 sm:p-4 border border-white/5 hover:bg-[#2a2a2a]/90 transition-colors">
-                <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-emerald-500/20 flex items-center justify-center mb-1.5 sm:mb-3">
+              <div className="bg-[#2a2a2a]/60 rounded-lg sm:rounded-xl p-2 sm:p-4 border border-white/5 hover:bg-[#2a2a2a]/90 transition-colors">
+                <div className="w-4 h-4 sm:w-6 sm:h-6 rounded-full bg-emerald-500/20 flex items-center justify-center mb-1 sm:mb-3">
                   <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-500"></div>
                 </div>
-                <p className="text-[10px] sm:text-xs text-gray-400 mb-0.5 sm:mb-1">Infrastructure</p>
-                <p className="text-xs sm:text-sm font-semibold text-white">Zero-Trust Secured</p>
+                <p className="text-[9px] sm:text-xs text-gray-400 mb-0.5">Infrastructure</p>
+                <p className="text-[11px] sm:text-sm font-semibold text-white">Zero-Trust Secured</p>
               </div>
             </div>
           </div>
