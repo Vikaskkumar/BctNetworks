@@ -1,89 +1,122 @@
-import { ArrowRight } from 'lucide-react';
+import React from 'react';
+import { Network, Server, Shield, Cable, MessageSquare, Video, MonitorPlay, Flame, Cpu, ArrowRight } from 'lucide-react';
 
-const serviceCards = [
+const solutions = [
   {
-    title: 'Enterprise Wi-Fi 6E High-Density Rollouts',
-    stats: '150+ Projects • 99.9% Uptime Guarantee',
-    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=60',
+    title: 'Enterprise Network',
+    desc: 'Connect every part of your organization seamlessly.',
+    icon: Network,
   },
   {
-    title: 'Zero-Trust Firewall & Perimeter Security',
-    stats: '24/7 NOC Shield • Threat Prevention',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=60',
+    title: 'Server & Storage',
+    desc: 'Reliable infrastructure for critical business data.',
+    icon: Server,
   },
   {
-    title: 'Structured Fiber Optic & Cat6A Cabling',
-    stats: 'TIA/EIA Certified • 10Gbps Backbone',
-    image: 'https://images.unsplash.com/photo-1551703599-6b3e8379aa8b?auto=format&fit=crop&w=600&q=60',
+    title: 'Security & Surveillance',
+    desc: 'Network security, surveillance, and access protection.',
+    icon: Shield,
   },
   {
-    title: 'Unified IP Telephony & Commercial AV Systems',
-    stats: 'VoIP & UC • Multi-Zone Audio',
-    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=60',
+    title: 'Structured Cabling',
+    desc: 'Passive network foundation supporting modern transmission.',
+    icon: Cable,
   },
   {
-    title: 'AI Video Surveillance & Access Control',
-    stats: '4K Smart Cameras • Cloud Storage',
-    image: 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=600&q=60',
+    title: 'Unified Communication',
+    desc: 'Bring voice, video, and messaging together.',
+    icon: MessageSquare,
   },
   {
-    title: 'Data Center Rack & Precision Cooling Setup',
-    stats: 'Tier-3 Certified • Smart PDU Power',
-    image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=600&q=60',
+    title: 'Telepresence & Collaboration',
+    desc: 'Connect people and teams across locations.',
+    icon: Video,
+  },
+  {
+    title: 'Audio Visual',
+    desc: 'Integrated AV systems for commercial environments.',
+    icon: MonitorPlay,
+  },
+  {
+    title: 'Fire & Safety',
+    desc: 'Intelligent fire detection and life safety systems.',
+    icon: Flame,
+  },
+  {
+    title: 'Building Automation',
+    desc: 'Smart centralized control of facility operations.',
+    icon: Cpu,
   },
 ];
 
-const SolutionsGrid = () => {
-  // Duplicate list to create a seamless infinite marquee loop
-  const duplicatedCards = [...serviceCards, ...serviceCards];
+const row1 = solutions.slice(0, 5);
+const row2 = solutions.slice(5, 9).concat(solutions[0]);
 
+const SolutionCard = ({ title, desc, icon: Icon }) => (
+  <div className="group w-[300px] sm:w-[350px] shrink-0 p-6 rounded-2xl bg-[var(--surface)] border border-[var(--border-light)] hover:border-[var(--accent)]/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 cursor-pointer flex flex-col relative overflow-hidden">
+    <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+    
+    <div className="w-12 h-12 rounded-xl bg-[var(--bg-alt)] border border-[var(--border-light)] flex items-center justify-center mb-5 group-hover:bg-[var(--accent)] group-hover:border-[var(--accent)] transition-colors duration-300 relative z-10">
+      <Icon size={24} className="text-[var(--text-2)] group-hover:text-white transition-colors duration-300" />
+    </div>
+
+    <h3 className="text-lg font-bold text-[var(--text)] mb-2 relative z-10 group-hover:text-[var(--accent)] transition-colors">
+      {title}
+    </h3>
+    <p className="text-sm text-[var(--muted)] leading-relaxed flex-grow relative z-10">
+      {desc}
+    </p>
+
+    <div className="mt-6 flex items-center gap-2 text-xs font-semibold text-[var(--accent)] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+      Explore <ArrowRight size={14} />
+    </div>
+  </div>
+);
+
+const SolutionsGrid = () => {
   return (
-    <section className="section-padding section-border overflow-hidden relative w-full" id="solutions">
-      <div className="container-custom mb-8 sm:mb-10 relative z-10">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-          <div>
-            <span className="section-tag">Featured Solutions</span>
-            <h2 className="section-title">
-              Enterprise Networking Services
+    <section className="py-16 sm:py-24 bg-[var(--bg-alt)] border-y border-[var(--border-light)] w-full overflow-hidden" id="solutions">
+      
+      <div className="max-w-7xl mx-auto px-4 min-[360px]:px-6 lg:px-8 mb-12 sm:mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="max-w-2xl">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="w-6 h-[2px] bg-blue-500 rounded-full" />
+              <span className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--accent)]">
+                Our Solutions
+              </span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--text)]">
+              Integrated Technology Infrastructure
             </h2>
           </div>
-          <a href="#contact" className="btn-secondary flex-shrink-0 self-start sm:self-auto">
-            View All Services <ArrowRight size={14} />
+          
+          <a href="#contact" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[var(--surface)] border border-[var(--border-light)] text-[var(--text)] font-semibold text-sm hover:border-[var(--accent)]/50 transition-colors shrink-0 shadow-sm">
+            Discuss a Project <ArrowRight size={16} />
           </a>
         </div>
       </div>
 
-      {/* Infinite right-to-left marquee slider with clean, high-visibility image cards */}
-      <div className="marquee-container py-2 w-full max-w-full overflow-hidden">
-        <div className="marquee-track solutions-marquee-track">
-          {duplicatedCards.map((card, idx) => (
-            <div
-              key={idx}
-              className="flex-shrink-0 flex flex-col justify-between group transition-all duration-300 w-[240px] min-[360px]:w-[270px] sm:w-[380px] rounded-2xl p-3.5 sm:p-4 border border-[var(--card-border)] bg-[var(--card-bg)] hover:border-[var(--border)] transition-all"
-            >
-              {/* Clear, high-visibility image banner */}
-              <div className="relative overflow-hidden mb-3 sm:mb-4 h-[140px] min-[360px]:h-[160px] sm:h-[220px] rounded-xl">
-                <img
-                  src={card.image}
-                  alt={card.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
+      <div className="relative w-full flex flex-col gap-6 select-none pb-8">
+        {/* Gradients for smooth fade in/out */}
+        <div className="absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-[var(--bg-alt)] to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-[var(--bg-alt)] to-transparent z-10 pointer-events-none" />
 
-              {/* Clean text section below image */}
-              <div className="px-1 pt-1 pb-1">
-                <h3 className="text-sm min-[360px]:text-base font-semibold text-[var(--text)] tracking-tight leading-snug mb-1.5">
-                  {card.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-[var(--muted)] tracking-tight">
-                  {card.stats}
-                </p>
-              </div>
-            </div>
+        {/* Row 1 */}
+        <div className="flex w-max animate-scroll gap-6 px-4">
+          {[...row1, ...row1, ...row1, ...row1].map((sol, idx) => (
+            <SolutionCard key={`r1-${idx}`} {...sol} />
+          ))}
+        </div>
+
+        {/* Row 2 - Reversed or just staggered */}
+        <div className="flex w-max animate-scroll-reverse gap-6 px-4 ml-12">
+          {[...row2, ...row2, ...row2, ...row2].map((sol, idx) => (
+            <SolutionCard key={`r2-${idx}`} {...sol} />
           ))}
         </div>
       </div>
+
     </section>
   );
 };

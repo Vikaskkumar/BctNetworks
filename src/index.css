@@ -189,6 +189,33 @@
     color: var(--accent);
     border-radius: 8px;
   }
+  .glass-card {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll {
+  animation: scroll 80s linear infinite;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+
+.animate-scroll-reverse {
+  animation: scroll 80s linear infinite reverse;
+}
+
+.animate-scroll-reverse:hover {
+  animation-play-state: paused;
 }
 
 .industries-section {

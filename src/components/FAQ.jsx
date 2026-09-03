@@ -1,76 +1,124 @@
-import { useState } from 'react';
-import { Plus, Minus } from 'lucide-react';
+import React from 'react';
+import { Layers, HeartHandshake, ShieldCheck, Activity, Network, Award, CheckCircle2 } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-const faqs = [
+const whyReasons = [
   {
-    q: 'What types of networking solutions does BCT Networks provide?',
-    a: 'BCT Networks covers the full spectrum — enterprise Wi-Fi (Wi-Fi 6E), structured cabling (Cat6A, Cat7, fiber), firewall & cybersecurity, IP surveillance, VoIP/unified communications, AV systems, and building automation for commercial environments.',
+    title: 'Integrated Expertise',
+    desc: 'Multiple infrastructure capabilities under one roof.',
+    icon: Layers,
   },
   {
-    q: 'Do you offer post-installation support and maintenance?',
-    a: 'Yes. All our projects include a warranty period and optional Annual Maintenance Contracts (AMC). We also offer 24/7 NOC monitoring for enterprise clients who need continuous uptime assurance.',
+    title: 'Customer Experience',
+    desc: 'Strong emphasis on dedicated customer service and support.',
+    icon: HeartHandshake,
   },
   {
-    q: 'Which OEM brands and vendors do you work with?',
-    a: 'We are certified partners with Cisco, HPE Aruba, Fortinet, Palo Alto, Hikvision, Dahua, Sophos, Schneider Electric, and several other leading technology brands — ensuring you always receive genuine, warrantied hardware.',
+    title: 'Trust',
+    desc: 'A core company value built on transparency and delivery.',
+    icon: ShieldCheck,
   },
   {
-    q: 'How long does a typical network deployment take?',
-    a: 'Deployment timelines vary by project scope. A structured cabling project for a mid-size office typically takes 3–7 days, while a full enterprise network rollout may span 2–6 weeks including design, procurement, installation, and testing.',
+    title: 'Reliability',
+    desc: 'Central to our enterprise infrastructure solutions.',
+    icon: Activity,
   },
   {
-    q: 'Do you serve clients outside Jaipur?',
-    a: 'Yes. While our headquarters is in Jaipur, Rajasthan, we have delivered projects across Rajasthan and other states. Contact us to discuss logistics for your location.',
+    title: 'End-to-End Approach',
+    desc: 'Networking, servers, security, and communication represented together.',
+    icon: Network,
   },
 ];
 
+const certifications = [
+  'ISO 9001 Quality Management',
+  'ISO 27001 Information Security',
+  'Certified Network Technology Partner',
+  'Registered Government Vendor',
+];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 15 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+};
+
 const FAQ = () => {
-  const [open, setOpen] = useState(null);
-
   return (
-    <section className="section-padding section-border relative overflow-hidden w-full" id="faq">
-      {/* Carbon subtle blue glow background */}
-      <div className="glow-blue absolute left-1/2 -translate-x-1/2 w-[300px] sm:w-[600px] h-[200px] sm:h-[300px] opacity-30 pointer-events-none" />
+    <section className="py-16 md:py-24 bg-[var(--bg)] border-t border-[var(--border-light)] w-full relative" id="faq">
+      <div className="max-w-7xl mx-auto px-4 min-[360px]:px-6 lg:px-8 relative z-10">
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+          {/* Left Column: Why BCT Networks */}
+          <div>
+            <div className="mb-10">
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--accent)] mb-2 block">
+                Why BCT Networks?
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[var(--text)]">
+                Built on Experience, Trust and Standards
+              </h2>
+            </div>
+            
+            <motion.div 
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              className="flex flex-col gap-6"
+            >
+              {whyReasons.map((reason, idx) => {
+                const Icon = reason.icon;
+                return (
+                  <motion.div variants={itemVariants} key={idx} className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-lg bg-[var(--surface)] border border-[var(--border-light)] flex items-center justify-center shrink-0">
+                      <Icon size={20} className="text-[var(--accent)]" />
+                    </div>
+                    <div>
+                      <h4 className="text-base sm:text-lg font-bold text-[var(--text)] mb-1">{reason.title}</h4>
+                      <p className="text-sm text-[var(--muted)] leading-relaxed">{reason.desc}</p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+          </div>
 
-      <div className="container-custom relative z-10">
-        <div className="text-center mb-12">
-          <span className="section-tag">FAQ</span>
-          <h2 className="section-title">Need answers?</h2>
-        </div>
-
-        <div className="max-w-2xl mx-auto flex flex-col gap-3">
-          {faqs.map((item, i) => (
-            <div key={i}
-              onClick={() => setOpen(open === i ? null : i)}
-              style={{
-                background: '#0C0D0F',
-                border: '1px solid #272B36',
-                borderRadius: 12,
-                cursor: 'pointer',
-                transition: 'border-color 0.2s',
-              }}
-              onMouseEnter={e => { if (open !== i) e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; }}
-              onMouseLeave={e => { if (open !== i) e.currentTarget.style.borderColor = '#272B36'; }}>
-
-              {/* Question row */}
-              <div className="flex items-center justify-between gap-4 px-6 py-5">
-                <span style={{ fontSize: 15, fontWeight: 500, color: '#fff', letterSpacing: '-0.02em', lineHeight: 1.4 }}>{item.q}</span>
-                <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full"
-                  style={{ border: '1px solid #272B36', color: '#A6A6A6', transition: 'border-color 0.15s, color 0.15s' }}>
-                  {open === i
-                    ? <Minus size={14} style={{ color: '#0066FF' }} />
-                    : <Plus size={14} />}
-                </div>
+          {/* Right Column: Trust & Certifications */}
+          <div className="flex flex-col justify-center">
+            <div className="bg-[var(--surface)] border border-[var(--border-light)] rounded-3xl p-8 sm:p-10 shadow-lg relative overflow-hidden">
+              {/* Subtle background glow */}
+              <div className="absolute -top-24 -right-24 w-64 h-64 bg-[var(--accent)]/10 rounded-full blur-[80px] pointer-events-none" />
+              
+              <div className="flex items-center gap-3 mb-8 relative z-10">
+                <Award size={28} className="text-[var(--text)]" />
+                <h3 className="text-xl sm:text-2xl font-bold text-[var(--text)]">Trusted Standards & Recognition</h3>
               </div>
 
-              {/* Answer */}
-              {open === i && (
-                <div style={{ borderTop: '1px solid #272B36' }} className="px-6 py-4">
-                  <p style={{ fontSize: 14, color: '#A6A6A6', lineHeight: '22px', letterSpacing: '-0.02em' }}>{item.a}</p>
-                </div>
-              )}
+              <div className="flex flex-col gap-4 relative z-10">
+                {certifications.map((cert, idx) => (
+                  <div key={idx} className="flex items-center gap-3 p-4 rounded-xl bg-[var(--bg-alt)] border border-[var(--border-light)] hover:border-[var(--accent)]/40 transition-colors">
+                    <CheckCircle2 size={18} className="text-emerald-500 shrink-0" />
+                    <span className="text-sm sm:text-base font-medium text-[var(--text)]">{cert}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-10 pt-8 border-t border-[var(--border-light)] relative z-10">
+                <p className="text-sm text-[var(--muted)] leading-relaxed italic">
+                  "Our certifications represent our commitment to quality, security, and delivering reliable enterprise infrastructure."
+                </p>
+              </div>
             </div>
-          ))}
+          </div>
+
         </div>
       </div>
     </section>

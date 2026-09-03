@@ -1,29 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import { Building2, Server, HeartPulse, Factory, Activity, ShieldCheck } from 'lucide-react';
+import { Building2, HeartPulse, Activity, ShieldCheck, Coffee, GraduationCap, Landmark, Briefcase } from 'lucide-react';
 const industries = [
   {
-    name: 'Corporate & Multi-Site',
+    name: 'Corporate',
     icon: Building2,
-    desc: 'Dedicated fiber internet, managed SD-WAN, and unified threat management for distributed enterprises.',
+    desc: 'Scalable networking and unified threat management for distributed enterprises.',
     image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=60',
   },
   {
-    name: 'Data Centers & Cloud',
-    icon: Server,
-    desc: 'Dark fiber, ultra-low latency optical wavelengths, and high-capacity interconnects for critical infrastructure.',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=60',
-  },
-  {
-    name: 'Healthcare & Clinics',
+    name: 'Healthcare',
     icon: HeartPulse,
-    desc: 'Mission-critical 99.999% uptime, HIPAA-compliant secure data transport, and robust telehealth connectivity.',
+    desc: 'Mission-critical 99.999% uptime and HIPAA-compliant secure data transport.',
     image: 'https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=600&q=60',
   },
   {
-    name: 'Industrial & Manufacturing',
-    icon: Factory,
-    desc: 'Ruggedized edge networking, Industrial IoT (IIoT) connectivity, and pervasive warehouse Wi-Fi coverage.',
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=60',
+    name: 'Hospitality',
+    icon: Coffee,
+    desc: 'Seamless high-density guest Wi-Fi and robust operational networks.',
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=60',
+  },
+  {
+    name: 'Education',
+    icon: GraduationCap,
+    desc: 'High-capacity connectivity supporting digital learning and campus security.',
+    image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=60',
+  },
+  {
+    name: 'Government / Public Sector',
+    icon: Landmark,
+    desc: 'Zero-trust architecture and mission-critical reliability for public services.',
+    image: 'https://images.unsplash.com/photo-1523287562758-66c7fc58967f?auto=format&fit=crop&w=600&q=60',
+  },
+  {
+    name: 'Commercial',
+    icon: Briefcase,
+    desc: 'End-to-end communication, AV, and security solutions for commercial spaces.',
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=60',
   },
 ];
 
@@ -61,11 +73,11 @@ const IndustriesServed = () => {
         {/* Left Side: Industry List with Timer */}
         <div className="w-full lg:w-1/3 flex flex-col">
           <div className="mb-6 sm:mb-10 lg:mb-12">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-500 mb-2">
-              Sector Coverage
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--accent)] mb-2">
+              Industries
             </p>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight">
-              Industries We Serve
+              Solutions for Demanding Environments
             </h2>
           </div>
 
