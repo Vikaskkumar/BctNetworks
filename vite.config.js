@@ -5,4 +5,18 @@ export default defineConfig({
   plugins: [
     react(),
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react')) return 'vendor';
+            if (id.includes('framer-motion')) return 'framer';
+            if (id.includes('lucide-react')) return 'lucide';
+            return 'modules';
+          }
+        }
+      }
+    }
+  }
 })

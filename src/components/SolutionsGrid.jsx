@@ -4,32 +4,32 @@ const serviceCards = [
   {
     title: 'Enterprise Wi-Fi 6E High-Density Rollouts',
     stats: '150+ Projects • 99.9% Uptime Guarantee',
-    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=60',
   },
   {
     title: 'Zero-Trust Firewall & Perimeter Security',
     stats: '24/7 NOC Shield • Threat Prevention',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=60',
   },
   {
     title: 'Structured Fiber Optic & Cat6A Cabling',
     stats: 'TIA/EIA Certified • 10Gbps Backbone',
-    image: 'https://images.unsplash.com/photo-1551703599-6b3e8379aa8b?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1551703599-6b3e8379aa8b?auto=format&fit=crop&w=600&q=60',
   },
   {
     title: 'Unified IP Telephony & Commercial AV Systems',
     stats: 'VoIP & UC • Multi-Zone Audio',
-    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=60',
   },
   {
     title: 'AI Video Surveillance & Access Control',
     stats: '4K Smart Cameras • Cloud Storage',
-    image: 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=600&q=60',
   },
   {
     title: 'Data Center Rack & Precision Cooling Setup',
     stats: 'Tier-3 Certified • Smart PDU Power',
-    image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=600&q=60',
   },
 ];
 

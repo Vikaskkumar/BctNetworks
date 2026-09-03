@@ -165,7 +165,7 @@ const AboutSection = () => {
             >
               <div className="absolute inset-0 bg-blue-500/20 mix-blend-overlay group-hover:bg-transparent transition-colors duration-500 z-10" />
               <img
-                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80"
+                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=60"
                 alt="Server Room"
                 loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -204,7 +204,7 @@ const AboutSection = () => {
             >
               <div className="absolute inset-0 bg-cyan-500/10 mix-blend-overlay group-hover:bg-transparent transition-colors duration-500 z-10" />
               <img
-                src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80"
+                src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=60"
                 alt="Network Infrastructure"
                 loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"

@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Activity, Shield, Wifi } from 'lucide-react';
-import bgVideo from '../assets/bgvideo.mp4';
+import bgImage from '../assets/bgi5.jfif';
 
 const metrics = [
   { value: '150+', label: 'Projects Delivered' },
@@ -41,20 +41,16 @@ const Hero = () => (
     className="relative min-h-[100dvh] md:min-h-[95vh] flex items-center justify-center pt-32 pb-12 md:pb-24 bg-[#050505] overflow-hidden"
     id="home"
   >
-    {/* Background Video */}
-    <video
-      autoPlay
-      loop
-      muted
-      playsInline
-      className="absolute inset-0 w-full h-full object-cover opacity-45 pointer-events-none"
-    >
-      <source src={bgVideo} type="video/mp4" />
-    </video>
+    {/* Background Image */}
+    <img
+      src={bgImage}
+      alt="Network Infrastructure"
+      className="absolute inset-0 w-full h-full object-cover opacity-70 pointer-events-none"
+    />
 
     {/* Refined Gradient Overlay for contrast and depth */}
-    <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/60 via-[#050505]/40 to-[#050505]/95 pointer-events-none" />
-    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#050505]/50 to-[#050505]/80 pointer-events-none" />
+    <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/40 via-[#050505]/10 to-[#050505]/90 pointer-events-none" />
+    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-transparent to-[#050505]/60 pointer-events-none" />
 
     {/* Ambient Top Glow */}
     <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-blue-600/20 rounded-full blur-[150px] pointer-events-none mix-blend-screen" />

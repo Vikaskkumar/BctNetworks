@@ -5,25 +5,25 @@ const industries = [
     name: 'Corporate & Multi-Site',
     icon: Building2,
     desc: 'Dedicated fiber internet, managed SD-WAN, and unified threat management for distributed enterprises.',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=60',
   },
   {
     name: 'Data Centers & Cloud',
     icon: Server,
     desc: 'Dark fiber, ultra-low latency optical wavelengths, and high-capacity interconnects for critical infrastructure.',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1000&q=80',
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=60',
   },
   {
     name: 'Healthcare & Clinics',
     icon: HeartPulse,
     desc: 'Mission-critical 99.999% uptime, HIPAA-compliant secure data transport, and robust telehealth connectivity.',
-    image: 'https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=1000&q=80',
+    image: 'https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=600&q=60',
   },
   {
     name: 'Industrial & Manufacturing',
     icon: Factory,
     desc: 'Ruggedized edge networking, Industrial IoT (IIoT) connectivity, and pervasive warehouse Wi-Fi coverage.',
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1000&q=80',
+    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=60',
   },
 ];
 
