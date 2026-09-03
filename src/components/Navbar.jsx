@@ -34,7 +34,7 @@ const Navbar = () => {
           : 'bg-transparent border-b border-transparent'
       }`}
     >
-      <div className="max-w-[1300px] mx-auto px-6 lg:px-12 h-[80px] flex items-center justify-between">
+      <div className="max-w-[1300px] mx-auto px-3 sm:px-6 lg:px-12 h-[64px] md:h-[80px] flex items-center justify-between">
         {/* Logo */}
         <a
           href="#home"
@@ -90,9 +90,9 @@ const Navbar = () => {
             animate={{ opacity: 1, height: '100vh' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="md:hidden absolute top-[80px] left-0 right-0 bg-[#050505] border-t border-[#272B36] overflow-hidden flex flex-col"
+            className="md:hidden absolute top-[64px] md:top-[80px] left-0 right-0 bg-[#050505] border-t border-[#272B36] overflow-hidden flex flex-col"
           >
-            <div className="px-6 py-8 flex flex-col gap-6">
+            <div className="px-4 min-[360px]:px-6 py-8 flex flex-col gap-6">
               {navLinks.map((link, i) => (
                 <motion.a
                   key={link.name}

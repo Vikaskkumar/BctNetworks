@@ -59,7 +59,7 @@ const SolutionsGrid = () => {
           {duplicatedCards.map((card, idx) => (
             <div
               key={idx}
-              className="flex-shrink-0 flex flex-col justify-between group transition-all duration-300 w-[280px] sm:w-[400px]"
+              className="flex-shrink-0 flex flex-col justify-between group transition-all duration-300 w-[250px] min-[360px]:w-[280px] sm:w-[400px]"
               style={{
                 background: '#0C0D0F',
                 border: '1px solid #272B36',
@@ -78,7 +78,7 @@ const SolutionsGrid = () => {
             >
               {/* Clear, high-visibility image banner */}
               <div
-                className="relative overflow-hidden mb-4 h-[180px] sm:h-[240px]"
+                className="relative overflow-hidden mb-4 h-[160px] min-[360px]:h-[180px] sm:h-[240px]"
                 style={{
                   borderRadius: 14,
                 }}

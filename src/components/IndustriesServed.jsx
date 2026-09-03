@@ -109,7 +109,7 @@ const IndustriesServed = () => {
         </div>
 
         {/* Right Side: Big Interactive Card */}
-        <div className="w-full lg:w-2/3 h-[420px] sm:h-[500px] lg:h-[680px] relative rounded-2xl sm:rounded-3xl overflow-hidden group bg-[#121212]">
+        <div className="w-full lg:w-2/3 h-[380px] sm:h-[500px] lg:h-[680px] relative rounded-2xl sm:rounded-3xl overflow-hidden group bg-[#121212]">
           {/* Dynamic Background Image */}
           <img
             key={activeItem.name} // Forces re-render for smooth fade/image swap

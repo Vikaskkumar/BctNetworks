@@ -79,7 +79,7 @@ const AboutSection = () => {
         className="absolute top-0 left-1/4 -translate-x-1/2 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[150px] pointer-events-none" 
       />
       
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center relative z-10">
+      <div className="max-w-7xl mx-auto px-4 min-[360px]:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center relative z-10">
 
         {/* Left Content */}
         <motion.div
@@ -97,7 +97,7 @@ const AboutSection = () => {
           </motion.div>
 
           <motion.div variants={itemVariants} className="overflow-hidden">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-[1.15]">
+            <h2 className="text-2xl min-[360px]:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-[1.15]">
               Jaipur's most trusted <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-emerald-400 animate-gradient-x bg-[length:200%_auto]">
                 infrastructure partner.

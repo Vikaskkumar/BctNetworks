@@ -83,7 +83,7 @@ const Hero = () => (
         <motion.div variants={itemVariants} className="relative">
           {/* Subtle text shadow/glow behind the text */}
           <div className="absolute inset-0 blur-3xl bg-blue-500/10 -z-10 rounded-full transform scale-150" />
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-white mb-4 sm:mb-6 leading-[1.15] sm:leading-[1.12] max-w-4xl mx-auto drop-shadow-2xl px-2">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-white mb-4 sm:mb-6 leading-[1.15] sm:leading-[1.12] max-w-4xl mx-auto drop-shadow-2xl px-2">
             Network infrastructure <br className="hidden md:block" />
             built to scale with your{' '}
             <span className="relative inline-block">
@@ -110,7 +110,7 @@ const Hero = () => (
         {/* CTAs */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-5 mb-14 md:mb-24 w-full sm:w-auto px-6"
+          className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-5 mb-10 sm:mb-14 md:mb-24 w-full sm:w-auto px-6"
         >
           <a
             href="#contact"
@@ -142,7 +142,7 @@ const Hero = () => (
               <motion.div
                 key={i}
                 whileHover={{ backgroundColor: 'rgba(255,255,255,0.08)' }}
-                className="bg-black/40 p-4 sm:p-6 lg:p-10 text-center transition-colors cursor-default relative group"
+                className="bg-black/40 p-2 min-[360px]:p-4 sm:p-6 lg:p-10 text-center transition-colors cursor-default relative group"
               >
                 {/* Hover gradient accent */}
                 <div className="absolute inset-0 bg-gradient-to-b from-blue-500/0 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -151,11 +151,11 @@ const Hero = () => (
                   initial={{ scale: 0.5, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.6 + (i * 0.1), type: 'spring', stiffness: 100 }}
-                  className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tighter text-white mb-1 sm:mb-2 relative z-10 drop-shadow-md"
+                  className="text-xl min-[360px]:text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tighter text-white mb-1 sm:mb-2 relative z-10 drop-shadow-md"
                 >
                   {m.value}
                 </motion.p>
-                <p className="text-[9px] sm:text-[11px] md:text-xs font-bold text-gray-400 uppercase tracking-[0.2em] relative z-10">
+                <p className="text-[7px] min-[360px]:text-[9px] sm:text-[11px] md:text-xs font-bold text-gray-400 uppercase tracking-[0.2em] relative z-10">
                   {m.label}
                 </p>
               </motion.div>
