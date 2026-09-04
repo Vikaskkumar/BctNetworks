@@ -51,7 +51,7 @@ const AboutSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-16 sm:py-20 lg:py-28 bg-[var(--bg)] text-[var(--text)] relative overflow-hidden"
+      className="py-16 sm:py-20 lg:py-28 text-[var(--text)] relative overflow-hidden"
       id="about"
     >
       <div className="max-w-7xl mx-auto px-4 min-[360px]:px-6 lg:px-8 relative z-10">

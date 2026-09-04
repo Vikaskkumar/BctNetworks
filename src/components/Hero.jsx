@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import bgVideo from '../assets/bgvideo.mp4';
 
 const metrics = [
   { value: '150+', label: 'Projects Delivered' },
@@ -26,27 +25,11 @@ const itemVariants = {
 
 const Hero = () => (
   <section
-    className="relative w-full min-h-[100dvh] md:min-h-[95vh] flex items-center justify-center pt-28 pb-12 md:pb-24 bg-[var(--bg)] overflow-hidden"
+    className="relative w-full min-h-[100dvh] md:min-h-[95vh] flex items-center justify-center pt-28 pb-12 md:pb-24 bg-transparent overflow-hidden"
     id="home"
   >
-    {/* Ambient Background Base */}
-    <div className="absolute inset-0 bg-gradient-to-br from-blue-50/40 via-[var(--bg)] to-[var(--bg)] dark:from-[#3B82F6]/5 dark:via-[var(--bg)] dark:to-[var(--bg)] pointer-events-none" />
+    {/* Ambient Background Base is now global, but we can keep a subtle transparent one here if we want, or remove it. Let's remove it to let global video shine. */}
 
-    {/* Background Video */}
-    <video
-      autoPlay
-      loop
-      muted
-      playsInline
-      className="absolute inset-0 w-full h-full object-cover opacity-15 dark:opacity-40 pointer-events-none scale-[1.05] mix-blend-multiply dark:mix-blend-screen dark:contrast-125"
-      style={{ filter: 'saturate(1.2)' }}
-    >
-      <source src={bgVideo} type="video/mp4" />
-    </video>
-
-    {/* Smooth Fade Overlays */}
-    <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg)]/90 via-transparent to-[var(--bg)] pointer-events-none" />
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-[var(--bg)]/50 to-[var(--bg)]/90 pointer-events-none" />
 
     {/* Ethereal Glows (Light & Dark) */}
     <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[300px] sm:w-[600px] md:w-[900px] h-[300px] sm:h-[500px] md:h-[600px] bg-indigo-500/10 dark:bg-blue-500/15 rounded-full blur-[100px] sm:blur-[150px] pointer-events-none dark:mix-blend-screen" />

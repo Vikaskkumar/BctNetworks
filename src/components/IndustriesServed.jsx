@@ -56,7 +56,7 @@ const IndustriesServed = () => {
   }, [activeIndex]);
 
   return (
-    <section id="industries" className="bg-[var(--bg)] text-[var(--text)] py-12 sm:py-20 lg:py-24 px-4 sm:px-6 min-h-screen flex items-center relative overflow-hidden">
+    <section id="industries" className="text-[var(--text)] py-12 sm:py-20 lg:py-24 px-4 sm:px-6 min-h-screen flex items-center relative overflow-hidden">
       {/* Injecting keyframes for the progress bar animation so it works without Tailwind config changes */}
       <style>{`
         @keyframes timer-progress {

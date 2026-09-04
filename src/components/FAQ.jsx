@@ -52,7 +52,7 @@ const itemVariants = {
 
 const FAQ = () => {
   return (
-    <section className="py-16 md:py-24 bg-[var(--bg)] border-t border-[var(--border-light)] w-full relative" id="faq">
+    <section className="py-16 md:py-24 w-full relative" id="faq">
       <div className="max-w-7xl mx-auto px-4 min-[360px]:px-6 lg:px-8 relative z-10">
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">

@@ -33,7 +33,7 @@ const ContactSection = () => {
 
   return (
     <section
-      className="py-12 md:py-24 bg-[var(--bg)] text-[var(--text)] relative overflow-hidden border-t border-[var(--border-light)] w-full"
+      className="py-12 md:py-24 text-[var(--text)] relative overflow-hidden w-full"
       id="contact"
     >
       {/* Ambient Blue Glow */}

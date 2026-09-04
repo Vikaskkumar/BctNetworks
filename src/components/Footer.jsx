@@ -37,7 +37,7 @@ const cols = [
 ];
 
 const Footer = () => (
-  <footer style={{ background: 'var(--surface)', borderTop: '1px solid var(--border)' }} className="w-full overflow-hidden">
+  <footer style={{ background: 'transparent' }} className="w-full overflow-hidden">
     <div className="container-custom py-10 sm:py-16">
       {/* Top grid: logo left + nav columns right */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-10">

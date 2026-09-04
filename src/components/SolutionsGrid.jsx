@@ -75,7 +75,7 @@ const SolutionCard = ({ title, desc, icon: Icon }) => (
 
 const SolutionsGrid = () => {
   return (
-    <section className="py-16 sm:py-24 bg-[var(--bg-alt)] border-y border-[var(--border-light)] w-full overflow-hidden" id="solutions">
+    <section className="py-16 sm:py-24 w-full overflow-hidden" id="solutions">
 
       <div className="max-w-7xl mx-auto px-4 min-[360px]:px-6 lg:px-8 mb-12 sm:mb-16">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">

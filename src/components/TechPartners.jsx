@@ -15,7 +15,7 @@ const partners = [
 
 const TechPartners = () => (
   <section
-    className="py-10 md:py-14 bg-[var(--bg)] border-t border-[var(--border-light)] overflow-hidden relative w-full"
+    className="py-10 md:py-14 overflow-hidden relative w-full"
     id="partners"
   >
     {/* Minimalist Header */}
