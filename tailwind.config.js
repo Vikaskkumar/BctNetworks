@@ -8,15 +8,14 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'], // The design uses a clean sans-serif like Inter
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+      },
+      letterSpacing: {
+        tighter: '-0.04em',
+        tight: '-0.02em',
       },
       colors: {
-        red: {
-          50: '#fef2f2',
-          100: '#fee2e2',
-          600: '#dc2626', // Main brand color
-          700: '#b91c1c', // Hover state
-        }
+        // We rely on CSS variables for primary colors to ensure seamless light/dark mode transitions
       }
     },
   },

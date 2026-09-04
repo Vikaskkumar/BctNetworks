@@ -33,10 +33,7 @@ const FAQ = () => {
   };
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24 w-full relative text-[var(--text)] overflow-hidden" id="faq">
-      {/* Subtle Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[120px] pointer-events-none" />
-
+    <section className="py-16 sm:py-20 lg:py-24 w-full relative text-[var(--text)] bg-[var(--bg)] overflow-hidden" id="faq">
       <div className="max-w-4xl mx-auto px-4 min-[360px]:px-6 lg:px-8 relative z-10">
 
         {/* Section Header */}
@@ -47,12 +44,12 @@ const FAQ = () => {
           className="text-center mb-10 sm:mb-14"
         >
           <div className="inline-flex items-center justify-center gap-2 mb-3 sm:mb-4">
-            <span className="w-6 h-[1px] bg-blue-500/50"></span>
-            <span className="text-xs font-bold tracking-[0.18em] text-[var(--accent)] uppercase">FAQ</span>
-            <span className="w-6 h-[1px] bg-blue-500/50"></span>
+            <span className="w-6 h-[1px] bg-[var(--border)]"></span>
+            <span className="text-xs font-bold tracking-[0.18em] text-[var(--muted)] uppercase">FAQ</span>
+            <span className="w-6 h-[1px] bg-[var(--border)]"></span>
           </div>
           <h2 className="text-2xl min-[360px]:text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-3 sm:mb-4">
-            Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Questions</span>
+            Frequently Asked Questions
           </h2>
           <p className="text-[var(--muted)] max-w-lg mx-auto text-sm sm:text-base">
             Everything you need to know about our enterprise services, deployment process, and technical support.
@@ -70,8 +67,8 @@ const FAQ = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className={`border rounded-2xl bg-[var(--surface)] overflow-hidden transition-all duration-200 ${
-                  isOpen ? 'border-blue-500/40 shadow-lg' : 'border-[var(--border-light)] hover:border-[var(--border)]'
+                className={`border rounded-2xl bg-[var(--bg)] overflow-hidden transition-all duration-200 ${
+                  isOpen ? 'border-[var(--text)] shadow-lg' : 'border-[var(--border)] hover:border-[var(--muted)]'
                 }`}
               >
                 <button
@@ -80,13 +77,13 @@ const FAQ = () => {
                   aria-expanded={isOpen}
                 >
                   <span className="flex items-center gap-3">
-                    <HelpCircle size={20} className={`shrink-0 transition-colors ${isOpen ? 'text-blue-500' : 'text-[var(--muted)]'}`} />
-                    <span className={`transition-colors ${isOpen ? 'text-[var(--text)] font-bold' : 'text-[var(--text)]'}`}>
+                    <HelpCircle size={20} className={`shrink-0 transition-colors ${isOpen ? 'text-[var(--text)]' : 'text-[var(--muted)]'}`} />
+                    <span className={`transition-colors text-[var(--text)] ${isOpen ? 'font-bold' : ''}`}>
                       {faq.question}
                     </span>
                   </span>
                   <div className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-all ${
-                    isOpen ? 'bg-blue-500/10 text-blue-500' : 'bg-transparent text-[var(--muted)]'
+                    isOpen ? 'bg-[var(--accent)] text-[var(--accent-text)]' : 'bg-transparent text-[var(--muted)]'
                   }`}>
                     <ChevronDown
                       size={18}
@@ -103,7 +100,7 @@ const FAQ = () => {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.25, ease: 'easeInOut' }}
                     >
-                      <div className="px-5 pb-5 sm:px-6 sm:pb-6 text-sm sm:text-base text-[var(--muted)] leading-relaxed border-t border-[var(--border-light)]/50 pt-4 pl-5 sm:pl-12">
+                      <div className="px-5 pb-5 sm:px-6 sm:pb-6 text-sm sm:text-base text-[var(--muted)] leading-relaxed border-t border-[var(--border)] pt-4 pl-5 sm:pl-12">
                         {faq.answer}
                       </div>
                     </motion.div>

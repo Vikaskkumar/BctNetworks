@@ -71,7 +71,7 @@ const IndustriesServed = () => {
   }, [isPaused]);
 
   return (
-    <section id="industries" className="text-[var(--text)] py-16 sm:py-20 lg:py-24 relative overflow-hidden">
+    <section id="industries" className="text-[var(--text)] py-16 sm:py-20 lg:py-24 relative overflow-hidden bg-[var(--bg)]">
       <div className="max-w-7xl mx-auto px-4 min-[360px]:px-6 lg:px-8 relative z-10">
 
         <div
@@ -84,14 +84,14 @@ const IndustriesServed = () => {
           <div className="w-full lg:w-5/12 flex flex-col">
             <div className="mb-6 sm:mb-8">
               <div className="flex items-center gap-2 mb-3">
-                <span className="w-6 h-[2px] bg-blue-500 rounded-full" />
-                <span className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--accent)]">
+                <span className="w-6 h-[2px] bg-[var(--accent)] rounded-full" />
+                <span className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--muted)]">
                   Industries
                 </span>
               </div>
             </div>
 
-            <div className="flex flex-col border-t border-[var(--border-light)]">
+            <div className="flex flex-col border-t border-[var(--border)]">
               {industries.map((item, index) => {
                 const isActive = index === activeIndex;
 
@@ -99,27 +99,31 @@ const IndustriesServed = () => {
                   <button
                     key={index}
                     onClick={() => setActiveIndex(index)}
-                    className={`py-4 px-3 sm:px-4 border-b border-[var(--border-light)] text-left transition-all duration-200 flex items-center justify-between group focus:outline-none relative overflow-hidden ${isActive
-                        ? 'bg-[var(--surface)] border-l-4 border-l-blue-500 pl-4 sm:pl-5 shadow-sm'
-                        : 'hover:bg-[var(--surface)]/40'
-                      }`}
+                    className={`py-4 px-3 sm:px-4 border-b border-[var(--border)] text-left transition-all duration-200 flex items-center justify-between group focus:outline-none relative overflow-hidden ${
+                      isActive
+                        ? 'bg-[var(--bg-alt)] border-l-4 border-l-[var(--accent)] pl-4 sm:pl-5 shadow-sm'
+                        : 'hover:bg-[var(--bg-alt)]/50'
+                    }`}
                   >
-                    <h3 className={`text-base sm:text-lg font-bold transition-colors ${isActive ? 'text-blue-500' : 'text-[var(--text)] group-hover:text-blue-400'
-                      }`}>
+                    <h3 className={`text-base sm:text-lg font-bold transition-colors ${
+                      isActive ? 'text-[var(--text)]' : 'text-[var(--muted)] group-hover:text-[var(--text)]'
+                    }`}>
                       {item.name}
                     </h3>
 
-                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${isActive ? 'bg-blue-500 text-white' : 'bg-transparent text-[var(--muted)] group-hover:text-[var(--text)]'
-                      }`}>
+                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${
+                      isActive ? 'bg-[var(--accent)] text-[var(--accent-text)]' : 'bg-transparent text-[var(--muted)] group-hover:text-[var(--text)]'
+                    }`}>
                       <ArrowRight size={16} className={`transition-transform ${isActive ? 'translate-x-0.5' : '-rotate-45 group-hover:rotate-0'}`} />
                     </div>
 
                     {/* Progress Loader Line Track */}
-                    <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[var(--border-light)] overflow-hidden pointer-events-none">
+                    <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[var(--border)] overflow-hidden pointer-events-none">
                       <div
                         key={`${index}-${activeIndex}-${isPaused}`}
-                        className={`h-full bg-blue-500 ${isActive && !isPaused ? 'w-full transition-all duration-[3000ms] ease-linear' : 'w-0 transition-none'
-                          }`}
+                        className={`h-full bg-[var(--accent)] ${
+                          isActive && !isPaused ? 'w-full transition-all duration-[3000ms] ease-linear' : 'w-0 transition-none'
+                        }`}
                       />
                     </div>
                   </button>
@@ -129,7 +133,7 @@ const IndustriesServed = () => {
           </div>
 
           {/* Right Column: Hardware-Accelerated Zero-Lag Image Container */}
-          <div className="w-full lg:w-7/12 h-[420px] sm:h-[480px] lg:h-[540px] relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[var(--border-light)] bg-slate-900 shadow-2xl flex flex-col justify-end">
+          <div className="w-full lg:w-7/12 h-[420px] sm:h-[480px] lg:h-[540px] relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[var(--border)] bg-[var(--bg-alt)] shadow-2xl flex flex-col justify-end">
 
             {/* Pre-rendered Layered Images for Instant 0ms Cross-Fade */}
             {industries.map((item, idx) => (
@@ -138,15 +142,16 @@ const IndustriesServed = () => {
                 src={item.image}
                 alt={item.name}
                 loading="eager"
-                className={`absolute inset-0 w-full h-full object-cover object-center brightness-90 transition-all duration-500 ease-out ${idx === activeIndex
+                className={`absolute inset-0 w-full h-full object-cover object-center brightness-90 transition-all duration-500 ease-out ${
+                  idx === activeIndex
                     ? 'opacity-100 scale-100 z-10'
                     : 'opacity-0 scale-105 z-0 pointer-events-none'
-                  }`}
+                }`}
               />
             ))}
 
             {/* Dark Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent z-20 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-20 pointer-events-none" />
 
             {/* Overlay Banner Info */}
             <div className="relative z-30 p-6 sm:p-8 lg:p-10 text-white">

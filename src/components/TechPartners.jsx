@@ -106,12 +106,12 @@ const partners = [
 
 const TechPartners = () => (
   <section
-    className="py-12 sm:py-16 overflow-hidden relative w-full bg-[#0a0d14] text-white border-y border-white/5"
+    className="py-12 sm:py-16 overflow-hidden relative w-full bg-[var(--bg)] text-[var(--text)]"
     id="partners"
   >
     {/* Centered Header matching screenshot */}
     <div className="max-w-7xl mx-auto px-4 text-center mb-8 sm:mb-12">
-      <h2 className="text-xs sm:text-sm font-extrabold tracking-[0.28em] text-slate-400 uppercase">
+      <h2 className="text-xs sm:text-sm font-extrabold tracking-[0.28em] text-[var(--muted)] uppercase">
         OUR TECHNOLOGY PARTNERS
       </h2>
     </div>
@@ -120,7 +120,7 @@ const TechPartners = () => (
     <div className="relative w-full max-w-7xl mx-auto flex overflow-hidden">
 
       {/* Left Fade Overlay */}
-      <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-r from-[#0a0d14] to-transparent z-10 pointer-events-none" />
+      <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-r from-[var(--bg)] to-transparent z-10 pointer-events-none" />
 
       <motion.div
         animate={{ x: ['0%', '-50%'] }}
@@ -163,7 +163,7 @@ const TechPartners = () => (
       </motion.div>
 
       {/* Right Fade Overlay */}
-      <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-l from-[#0a0d14] to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-l from-[var(--bg)] to-transparent z-10 pointer-events-none" />
 
     </div>
   </section>

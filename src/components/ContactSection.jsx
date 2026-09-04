@@ -33,12 +33,9 @@ const ContactSection = () => {
 
   return (
     <section
-      className="py-12 md:py-24 text-[var(--text)] relative overflow-hidden w-full"
+      className="py-12 md:py-24 text-[var(--text)] bg-[var(--bg)] relative overflow-hidden w-full"
       id="contact"
     >
-      {/* Ambient Blue Glow */}
-      <div className="absolute bottom-0 right-0 w-[300px] sm:w-[600px] h-[300px] sm:h-[500px] bg-blue-600/10 rounded-full blur-[100px] sm:blur-[120px] pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-4 min-[360px]:px-6 lg:px-8 relative z-10">
 
         {/* Section Header */}
@@ -49,14 +46,14 @@ const ContactSection = () => {
           className="text-center mb-10 sm:mb-16"
         >
           <div className="inline-flex items-center justify-center gap-2 mb-3 sm:mb-4">
-            <span className="w-6 h-[1px] bg-blue-500/50"></span>
-            <span className="text-xs font-bold tracking-[0.15em] text-blue-400 uppercase">Get In Touch</span>
-            <span className="w-6 h-[1px] bg-blue-500/50"></span>
+            <span className="w-6 h-[1px] bg-[var(--border)]"></span>
+            <span className="text-xs font-bold tracking-[0.15em] text-[var(--muted)] uppercase">Get In Touch</span>
+            <span className="w-6 h-[1px] bg-[var(--border)]"></span>
           </div>
           <h2 className="text-2xl min-[360px]:text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-3 sm:mb-4">
-            Let's build your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">network.</span>
+            Let's build your network.
           </h2>
-          <p className="text-gray-400 max-w-xl mx-auto text-sm sm:text-lg px-2">
+          <p className="text-[var(--muted)] max-w-xl mx-auto text-sm sm:text-lg px-2">
             Tell us about your project. Our engineers will respond within 2 business hours.
           </p>
         </motion.div>
@@ -74,7 +71,7 @@ const ContactSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-7 bg-[var(--surface)] border border-[var(--border-light)] rounded-2xl p-4 min-[360px]:p-6 sm:p-8 lg:p-10 shadow-2xl relative overflow-hidden"
+            className="lg:col-span-7 bg-[var(--bg-alt)] border border-[var(--border)] rounded-2xl p-4 min-[360px]:p-6 sm:p-8 lg:p-10 shadow-2xl relative overflow-hidden"
           >
             <AnimatePresence mode="wait">
               {submitted ? (
@@ -86,16 +83,16 @@ const ContactSection = () => {
                   transition={{ duration: 0.4 }}
                   className="text-center py-12 flex flex-col items-center justify-center h-full min-h-[320px]"
                 >
-                  <div className="w-16 h-16 rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center justify-center mb-6">
-                    <CheckCircle2 size={32} className="text-blue-500" />
+                  <div className="w-16 h-16 rounded-full bg-[var(--border)] flex items-center justify-center mb-6">
+                    <CheckCircle2 size={32} className="text-[var(--accent)]" />
                   </div>
                   <h3 className="text-2xl font-bold text-[var(--text)] mb-2 tracking-tight">Requirements Received!</h3>
-                  <p className="text-gray-400 mb-8 max-w-sm">
+                  <p className="text-[var(--muted)] mb-8 max-w-sm">
                     Thank you. A network architect from our Jaipur office will reach out shortly.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--border-light)] text-[var(--text)] font-semibold border border-[var(--border-light)] hover:bg-[var(--border)] hover:text-[var(--text)] transition-all active:scale-95"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--accent)] text-[var(--accent-text)] font-semibold hover:opacity-90 transition-all active:scale-95"
                   >
                     Submit Another Request <ArrowRight size={16} />
                   </button>
@@ -119,7 +116,7 @@ const ContactSection = () => {
                       required
                       value={form.name}
                       onChange={updateForm('name')}
-                      className="w-full bg-[var(--input-bg)] border border-[var(--border)] rounded-xl text-[var(--text)] placeholder-[var(--muted)] px-4 py-3.5 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all shadow-inner"
+                      className="w-full bg-[var(--bg)] border border-[var(--border)] rounded-xl text-[var(--text)] placeholder-[var(--muted)] px-4 py-3.5 focus:outline-none focus:border-[var(--accent)] transition-all shadow-inner"
                     />
                     <input
                       type="email"
@@ -127,7 +124,7 @@ const ContactSection = () => {
                       required
                       value={form.email}
                       onChange={updateForm('email')}
-                      className="w-full bg-[var(--input-bg)] border border-[var(--border)] rounded-xl text-[var(--text)] placeholder-[var(--muted)] px-4 py-3.5 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all shadow-inner"
+                      className="w-full bg-[var(--bg)] border border-[var(--border)] rounded-xl text-[var(--text)] placeholder-[var(--muted)] px-4 py-3.5 focus:outline-none focus:border-[var(--accent)] transition-all shadow-inner"
                     />
                   </div>
 
@@ -136,13 +133,13 @@ const ContactSection = () => {
                     placeholder="Describe your network requirements..."
                     value={form.message}
                     onChange={updateForm('message')}
-                    className="w-full bg-[var(--input-bg)] border border-[var(--border)] rounded-xl text-[var(--text)] placeholder-[var(--muted)] px-4 py-3.5 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all resize-none shadow-inner"
+                    className="w-full bg-[var(--bg)] border border-[var(--border)] rounded-xl text-[var(--text)] placeholder-[var(--muted)] px-4 py-3.5 focus:outline-none focus:border-[var(--accent)] transition-all resize-none shadow-inner"
                   />
 
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-blue-600 text-white font-bold hover:bg-blue-500 transition-all hover:scale-[1.01] active:scale-95 disabled:opacity-70 disabled:hover:scale-100 group"
+                    className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl btn-primary font-bold hover:scale-[1.01] active:scale-95 disabled:opacity-70 disabled:hover:scale-100 group"
                   >
                     {isSubmitting ? 'Sending...' : 'Send Requirements'}
                     {!isSubmitting && <Send size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />}
@@ -158,7 +155,7 @@ const ContactSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-5 bg-[var(--surface)] border border-[var(--border-light)] rounded-2xl p-5 sm:p-8 lg:p-10 flex flex-col h-full"
+            className="lg:col-span-5 bg-[var(--bg-alt)] border border-[var(--border)] rounded-2xl p-5 sm:p-8 lg:p-10 flex flex-col h-full"
           >
             <h3 className="text-xl font-bold text-[var(--text)] tracking-tight mb-8">Direct Contact</h3>
 
@@ -169,8 +166,8 @@ const ContactSection = () => {
                 { icon: Mail, text: 'Sales@bctnetworks.in', href: 'mailto:Sales@bctnetworks.in', isLink: true },
               ].map(({ icon: Icon, text, href, isLink }, i) => (
                 <div key={i} className="flex items-start gap-4 group">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[var(--border-light)] border border-[var(--border)] flex items-center justify-center group-hover:bg-blue-500/10 group-hover:border-blue-500/30 transition-colors">
-                    <Icon size={18} className="text-gray-400 group-hover:text-blue-400 transition-colors" />
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[var(--bg)] border border-[var(--border)] flex items-center justify-center group-hover:border-[var(--text)] transition-colors">
+                    <Icon size={18} className="text-[var(--muted)] group-hover:text-[var(--text)] transition-colors" />
                   </div>
                   <div className="mt-2.5">
                     {isLink ? (
@@ -178,7 +175,7 @@ const ContactSection = () => {
                         {text}
                       </a>
                     ) : (
-                      <span className="text-[15px] text-gray-400 leading-relaxed">
+                      <span className="text-[15px] text-[var(--muted)] leading-relaxed">
                         {text}
                       </span>
                     )}
@@ -188,8 +185,8 @@ const ContactSection = () => {
             </div>
 
             {/* Response Time Indicator */}
-            <div className="pt-8 mt-8 border-t border-white/10">
-              <p className="text-[11px] font-bold text-gray-500 tracking-widest uppercase mb-2">
+            <div className="pt-8 mt-8 border-t border-[var(--border)]">
+              <p className="text-[11px] font-bold text-[var(--muted)] tracking-widest uppercase mb-2">
                 Response Time
               </p>
               <div className="flex items-center gap-2">
@@ -197,7 +194,7 @@ const ContactSection = () => {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
                 </span>
-                <p className="text-sm text-gray-300">
+                <p className="text-sm text-[var(--muted)]">
                   Typically within <span className="font-semibold text-[var(--text)]">2 business hours</span>
                 </p>
               </div>
