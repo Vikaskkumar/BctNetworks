@@ -55,7 +55,7 @@ const row2 = solutions.slice(5, 9).concat(solutions[0]);
 const SolutionCard = ({ title, desc, icon: Icon }) => (
   <div className="group w-[300px] sm:w-[350px] shrink-0 p-6 rounded-2xl bg-[var(--surface)] border border-[var(--border-light)] hover:border-[var(--accent)]/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 cursor-pointer flex flex-col relative overflow-hidden">
     <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-    
+
     <div className="w-12 h-12 rounded-xl bg-[var(--bg-alt)] border border-[var(--border-light)] flex items-center justify-center mb-5 group-hover:bg-[var(--accent)] group-hover:border-[var(--accent)] transition-colors duration-300 relative z-10">
       <Icon size={24} className="text-[var(--text-2)] group-hover:text-white transition-colors duration-300" />
     </div>
@@ -76,7 +76,7 @@ const SolutionCard = ({ title, desc, icon: Icon }) => (
 const SolutionsGrid = () => {
   return (
     <section className="py-16 sm:py-24 bg-[var(--bg-alt)] border-y border-[var(--border-light)] w-full overflow-hidden" id="solutions">
-      
+
       <div className="max-w-7xl mx-auto px-4 min-[360px]:px-6 lg:px-8 mb-12 sm:mb-16">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="max-w-2xl">
@@ -86,11 +86,9 @@ const SolutionsGrid = () => {
                 Our Solutions
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--text)]">
-              Integrated Technology Infrastructure
-            </h2>
+
           </div>
-          
+
           <a href="#contact" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[var(--surface)] border border-[var(--border-light)] text-[var(--text)] font-semibold text-sm hover:border-[var(--accent)]/50 transition-colors shrink-0 shadow-sm">
             Discuss a Project <ArrowRight size={16} />
           </a>

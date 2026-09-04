@@ -5,26 +5,26 @@
 /* ─── Dark theme tokens (default) ──────────────────────────────────────── */
 :root,
 [data-theme="dark"] {
-  --bg:           #050505;
-  --bg-alt:       #0A0B0D;
-  --surface:      #0C0D0F;
-  --surface-2:    #111318;
-  --border:       #272B36;
-  --border-light: rgba(255,255,255,0.07);
-  --accent:       #0066FF;
-  --accent-h:     #0052cc;
-  --accent-glow:  rgba(0,102,255,0.25);
-  --text:         #FFFFFF;
-  --text-2:       #E5E7EB;
-  --muted:        #A6A6A6;
-  --muted-2:      #6B7280;
-  --card-bg:      #0C0D0F;
-  --card-border:  #272B36;
-  --hero-overlay: rgba(5,5,5,0.45);
-  --nav-bg:       rgba(5,5,5,0.92);
-  --nav-border:   #272B36;
-  --input-bg:     #050507;
-  --scrollbar:    #272B36;
+  --bg:           #02040A;
+  --bg-alt:       #090E1A;
+  --surface:      #101726;
+  --surface-2:    #1A2438;
+  --border:       #1F2C45;
+  --border-light: rgba(255,255,255,0.05);
+  --accent:       #3B82F6;
+  --accent-h:     #60A5FA;
+  --accent-glow:  rgba(59,130,246,0.25);
+  --text:         #F8FAFC;
+  --text-2:       #E2E8F0;
+  --muted:        #94A3B8;
+  --muted-2:      #64748B;
+  --card-bg:      rgba(16, 23, 38, 0.6);
+  --card-border:  rgba(255, 255, 255, 0.08);
+  --hero-overlay: rgba(2, 4, 10, 0.65);
+  --nav-bg:       rgba(2, 4, 10, 0.82);
+  --nav-border:   rgba(255, 255, 255, 0.08);
+  --input-bg:     #02040A;
+  --scrollbar:    #1A2438;
 }
 
 /* ─── Light theme tokens ────────────────────────────────────────────────── */
@@ -220,7 +220,7 @@
 
 .industries-section {
   position: relative;
-  background: #050505;
+  background: var(--bg);
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   padding: 6rem 1rem;
   overflow: hidden;

@@ -64,22 +64,22 @@ const AboutSection = () => {
           viewport={{ once: true, margin: "-60px" }}
           className="max-w-3xl mb-12 sm:mb-16"
         >
-          <motion.div variants={itemVariants} className="flex items-center gap-2 mb-3">
+          <motion.div variants={itemVariants} className="flex items-center gap-2 mb-4">
             <span className="w-6 h-[2px] bg-blue-500 rounded-full" />
             <span className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--accent)]">
-              About BCT Networks
+              Who We Are
             </span>
           </motion.div>
 
-          <motion.h2 variants={itemVariants} className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[var(--text)] leading-snug mb-4">
-            Jaipur's most trusted    {'     '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500">
-              infrastructure  partner
+          <motion.h2 variants={itemVariants} className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--text)] leading-[1.1] mb-6">
+            Technology Infrastructure Built Around{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-400">
+              Your Business
             </span>
           </motion.h2>
 
-          <motion.p variants={itemVariants} className="text-sm sm:text-base md:text-lg text-[var(--muted)] leading-relaxed font-normal">
-            BCT Networks provides integrated technology and infrastructure capabilities across networking, server and storage, security, communication and related technology systems.
+          <motion.p variants={itemVariants} className="text-base sm:text-lg md:text-xl text-[var(--muted)] leading-relaxed font-normal max-w-2xl">
+            BCT Networks provides integrated technology and infrastructure capabilities across networking, server and storage, security, communication, and related technology systems.
           </motion.p>
         </motion.div>
 
