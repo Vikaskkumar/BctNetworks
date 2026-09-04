@@ -1,5 +1,5 @@
 import React from 'react';
-import bctNetworksLogo from '../assets/bct-networks-logo.jpeg';
+import bctNetworksLogo from '../assets/bctnewlogo.png';
 import { useTheme } from '../context/ThemeContext';
 
 const BctLogo = ({ className = '' }) => {
